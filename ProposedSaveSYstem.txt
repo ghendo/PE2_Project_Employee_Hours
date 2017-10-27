@@ -1,0 +1,18 @@
+Find system
+
+end result is a string is built that is passed to the database and converted to
+sql command
+
+This could be directly type into the text box
+
+say 	Email:@cia.gov
+or	Email:ghendo@me.com AND DATEOFBIRTH:<1/10/2016
+
+would be converted to
+
+select *
+from Employees
+where 
+	email like '%' + @emailParsed + '%'
+AND
+	date < @dateparsed

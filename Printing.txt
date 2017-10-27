@@ -1,0 +1,31 @@
+Printing
+
+Main requirements
+
+Add controls
+	PrintDocument
+	PrintPreviewDialog
+
+In property for Print Document
+	document name is document
+	event PrintPage is PrintDocument1_PrintPage
+
+In property for PrintDialog
+	document should be the print document
+	say printDocument1
+
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            //Draw text to your document
+            e.Graphics.DrawString(txtValue.Text, new Font("Times New Roman", 14, FontStyle.Bold), Brushes.Black, new PointF(100, 100));
+        }
+
+
+
+      private void Print_Click(object sender, EventArgs e)
+        {
+            //Open print dialog
+            if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
+                printDocument1.Print();
+        }
