@@ -27,6 +27,8 @@ namespace PE2_Project_Employee_Hours.View
             InitializeComponent();
             txtFindEmp.ForeColor = Color.LightGray;
             txtFindEmp.Text = "Search";
+            txtEmpHrsFind.Text = "Search";
+            txtEmpHrsFind.ForeColor = Color.LightGray;
             timerCounterEmp = 0;
             timerCounterEmpHours = 0;
             
@@ -1252,7 +1254,7 @@ namespace PE2_Project_Employee_Hours.View
 
             //call find method
             EmployeeService service = new EmployeeService();
-            Result<List<Employee>> result = service.FindEmployeesByEmail(s);
+            Result<List<Employee>> result = service.FindEmployeesByAny(s);
 
             if (result.Status == ResultEnum.Success)
             {
@@ -1297,6 +1299,65 @@ namespace PE2_Project_Employee_Hours.View
                 //load dgv
                 dgvEmployeeManager.LoadDgv();
                 setDGVemployeeColumnDetails();
+
+
+            }
+            else
+            {
+                MessageBox.Show("Database Error");
+            }
+        }
+
+        private void FindEmployeeHoursByAny(string s)
+        {
+
+            //call find method
+            EmployeeHoursService service = new EmployeeHoursService();
+            Result<List<EmployeeHours>> result = service.FindEmployeesHoursByAny(s);
+
+            if (result.Status == ResultEnum.Success)
+            {
+
+                //show message if no records found
+                if (result.Data == null)
+                {
+                    MessageBox.Show("Nothing found");
+                    return;
+                }
+
+                //set the sort properties of dgv manager
+                dgvEmployeeHoursManager.SortColumn = 0;
+                dgvEmployeeHoursManager.SortDirection = SortOrder.Ascending;
+
+                //send result.data to dgv manager
+                dgvEmployeeHoursManager.ResultData = result.Data;
+
+                //sort result by id
+                dgvEmployeeHoursManager.ResultData.Sort(EmployeeHours.sortEmployeeHoursById());
+
+                //set the data in dgv manager
+                dgvEmployeeHoursManager.SetResult();
+
+
+                //set dvg manager last updated row
+                String searchValue = EmployeeHoursLastUpdate().Data.EmployeeHoursId.ToString();
+                foreach (DataGridViewRow row in dgvEmployeeHoursManager.Dgv.Rows)
+                {
+                    if (row.Cells["EmployeeHoursId"].Value != null) // Need to check for null if data entry row exists
+                    {
+                        if (row.Cells["EmployeeHoursId"].Value.ToString().Equals(searchValue))
+                        {
+                            //rowIndex = row.Index;
+                            //set last updated row in manager
+                            dgvEmployeeHoursManager.LastUpdatedRow = row;
+                            break;
+                        }
+                    }
+                }
+
+                //load dgv
+                dgvEmployeeHoursManager.LoadDgv();
+                setDGVemployeeHoursColumnDetails();
 
 
             }
@@ -1778,6 +1839,222 @@ namespace PE2_Project_Employee_Hours.View
         private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //TODO
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtFindEmp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtEmployeePhone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmployeeEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmployeeDOB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmployeeLastName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmployeeFirstName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmployeeID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmpLstPhn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeePhone_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmpLstEml_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeEmail_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmpLstDOB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeDOB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmpLstLstNme_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeLastName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmplLastEmpId_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmpLstFstNme_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeFirstName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeId_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvEmployeeHours_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeLstEmpHrsId_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeLstWkDate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeLstEmpId_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeLstHrsWrked_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmpHoursHoursWorked_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmpHoursWorkDate_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeHoursWorkHours_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmpHoursFullName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmpHoursEmpId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeHoursWorkDate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmpHoursFullName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmpHoursEmpID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmpHoursId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmployeeHoursID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEmpHrsFind_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                string findString = txtEmpHrsFind.Text;
+                FindEmployeeByAny(findString);
+            }
+        }
+
+        private void txtEmpHrsFind_Enter(object sender, EventArgs e)
+        {
+            txtFindEmp.ForeColor = Color.Black;
+            txtFindEmp.Text = "";
+        }
+
+        private void txtEmpHrsFind_Leave(object sender, EventArgs e)
+        {
+            txtFindEmp.ForeColor = Color.LightGray;
+            txtFindEmp.Text = "Search"; 
         }
     }
 }

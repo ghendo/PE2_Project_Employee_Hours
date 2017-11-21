@@ -55,6 +55,7 @@ namespace PE2_Project_Employee_Hours.Logic
 
         public EmployeeHoursValidateEnum ValidateWorkDate(string s)
         {
+            DateTime date;
 
             EmployeeHoursValidateEnum validateEnum = EmployeeHoursValidateEnum.success;
 
@@ -65,7 +66,7 @@ namespace PE2_Project_Employee_Hours.Logic
 
             }
 
-            if (DateTime.TryParse(s, out DateTime date))
+            if (DateTime.TryParse(s, out  date))
             {
 
             }
@@ -81,6 +82,7 @@ namespace PE2_Project_Employee_Hours.Logic
 
         public EmployeeHoursValidateEnum ValidateWorkHours(string s)
         {
+            Decimal num;
 
             EmployeeHoursValidateEnum validateEnum = EmployeeHoursValidateEnum.success;
 
@@ -91,7 +93,7 @@ namespace PE2_Project_Employee_Hours.Logic
 
             }
 
-            if (Decimal.TryParse(s, out Decimal num))
+            if (Decimal.TryParse(s, out  num))
             {
 
             }

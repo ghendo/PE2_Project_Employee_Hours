@@ -113,6 +113,7 @@ namespace PE2_Project_Employee_Hours.Logic
 
         public EmployeeValidateEnum ValidateDateOfBirth(string s)
         {
+            DateTime date;
 
             EmployeeValidateEnum validateEnum = EmployeeValidateEnum.success;
 
@@ -123,7 +124,7 @@ namespace PE2_Project_Employee_Hours.Logic
 
             }
 
-            if( DateTime.TryParse(s, out DateTime date))
+            if( DateTime.TryParse(s, out  date))
             {
 
             }
