@@ -1779,5 +1779,17 @@ namespace PE2_Project_Employee_Hours.View
         {
             //TODO
         }
+
+        private void dgvEmployees_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = e.RowIndex;
+            if (index < 0)
+            {
+                return;
+            }
+            valueTopass = "Test double click";
+            frm2 = new Form2(this, valueTopass);
+            frm2.ShowDialog();
+        }
     }
 }
