@@ -134,7 +134,7 @@ namespace PE2_Project_Employee_Hours.Data
             return e;
         }
 
-        public List<Employee> FindEmployeeByEmail(string email)
+        public List<Employee> FindEmployeeByAny(string s)
         {
             List<Employee> listOfEmps = new List<Employee>();
 
@@ -147,7 +147,7 @@ namespace PE2_Project_Employee_Hours.Data
             SqlCommand cmd = new SqlCommand("sp_Employees_FindByEmail", conn);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-            cmd.Parameters.Add(new SqlParameter("@EmployeeEmail", email));
+            cmd.Parameters.Add(new SqlParameter("@EmployeeEmail", s));
 
             //4.Execute the command - select
             SqlDataReader reader = cmd.ExecuteReader();

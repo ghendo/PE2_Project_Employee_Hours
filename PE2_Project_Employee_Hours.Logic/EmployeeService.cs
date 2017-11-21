@@ -74,13 +74,13 @@ namespace PE2_Project_Employee_Hours.Logic
             return result;
         }
 
-        public Result<List<Employee>> FindEmployeesByEmail(string email)
+        public Result<List<Employee>> FindEmployeesByAny(string s)
         {
             Result<List<Employee>> result = new Result<List<Employee>>();
             try
             {
                 EmployeeDAO dao = new EmployeeDAO();
-                result.Data = dao.FindEmployeeByEmail(email);
+                result.Data = dao.FindEmployeeByAny(s);
                 result.Status = ResultEnum.Success;
             }
             catch

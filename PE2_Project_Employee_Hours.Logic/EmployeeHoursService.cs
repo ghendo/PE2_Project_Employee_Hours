@@ -68,6 +68,22 @@ namespace PE2_Project_Employee_Hours.Logic
                 result.Status = ResultEnum.Success;
             }
             catch
+             {
+                result.Status = ResultEnum.Fail;
+            }
+            return result;
+        }
+
+        public Result<List<EmployeeHours>> FindEmployeesHoursByAny(string s)
+        {
+            Result<List<EmployeeHours>> result = new Result<List<EmployeeHours>>();
+            try
+            {
+                EmployeeHoursDAO dao = new EmployeeHoursDAO();
+                result.Data = dao.FindEmployeeHoursByAny(s);
+                result.Status = ResultEnum.Success;
+            }
+            catch
             {
                 result.Status = ResultEnum.Fail;
             }

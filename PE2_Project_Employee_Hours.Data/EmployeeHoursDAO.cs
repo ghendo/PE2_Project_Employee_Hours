@@ -154,5 +154,43 @@ namespace PE2_Project_Employee_Hours.Data
 
             return eh;
         }
+
+        public List<EmployeeHours> FindEmployeeHoursByAny(string s)
+        {
+            List<EmployeeHours> listOfEmpHours = new List<EmployeeHours>();
+
+            //2. Create a connection object
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = @"Data Source=altec.homeip.net;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
+            conn.Open();
+
+            //3.Create a command object
+            SqlCommand cmd = new SqlCommand("sp_EmployeeHours_FindByAny", conn);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@EmployeeHoursFind", s));
+
+            //4.Execute the command - select
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            //5.Handle the results
+            while (reader.Read())
+            {
+                EmployeeHours eh = new EmployeeHours();
+                //eh = new EmployeeHours();
+                eh.EmployeeId = Convert.ToInt32(reader["EmployeeId"]);
+                eh.EmployeeHoursId = Convert.ToInt32(reader["EmployeeHoursId"]);
+                eh.FullName = Convert.ToString(reader["FullName"]);
+                eh.HoursWorked = Convert.ToDouble(reader["HoursWorked"]);
+                eh.WorkDate = Convert.ToDateTime(reader["WorkDate"]);
+
+                listOfEmpHours.Add(eh);
+
+            }
+
+            conn.Close();
+
+            return listOfEmpHours;
+        }
     }
 }
