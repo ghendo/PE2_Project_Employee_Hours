@@ -49,7 +49,7 @@ namespace PE2_Project_Employee_Hours.Logic
                 }
             }
 
-            if (s.Length < 3)
+            if (s.Length < 2)
             {
                 validateEnum = EmployeeValidateEnum.tooShort;
                 throw new EmployeeException(validateEnum);
@@ -95,7 +95,7 @@ namespace PE2_Project_Employee_Hours.Logic
                 throw new EmployeeException(validateEnum);
             }
 
-            if (s.Length < 3)
+            if (s.Length < 2)
             {
                 validateEnum = EmployeeValidateEnum.tooShort;
                 throw new EmployeeException(validateEnum);

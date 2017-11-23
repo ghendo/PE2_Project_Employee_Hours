@@ -31,7 +31,7 @@ namespace PE2_Project_Employee_Hours.View
             txtEmpHrsFind.ForeColor = Color.LightGray;
             timerCounterEmp = 0;
             timerCounterEmpHours = 0;
-            
+
 
         }
 
@@ -45,7 +45,7 @@ namespace PE2_Project_Employee_Hours.View
 
             //Hours
             dgvEmployeeHoursManager.Dgv = dgvEmployeeHours;
-            LoadEmployeeHoursDGV(0,SortOrder.Ascending);
+            LoadEmployeeHoursDGV(0, SortOrder.Ascending);
             GetEmpHoursLastUpdate();
             ClearHrsUserInput();
 
@@ -502,6 +502,95 @@ namespace PE2_Project_Employee_Hours.View
 
         private void btnEmployeeUpdate_Click(object sender, EventArgs e)
         {
+            //Validate user entered data
+
+            // new null validate enum
+            EmployeeValidateEnum validate = new EmployeeValidateEnum();
+
+            //Validate first name
+            validate = validateEmployeeFirstName(txtEmployeeFirstName.Text);
+            if (validate == EmployeeValidateEnum.nullValue)
+            {
+                MessageBox.Show("First name must not be empty");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.containsNumber)
+            {
+                MessageBox.Show("First name must not contain numbers");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.tooShort)
+            {
+                MessageBox.Show("First name must be more than one character");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.tooLong)
+            {
+                MessageBox.Show("First name must be less than 50 characters");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.startsSpace)
+            {
+                MessageBox.Show("You cant start with a space");
+                return;
+            }
+
+            //Validate last name
+            validate = validateEmployeeLastName(txtEmployeeLastName.Text);
+            if (validate == EmployeeValidateEnum.nullValue)
+            {
+                MessageBox.Show("Last name must not be empty");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.containsNumber)
+            {
+                MessageBox.Show("Last name must not contain numbers");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.tooShort)
+            {
+                MessageBox.Show("Last name must be more than one character");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.tooLong)
+            {
+                MessageBox.Show("Last name must be less than 50 characters");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.startsSpace)
+            {
+                MessageBox.Show("You cant start with a space");
+                return;
+            }
+
+            //Validate Date of birth
+            validate = validateEmployeeDateOfBirth(txtEmployeeDOB.Text);
+            if (validate == EmployeeValidateEnum.nullValue)
+            {
+                MessageBox.Show("Date of birth must not be empty");
+                return;
+            }
+            if (validate == EmployeeValidateEnum.notDate)
+            {
+                MessageBox.Show("You must enter a vaild date of birth");
+                return;
+            }
+
+            //Validate Email
+            validate = validateEmployeeEmail(txtEmployeeEmail.Text);
+            if (validate == EmployeeValidateEnum.notEmail)
+            {
+                MessageBox.Show("Email must be vaild email address");
+                return;
+            }
+
+            //Validate phone number
+            validate = validateEmployeePhone(txtEmployeePhone.Text);
+            if (validate == EmployeeValidateEnum.notPhone)
+            {
+                MessageBox.Show("You must enter a vaild phone number");
+                return;
+            }
             //Check if any errors remaining
             if (CheckForErrorsEmp())
             {
@@ -565,15 +654,96 @@ namespace PE2_Project_Employee_Hours.View
             EmployeeHours eh = new EmployeeHours();
 
             //Validate user entered data
+            
+             // new null validate enum
+             EmployeeValidateEnum validate = new EmployeeValidateEnum();
 
-            //Validate Work Date
-            EmployeeHoursValidateEnum validate = validateEmployeeHoursDate(txtEmpHoursWorkDate.Text);
-            if (true)
+            //Validate first name
+            validate = validateEmployeeFirstName(txtEmployeeFirstName.Text);
+            if (validate == EmployeeValidateEnum.nullValue)
             {
-
+                MessageBox.Show("First name must not be empty");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.containsNumber)
+            {
+                MessageBox.Show("First name must not contain numbers");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.tooShort)
+            {
+                MessageBox.Show("First name must be more than one character");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.tooLong)
+            {
+                MessageBox.Show("First name must be less than 50 characters");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.startsSpace)
+            {
+                MessageBox.Show("You cant start with a space");
+                return;
             }
 
-            // Assign values from for to save object
+            //Validate last name
+            validate = validateEmployeeLastName(txtEmployeeLastName.Text);
+            if (validate == EmployeeValidateEnum.nullValue)
+            {
+                MessageBox.Show("Last name must not be empty");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.containsNumber)
+            {
+                MessageBox.Show("Last name must not contain numbers");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.tooShort)
+            {
+                MessageBox.Show("Last name must be more than one character");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.tooLong)
+            {
+                MessageBox.Show("Last name must be less than 50 characters");
+                return;
+            }
+            else if (validate == EmployeeValidateEnum.startsSpace)
+            {
+                MessageBox.Show("You cant start with a space");
+                return;
+            }
+
+            //Validate Date of birth
+            validate = validateEmployeeDateOfBirth(txtEmployeeDOB.Text);
+            if (validate == EmployeeValidateEnum.nullValue)
+            {
+                MessageBox.Show("Date of birth must not be empty");
+                return;
+            }
+            if (validate == EmployeeValidateEnum.notDate)
+            {
+                MessageBox.Show("You must enter a vaild date of birth");
+                return;
+            }
+
+            //Validate Email
+            validate = validateEmployeeEmail(txtEmployeeEmail.Text);
+            if (validate == EmployeeValidateEnum.notEmail)
+            {
+                MessageBox.Show("Email must be vaild email address");
+                return;
+            }
+
+            //Validate phone number
+            validate = validateEmployeePhone(txtEmployeePhone.Text);
+            if (validate == EmployeeValidateEnum.notPhone)
+            {
+                MessageBox.Show("You must enter a vaild phone number");
+                return;
+            }
+
+            // Assign values from form to save object
             eh.EmployeeId = int.Parse(txtEmpHoursEmpId.Text);
             eh.WorkDate = Convert.ToDateTime(txtEmpHoursWorkDate.Text);
             eh.HoursWorked = double.Parse(txtEmpHoursHoursWorked.Text);
@@ -598,6 +768,7 @@ namespace PE2_Project_Employee_Hours.View
 
         private void btnEmpHoursUpdate_Click(object sender, EventArgs e)
         {
+           
             //create employee hours object to store data
             EmployeeHours eh = new EmployeeHours();
 
@@ -619,7 +790,7 @@ namespace PE2_Project_Employee_Hours.View
             {
                 GetEmpHoursLastUpdate();
                 ClearHrsUserInput();
-                LoadEmployeeHoursDGV(0,SortOrder.Ascending);
+                LoadEmployeeHoursDGV(0, SortOrder.Ascending);
                 //MessageBox.Show("Updated");
             }
             else
@@ -1015,7 +1186,7 @@ namespace PE2_Project_Employee_Hours.View
 
         private void dgvEmployeeHours_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            errorProviderEmpHours.SetError(txtEmpHoursId,"");
+            errorProviderEmpHours.SetError(txtEmpHoursId, "");
             errorProviderEmpHours.SetError(txtEmpHoursEmpId, "");
             errorProviderEmpHours.SetError(txtEmpHoursWorkDate, "");
             errorProviderEmpHours.SetError(txtEmpHoursHoursWorked, "");
@@ -1319,7 +1490,7 @@ namespace PE2_Project_Employee_Hours.View
             {
 
                 //show message if no records found
-                if (result.Data == null)
+                if (result.Data == null || result.Data.Count < 1)
                 {
                     MessageBox.Show("Nothing found");
                     return;
@@ -1758,7 +1929,7 @@ namespace PE2_Project_Employee_Hours.View
 
         //Ok lets try printing
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        { 
+        {
             //TODO printing multiple pages
             // if you set e.hasMorePages to true then PrintPage is called again until set to false
             // soo need to find the size of the list then find number of pages then
@@ -1769,16 +1940,16 @@ namespace PE2_Project_Employee_Hours.View
             int yPos = 100;
 
             //Header
-            e.Graphics.DrawString("Employees Report    " +  DateTime.Now.ToShortDateString(), printFont, Brushes.Black, new PointF(30, 30));
+            e.Graphics.DrawString("Employees Report    " + DateTime.Now.ToShortDateString(), printFont, Brushes.Black, new PointF(30, 30));
 
 
             foreach (Employee emp in printList)
             {
-               
+
                 e.Graphics.DrawString(emp.EmployeeId.ToString() + " ", printFont, Brushes.Black, new PointF(30, yPos));
                 e.Graphics.DrawLine(blackPen2, new Point(30, yPos - 5), new Point(30, yPos + 25));
                 e.Graphics.DrawString(emp.FirstName.ToString() + " ", printFont, Brushes.Black, new PointF(120, yPos));
-                e.Graphics.DrawLine(blackPen2, new Point(120-3, yPos - 5), new Point(120-3, yPos + 25));
+                e.Graphics.DrawLine(blackPen2, new Point(120 - 3, yPos - 5), new Point(120 - 3, yPos + 25));
                 e.Graphics.DrawString(emp.LastName.ToString() + " ", printFont, Brushes.Black, new PointF(250, yPos));
                 e.Graphics.DrawLine(blackPen2, new Point(250 - 3, yPos - 5), new Point(250 - 3, yPos + 25));
                 e.Graphics.DrawString(emp.DateOfBirth.ToShortDateString() + " ", printFont, Brushes.Black, new PointF(450, yPos));
@@ -1795,14 +1966,14 @@ namespace PE2_Project_Employee_Hours.View
                 yPos += 30;
             }
             //bottom line
-            e.Graphics.DrawLine(blackPen2, new PointF(30, yPos -5), new PointF(780, yPos -5));
+            e.Graphics.DrawLine(blackPen2, new PointF(30, yPos - 5), new PointF(780, yPos - 5));
         }
         private void btnPrintEmployee_Click(object sender, EventArgs e)
         {
             //Open print dialog
             if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
                 printDocument1.Print();
-            
+
         }
 
         //Save Employee list to excel file
@@ -1831,14 +2002,79 @@ namespace PE2_Project_Employee_Hours.View
                     row++;
                 }
                 //sl.SetCellValue("B3", "Test Value");
-                // DialogResult result = saveFileDialog1.ShowDialog();
-                sl.SaveAs(@"C:\Users\ghend\Documents\Employees.xlsx");
+                 DialogResult result = saveFileDialog1.ShowDialog();
+                MessageBox.Show("result " + saveFileDialog1.FileName);
+                //sl.SaveAs(@"C:\Users\ghend\Documents\Employees.xlsx");
+
+                sl.SaveAs("@" + saveFileDialog1.FileName + ".xlxs");
             }
         }
 
         private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //TODO
+        }
+
+        private void txtEmpHrsFind_Enter(object sender, EventArgs e)
+        {
+            txtEmpHrsFind.ForeColor = Color.Black;
+            txtEmpHrsFind.Text = "";
+        }
+
+        private void txtEmpHrsFind_Leave(object sender, EventArgs e)
+        {
+            txtEmpHrsFind.ForeColor = Color.LightGray;
+            txtEmpHrsFind.Text = "Search";
+        }
+
+        private void txtEmpHrsFind_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyData == Keys.Tab)
+            {
+                string findString = txtEmpHrsFind.Text;
+                FindEmployeeHoursByAny(findString);
+            }            
+    
+    }
+
+        private void dgvEmployees_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int index = e.RowIndex;// get the Row Index
+                //check if clicked header
+                if (index < 0)
+                {
+                    return;
+                }
+                //get the row
+                DataGridViewRow selectedRow = dgvEmployeeManager.Dgv.Rows[index];
+                //get the employee id clicked
+                String s = selectedRow.Cells[0].Value.ToString();
+                tabControl1.SelectedTab = tabPage2;
+                //call find method
+                FindEmployeeHoursByAny(s);
+                //how many records found
+                int c = dgvEmployeeHoursManager.ResultData.Count;
+                //Add up total
+                double total = 0;
+                foreach (var item in dgvEmployeeHoursManager.ResultData)
+                {
+                    total += item.HoursWorked;
+                    
+                }
+
+                lblTotalHoursValue.Text = total.ToString();
+
+
+
+
+            }
+            catch (Exception m)
+            {
+                MessageBox.Show(m.ToString());
+
+            }
         }
     }
 }
