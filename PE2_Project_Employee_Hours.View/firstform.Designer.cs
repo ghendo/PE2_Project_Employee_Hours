@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -64,6 +64,9 @@
             this.lblEmployeeFirstName = new System.Windows.Forms.Label();
             this.lblEmployeeId = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblTotalHoursValue = new System.Windows.Forms.Label();
+            this.lblHoursTotal = new System.Windows.Forms.Label();
+            this.txtEmpHrsFind = new System.Windows.Forms.TextBox();
             this.dgvEmployeeHours = new System.Windows.Forms.DataGridView();
             this.lblEmployeeLstEmpHrsId = new System.Windows.Forms.Label();
             this.lblEmployeeLstWkDate = new System.Windows.Forms.Label();
@@ -91,9 +94,8 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.txtEmpHrsFind = new System.Windows.Forms.TextBox();
-            this.lblHoursTotal = new System.Windows.Forms.Label();
-            this.lblTotalHoursValue = new System.Windows.Forms.Label();
+            this.rtbRunJason = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
@@ -113,12 +115,14 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(973, 749);
+            this.tabControl1.Size = new System.Drawing.Size(1268, 749);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.rtbRunJason);
             this.tabPage1.Controls.Add(this.btnEmpSaveExcel);
             this.tabPage1.Controls.Add(this.btnPrintEmployee);
             this.tabPage1.Controls.Add(this.txtFindEmp);
@@ -150,7 +154,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(965, 723);
+            this.tabPage1.Size = new System.Drawing.Size(1260, 723);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Employee";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -201,32 +205,32 @@
             // 
             // dgvEmployees
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvEmployees.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvEmployees.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvEmployees.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Lucida Sans Unicode", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEmployees.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Lucida Sans Unicode", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEmployees.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvEmployees.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvEmployees.Location = new System.Drawing.Point(5, 341);
             this.dgvEmployees.Name = "dgvEmployees";
-            this.dgvEmployees.Size = new System.Drawing.Size(937, 376);
+            this.dgvEmployees.Size = new System.Drawing.Size(1232, 376);
             this.dgvEmployees.TabIndex = 99;
             this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployee_CellClick);
             this.dgvEmployees.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellDoubleClick);
@@ -510,6 +514,37 @@
             this.tabPage2.Text = "Employee Hours";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lblTotalHoursValue
+            // 
+            this.lblTotalHoursValue.AutoSize = true;
+            this.lblTotalHoursValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalHoursValue.Location = new System.Drawing.Point(873, 285);
+            this.lblTotalHoursValue.Name = "lblTotalHoursValue";
+            this.lblTotalHoursValue.Size = new System.Drawing.Size(15, 24);
+            this.lblTotalHoursValue.TabIndex = 9;
+            this.lblTotalHoursValue.Text = " ";
+            // 
+            // lblHoursTotal
+            // 
+            this.lblHoursTotal.AutoSize = true;
+            this.lblHoursTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoursTotal.Location = new System.Drawing.Point(696, 285);
+            this.lblHoursTotal.Name = "lblHoursTotal";
+            this.lblHoursTotal.Size = new System.Drawing.Size(51, 24);
+            this.lblHoursTotal.TabIndex = 9;
+            this.lblHoursTotal.Text = "Total";
+            // 
+            // txtEmpHrsFind
+            // 
+            this.txtEmpHrsFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmpHrsFind.Location = new System.Drawing.Point(21, 5);
+            this.txtEmpHrsFind.Name = "txtEmpHrsFind";
+            this.txtEmpHrsFind.Size = new System.Drawing.Size(803, 29);
+            this.txtEmpHrsFind.TabIndex = 8;
+            this.txtEmpHrsFind.Enter += new System.EventHandler(this.txtEmpHrsFind_Enter);
+            this.txtEmpHrsFind.Leave += new System.EventHandler(this.txtEmpHrsFind_Leave);
+            this.txtEmpHrsFind.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtEmpHrsFind_PreviewKeyDown);
+            // 
             // dgvEmployeeHours
             // 
             this.dgvEmployeeHours.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -756,43 +791,30 @@
             // 
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
-            // txtEmpHrsFind
+            // rtbRunJason
             // 
-            this.txtEmpHrsFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmpHrsFind.Location = new System.Drawing.Point(21, 5);
-            this.txtEmpHrsFind.Name = "txtEmpHrsFind";
-            this.txtEmpHrsFind.Size = new System.Drawing.Size(803, 29);
-            this.txtEmpHrsFind.TabIndex = 8;
-            this.txtEmpHrsFind.Enter += new System.EventHandler(this.txtEmpHrsFind_Enter);
-            this.txtEmpHrsFind.Leave += new System.EventHandler(this.txtEmpHrsFind_Leave);
-            this.txtEmpHrsFind.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtEmpHrsFind_PreviewKeyDown);
+            this.rtbRunJason.Location = new System.Drawing.Point(948, 6);
+            this.rtbRunJason.Name = "rtbRunJason";
+            this.rtbRunJason.Size = new System.Drawing.Size(300, 323);
+            this.rtbRunJason.TabIndex = 105;
+            this.rtbRunJason.Text = "";
             // 
-            // lblHoursTotal
+            // button1
             // 
-            this.lblHoursTotal.AutoSize = true;
-            this.lblHoursTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoursTotal.Location = new System.Drawing.Point(696, 285);
-            this.lblHoursTotal.Name = "lblHoursTotal";
-            this.lblHoursTotal.Size = new System.Drawing.Size(51, 24);
-            this.lblHoursTotal.TabIndex = 9;
-            this.lblHoursTotal.Text = "Total";
-            // 
-            // lblTotalHoursValue
-            // 
-            this.lblTotalHoursValue.AutoSize = true;
-            this.lblTotalHoursValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalHoursValue.Location = new System.Drawing.Point(873, 285);
-            this.lblTotalHoursValue.Name = "lblTotalHoursValue";
-            this.lblTotalHoursValue.Size = new System.Drawing.Size(15, 24);
-            this.lblTotalHoursValue.TabIndex = 9;
-            this.lblTotalHoursValue.Text = " ";
+            this.button1.Location = new System.Drawing.Point(829, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 106;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(972, 749);
+            this.ClientSize = new System.Drawing.Size(1267, 749);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Employee Tracking System";
@@ -873,6 +895,8 @@
         private System.Windows.Forms.TextBox txtEmpHrsFind;
         private System.Windows.Forms.Label lblTotalHoursValue;
         private System.Windows.Forms.Label lblHoursTotal;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox rtbRunJason;
     }
 }
 

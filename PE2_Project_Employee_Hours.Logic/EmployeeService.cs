@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using PE2_Project_Employee_Hours.Data;
 using PE2_Project_Employee_Hours.Domain;
+using System.Net.Http;
 
 namespace PE2_Project_Employee_Hours.Logic
 {
+
     public class EmployeeService
     {
+
         public ResultEnum InsertEmployee(Employee emp)
         {
             ResultEnum result = ResultEnum.Success;
@@ -123,6 +126,11 @@ namespace PE2_Project_Employee_Hours.Logic
             return result;
         }
 
+        public async Task<List<States>> statesAsync()
+        {
+            EmployeeDAO dao = new EmployeeDAO();
+            return await dao.GetStatesAsync("");
 
+        }
     }
 }
