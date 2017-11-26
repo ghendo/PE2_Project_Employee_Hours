@@ -5,8 +5,10 @@ using PE2_Project_Employee_Hours.Logic;
 using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Net.Http;
 using System.Windows.Forms;
@@ -2090,18 +2092,24 @@ namespace PE2_Project_Employee_Hours.View
             {
 
                 var response = httpClient.GetStringAsync(new Uri("https://prod-24.australiaeast.logic.azure.com:443/workflows/a67074317adb47d0bbb64623a3ce4cd9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=n6jlQBp8RAB7ElLlSJdoy_l-zSDD6dd3FTeVOx4t-oU")).Result;
-                var result = JsonConvert.DeserializeObject<List<States>>(response);
-                //foreach (var item in result)
-                //{
-                //    rtbRunJason.Text += item.StateName.ToString() + "\n";
-                //}
-                rtbRunJason.Text = response.ToString();
-                //rtbRunJason.Text = JArray.Parse(response).Count.ToString();
 
-                //response.GetString("glossary.title").Dump();
+                JArray jsonArray = JArray.Parse(response);
 
-                //[{"JSON_F52E2B61-18A1-11d1-B105-00805F49916B":"[{\"stateid\":100000,\"statename\":\"New South Wales\",\"abbreviation\":\"NSW\"},{\"stateid\":100001,\"statename\":\"Victoria\",\"abbreviation\":\"VIC\"},{\"stateid\":100002,\"statename\":\"Queensland\",\"abbreviation\":\"QLD\"},{\"stateid\":100003,\"statename\":\"Australian Capital Territory\",\"abbreviation\":\"ACT\"},{\"stateid\":100004,\"statename\":\"Western Australia\",\"abbreviation\":\"WA\"},{\"stateid\":100005,\"statename\":\"South Australia\",\"abbreviation\":\"SA\"},{\"stateid\":100006,\"statename\":\"Tasmania\",\"abbreviation\":\"TAS\"},{\"stateid\":100007,\"statename\":\"Northern Territory\",\"abbreviation\":\"NT\"}]"}]
+                JObject d = jsonArray[0] as JObject;// type jObject
+
+                JValue j = d.First.First as JValue;
+          
+                var result = JsonConvert.DeserializeObject<List<States>>(j.ToString());
+
+                foreach (var item in result)
+                {
+                    rtbRunJason.Text += item.StateName + " " + item.Abbreviation + "\n";
+                }
+
+
+
             }
         }
     }
+
 }

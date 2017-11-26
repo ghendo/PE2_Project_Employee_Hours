@@ -12,4 +12,11 @@ namespace PE2_Project_Employee_Hours.Domain
         public string StateName { get; set; }
         public string Abbreviation { get; set; }
     }
+
+    public class JsonReturn
+    {
+        public string Ref { get; set; }
+        public object Obj { get; set; }
+    }
 }
+
