@@ -35,6 +35,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.rtbJson = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.rtbRunJason = new System.Windows.Forms.RichTextBox();
             this.btnEmpSaveExcel = new System.Windows.Forms.Button();
             this.btnPrintEmployee = new System.Windows.Forms.Button();
             this.txtFindEmp = new System.Windows.Forms.TextBox();
@@ -94,8 +98,6 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.rtbRunJason = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
@@ -121,6 +123,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.rtbJson);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.rtbRunJason);
             this.tabPage1.Controls.Add(this.btnEmpSaveExcel);
@@ -158,6 +162,42 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Employee";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(868, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(62, 23);
+            this.button2.TabIndex = 108;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // rtbJson
+            // 
+            this.rtbJson.Location = new System.Drawing.Point(948, 91);
+            this.rtbJson.Name = "rtbJson";
+            this.rtbJson.Size = new System.Drawing.Size(300, 141);
+            this.rtbJson.TabIndex = 107;
+            this.rtbJson.Text = "";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(803, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(59, 23);
+            this.button1.TabIndex = 106;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // rtbRunJason
+            // 
+            this.rtbRunJason.Location = new System.Drawing.Point(948, 6);
+            this.rtbRunJason.Name = "rtbRunJason";
+            this.rtbRunJason.Size = new System.Drawing.Size(300, 69);
+            this.rtbRunJason.TabIndex = 105;
+            this.rtbRunJason.Text = "";
             // 
             // btnEmpSaveExcel
             // 
@@ -509,7 +549,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(965, 723);
+            this.tabPage2.Size = new System.Drawing.Size(1260, 723);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Employee Hours";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -791,24 +831,6 @@
             // 
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
-            // rtbRunJason
-            // 
-            this.rtbRunJason.Location = new System.Drawing.Point(948, 6);
-            this.rtbRunJason.Name = "rtbRunJason";
-            this.rtbRunJason.Size = new System.Drawing.Size(300, 323);
-            this.rtbRunJason.TabIndex = 105;
-            this.rtbRunJason.Text = "";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(829, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 106;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -897,6 +919,8 @@
         private System.Windows.Forms.Label lblHoursTotal;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox rtbRunJason;
+        private System.Windows.Forms.RichTextBox rtbJson;
+        private System.Windows.Forms.Button button2;
     }
 }
 

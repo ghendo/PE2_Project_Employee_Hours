@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace PE2_Project_Employee_Hours.Domain
 {
-    public class States
+    public class customer
     {
-        public int StateId { get; set; }
-        public string StateName { get; set; }
-        public string Abbreviation { get; set; }
+        public int customerid { get; set; }
+        public string customername { get; set; }
+        public string customersuburb { get; set; }
     }
-
-
 }
-

@@ -238,26 +238,8 @@ namespace PE2_Project_Employee_Hours.Data
             return i;
         }
 
-        static async Task RunAsync()
-        {
-            // New code:
-            client.BaseAddress = new Uri("https://prod-24.australiaeast.logic.azure.com:443/workflows/a67074317adb47d0bbb64623a3ce4cd9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=n6jlQBp8RAB7ElLlSJdoy_l-zSDD6dd3FTeVOx4t-oU");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+ 
 
-            Console.ReadLine();
-        }
-
-        public async Task<List<States>> GetStatesAsync(string path)
-        {
-            List<States> states = null;
-            HttpResponseMessage response = await client.GetAsync(path);
-            if (response.IsSuccessStatusCode)
-            {
-                states = await response.Content.ReadAsAsync<List<States>>();
-            }
-            return states;
-        }
 
         //public static async Task<HttpResponseMessage> Runjson()
         //{

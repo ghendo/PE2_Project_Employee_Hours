@@ -46,9 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BatchDAO.cs" />
     <Compile Include="EmployeeHoursDAO.cs" />
     <Compile Include="EmployeeDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PE2_Project_Employee_Hours.Domain\PE2_Project_Employee_Hours.Domain.csproj">

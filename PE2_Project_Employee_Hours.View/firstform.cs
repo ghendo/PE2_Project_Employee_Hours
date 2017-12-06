@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Net.Http;
+using System.Text;
 using System.Windows.Forms;
 
 
@@ -2106,9 +2107,41 @@ namespace PE2_Project_Employee_Hours.View
                     rtbRunJason.Text += item.StateName + " " + item.Abbreviation + "\n";
                 }
 
-
+                rtbJson.Text = j.ToString();
 
             }
+        }
+
+    
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            JArray jsonArray = new JArray();
+            List<States> states = new List<States>();
+            States state = new States();
+            state.StateName = rtbRunJason.Text;
+            state.Abbreviation = rtbJson.Text;
+            states.Add(state);
+
+
+            var payload = states;
+
+            var stringPayload = JsonConvert.SerializeObject(payload);
+
+            var httpContent = new StringContent(stringPayload, Encoding.ASCII, "application/json");
+
+            using (var httpClient = new HttpClient())
+            {
+                var response = httpClient.PostAsync("https://prod-06.australiaeast.logic.azure.com:443/workflows/7ad0187a633c42198c1b95ef09cdcbe7/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=e04Gfo5NgEP3BI5NXfV4Pd79CPwGGbwoJUo0lYtDovM", httpContent);
+                if (response.Result != null)
+                {
+
+                    MessageBox.Show("A response " + response.ToString());
+
+                    // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
+                }
+            }
+
         }
     }
 

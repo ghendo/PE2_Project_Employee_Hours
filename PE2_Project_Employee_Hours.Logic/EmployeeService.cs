@@ -126,11 +126,6 @@ namespace PE2_Project_Employee_Hours.Logic
             return result;
         }
 
-        public async Task<List<States>> statesAsync()
-        {
-            EmployeeDAO dao = new EmployeeDAO();
-            return await dao.GetStatesAsync("");
 
-        }
     }
 }

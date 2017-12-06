@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace PE2_Project_Employee_Hours.Domain
 {
-    public class States
+    public class recycler
     {
-        public int StateId { get; set; }
-        public string StateName { get; set; }
-        public string Abbreviation { get; set; }
+        public int recyclerid { get; set; }
+        public string recyclername { get; set; }
     }
-
-
 }
-
