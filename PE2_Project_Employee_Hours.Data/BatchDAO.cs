@@ -65,7 +65,7 @@ namespace PE2_Project_Employee_Hours.Data
 
                 JObject d = jsonArray[0] as JObject;// type jObject
 
-                JValue j = d.First as JValue;
+                JValue j = d.First.First as JValue;
 
 
                  var result = JsonConvert.DeserializeObject<List<Batch>>(j.ToString());
