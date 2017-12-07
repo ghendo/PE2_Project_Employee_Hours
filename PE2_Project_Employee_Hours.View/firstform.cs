@@ -49,6 +49,15 @@ namespace PE2_Project_Employee_Hours.View
             GetEmpHoursLastUpdate();
             ClearHrsUserInput();
 
+            double total = 0;
+            foreach (var item in dgvEmployeeHoursManager.ResultData)
+            {
+                total += item.HoursWorked;
+
+            }
+
+            lblTotalHoursValue.Text = total.ToString();
+
         }
 
         //Validation methods
@@ -405,6 +414,15 @@ namespace PE2_Project_Employee_Hours.View
                 ClearHrsUserInput();
                 LoadEmployeeHoursDGV(0, SortOrder.Ascending);
                 //MessageBox.Show("Saved");
+                double total = 0;
+                foreach (var item in dgvEmployeeHoursManager.ResultData)
+                {
+                    total += item.HoursWorked;
+
+                }
+
+                lblTotalHoursValue.Text = total.ToString();
+
             }
             else
             {
@@ -792,6 +810,14 @@ namespace PE2_Project_Employee_Hours.View
                 ClearHrsUserInput();
                 LoadEmployeeHoursDGV(0, SortOrder.Ascending);
                 //MessageBox.Show("Updated");
+                double total = 0;
+                foreach (var item in dgvEmployeeHoursManager.ResultData)
+                {
+                    total += item.HoursWorked;
+
+                }
+
+                lblTotalHoursValue.Text = total.ToString();
             }
             else
             {
@@ -2006,7 +2032,7 @@ namespace PE2_Project_Employee_Hours.View
                 MessageBox.Show("result " + saveFileDialog1.FileName);
                 //sl.SaveAs(@"C:\Users\ghend\Documents\Employees.xlsx");
 
-                sl.SaveAs("@" + saveFileDialog1.FileName + ".xlxs");
+                sl.SaveAs(saveFileDialog1.FileName + ".xlxs");
             }
         }
 
@@ -2033,9 +2059,17 @@ namespace PE2_Project_Employee_Hours.View
             {
                 string findString = txtEmpHrsFind.Text;
                 FindEmployeeHoursByAny(findString);
-            }            
-    
-    }
+            }
+            double total = 0;
+            foreach (var item in dgvEmployeeHoursManager.ResultData)
+            {
+                total += item.HoursWorked;
+
+            }
+
+            lblTotalHoursValue.Text = total.ToString();
+
+        }
 
         private void dgvEmployees_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

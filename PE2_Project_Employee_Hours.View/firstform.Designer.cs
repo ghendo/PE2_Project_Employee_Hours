@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -64,6 +65,9 @@
             this.lblEmployeeFirstName = new System.Windows.Forms.Label();
             this.lblEmployeeId = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblTotalHoursValue = new System.Windows.Forms.Label();
+            this.lblHoursTotal = new System.Windows.Forms.Label();
+            this.txtEmpHrsFind = new System.Windows.Forms.TextBox();
             this.dgvEmployeeHours = new System.Windows.Forms.DataGridView();
             this.lblEmployeeLstEmpHrsId = new System.Windows.Forms.Label();
             this.lblEmployeeLstWkDate = new System.Windows.Forms.Label();
@@ -91,9 +95,6 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.txtEmpHrsFind = new System.Windows.Forms.TextBox();
-            this.lblHoursTotal = new System.Windows.Forms.Label();
-            this.lblTotalHoursValue = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
@@ -201,28 +202,28 @@
             // 
             // dgvEmployees
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvEmployees.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvEmployees.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvEmployees.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Lucida Sans Unicode", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEmployees.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Lucida Sans Unicode", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEmployees.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvEmployees.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvEmployees.Location = new System.Drawing.Point(5, 341);
             this.dgvEmployees.Name = "dgvEmployees";
@@ -510,14 +511,47 @@
             this.tabPage2.Text = "Employee Hours";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lblTotalHoursValue
+            // 
+            this.lblTotalHoursValue.AutoSize = true;
+            this.lblTotalHoursValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalHoursValue.Location = new System.Drawing.Point(873, 285);
+            this.lblTotalHoursValue.Name = "lblTotalHoursValue";
+            this.lblTotalHoursValue.Size = new System.Drawing.Size(15, 24);
+            this.lblTotalHoursValue.TabIndex = 9;
+            this.lblTotalHoursValue.Text = " ";
+            // 
+            // lblHoursTotal
+            // 
+            this.lblHoursTotal.AutoSize = true;
+            this.lblHoursTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoursTotal.Location = new System.Drawing.Point(696, 285);
+            this.lblHoursTotal.Name = "lblHoursTotal";
+            this.lblHoursTotal.Size = new System.Drawing.Size(51, 24);
+            this.lblHoursTotal.TabIndex = 9;
+            this.lblHoursTotal.Text = "Total";
+            // 
+            // txtEmpHrsFind
+            // 
+            this.txtEmpHrsFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmpHrsFind.Location = new System.Drawing.Point(21, 5);
+            this.txtEmpHrsFind.Name = "txtEmpHrsFind";
+            this.txtEmpHrsFind.Size = new System.Drawing.Size(803, 29);
+            this.txtEmpHrsFind.TabIndex = 8;
+            this.txtEmpHrsFind.Enter += new System.EventHandler(this.txtEmpHrsFind_Enter);
+            this.txtEmpHrsFind.Leave += new System.EventHandler(this.txtEmpHrsFind_Leave);
+            this.txtEmpHrsFind.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtEmpHrsFind_PreviewKeyDown);
+            // 
             // dgvEmployeeHours
             // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvEmployeeHours.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvEmployeeHours.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvEmployeeHours.BackgroundColor = System.Drawing.Color.White;
+            this.dgvEmployeeHours.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEmployeeHours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployeeHours.GridColor = System.Drawing.Color.White;
+            this.dgvEmployeeHours.GridColor = System.Drawing.Color.Black;
             this.dgvEmployeeHours.Location = new System.Drawing.Point(21, 315);
             this.dgvEmployeeHours.Name = "dgvEmployeeHours";
             this.dgvEmployeeHours.Size = new System.Drawing.Size(932, 366);
@@ -755,37 +789,6 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
-            // 
-            // txtEmpHrsFind
-            // 
-            this.txtEmpHrsFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmpHrsFind.Location = new System.Drawing.Point(21, 5);
-            this.txtEmpHrsFind.Name = "txtEmpHrsFind";
-            this.txtEmpHrsFind.Size = new System.Drawing.Size(803, 29);
-            this.txtEmpHrsFind.TabIndex = 8;
-            this.txtEmpHrsFind.Enter += new System.EventHandler(this.txtEmpHrsFind_Enter);
-            this.txtEmpHrsFind.Leave += new System.EventHandler(this.txtEmpHrsFind_Leave);
-            this.txtEmpHrsFind.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtEmpHrsFind_PreviewKeyDown);
-            // 
-            // lblHoursTotal
-            // 
-            this.lblHoursTotal.AutoSize = true;
-            this.lblHoursTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoursTotal.Location = new System.Drawing.Point(696, 285);
-            this.lblHoursTotal.Name = "lblHoursTotal";
-            this.lblHoursTotal.Size = new System.Drawing.Size(51, 24);
-            this.lblHoursTotal.TabIndex = 9;
-            this.lblHoursTotal.Text = "Total";
-            // 
-            // lblTotalHoursValue
-            // 
-            this.lblTotalHoursValue.AutoSize = true;
-            this.lblTotalHoursValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalHoursValue.Location = new System.Drawing.Point(873, 285);
-            this.lblTotalHoursValue.Name = "lblTotalHoursValue";
-            this.lblTotalHoursValue.Size = new System.Drawing.Size(15, 24);
-            this.lblTotalHoursValue.TabIndex = 9;
-            this.lblTotalHoursValue.Text = " ";
             // 
             // Form1
             // 
