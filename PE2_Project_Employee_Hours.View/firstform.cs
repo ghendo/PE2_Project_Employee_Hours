@@ -1,11 +1,17 @@
-﻿using PE2_Project_Employee_Hours.Domain;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PE2_Project_Employee_Hours.Domain;
 using PE2_Project_Employee_Hours.Logic;
 using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Media;
+using System.Net.Http;
+using System.Text;
 using System.Windows.Forms;
 
 
@@ -2110,5 +2116,67 @@ namespace PE2_Project_Employee_Hours.View
 
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //EmployeeService service = new EmployeeService();
+            //States states = new States();
+            //states = service.statesAsync().Result[0];
+            //rtbRunJason.Text = states.StateName;
+            using (var httpClient = new HttpClient())
+            {
+
+                var response = httpClient.GetStringAsync(new Uri("https://prod-24.australiaeast.logic.azure.com:443/workflows/a67074317adb47d0bbb64623a3ce4cd9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=n6jlQBp8RAB7ElLlSJdoy_l-zSDD6dd3FTeVOx4t-oU")).Result;
+
+                JArray jsonArray = JArray.Parse(response);
+
+                JObject d = jsonArray[0] as JObject;// type jObject
+
+                JValue j = d.First.First as JValue;
+          
+                var result = JsonConvert.DeserializeObject<List<States>>(j.ToString());
+
+                foreach (var item in result)
+                {
+                    rtbRunJason.Text += item.StateName + " " + item.Abbreviation + "\n";
+                }
+
+                rtbJson.Text = j.ToString();
+
+            }
+        }
+
+    
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            JArray jsonArray = new JArray();
+            List<States> states = new List<States>();
+            States state = new States();
+            state.StateName = rtbRunJason.Text;
+            state.Abbreviation = rtbJson.Text;
+            states.Add(state);
+
+
+            var payload = states;
+
+            var stringPayload = JsonConvert.SerializeObject(payload);
+
+            var httpContent = new StringContent(stringPayload, Encoding.ASCII, "application/json");
+
+            using (var httpClient = new HttpClient())
+            {
+                var response = httpClient.PostAsync("https://prod-06.australiaeast.logic.azure.com:443/workflows/7ad0187a633c42198c1b95ef09cdcbe7/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=e04Gfo5NgEP3BI5NXfV4Pd79CPwGGbwoJUo0lYtDovM", httpContent);
+                if (response.Result != null)
+                {
+
+                    MessageBox.Show("A response " + response.ToString());
+
+                    // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
+                }
+            }
+
+        }
     }
+
 }

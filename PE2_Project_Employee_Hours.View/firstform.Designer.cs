@@ -32,10 +32,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.rtbJson = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.rtbRunJason = new System.Windows.Forms.RichTextBox();
             this.btnEmpSaveExcel = new System.Windows.Forms.Button();
             this.btnPrintEmployee = new System.Windows.Forms.Button();
             this.txtFindEmp = new System.Windows.Forms.TextBox();
@@ -114,12 +117,16 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(973, 749);
+            this.tabControl1.Size = new System.Drawing.Size(1268, 749);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.rtbJson);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.rtbRunJason);
             this.tabPage1.Controls.Add(this.btnEmpSaveExcel);
             this.tabPage1.Controls.Add(this.btnPrintEmployee);
             this.tabPage1.Controls.Add(this.txtFindEmp);
@@ -151,10 +158,46 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(965, 723);
+            this.tabPage1.Size = new System.Drawing.Size(1260, 723);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Employee";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(868, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(62, 23);
+            this.button2.TabIndex = 108;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // rtbJson
+            // 
+            this.rtbJson.Location = new System.Drawing.Point(948, 91);
+            this.rtbJson.Name = "rtbJson";
+            this.rtbJson.Size = new System.Drawing.Size(300, 141);
+            this.rtbJson.TabIndex = 107;
+            this.rtbJson.Text = "";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(803, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(59, 23);
+            this.button1.TabIndex = 106;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // rtbRunJason
+            // 
+            this.rtbRunJason.Location = new System.Drawing.Point(948, 6);
+            this.rtbRunJason.Name = "rtbRunJason";
+            this.rtbRunJason.Size = new System.Drawing.Size(300, 69);
+            this.rtbRunJason.TabIndex = 105;
+            this.rtbRunJason.Text = "";
             // 
             // btnEmpSaveExcel
             // 
@@ -227,7 +270,7 @@
             this.dgvEmployees.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvEmployees.Location = new System.Drawing.Point(5, 341);
             this.dgvEmployees.Name = "dgvEmployees";
-            this.dgvEmployees.Size = new System.Drawing.Size(937, 376);
+            this.dgvEmployees.Size = new System.Drawing.Size(1232, 376);
             this.dgvEmployees.TabIndex = 99;
             this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployee_CellClick);
             this.dgvEmployees.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellDoubleClick);
@@ -506,7 +549,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(965, 723);
+            this.tabPage2.Size = new System.Drawing.Size(1260, 723);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Employee Hours";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -544,14 +587,12 @@
             // 
             // dgvEmployeeHours
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvEmployeeHours.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvEmployeeHours.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvEmployeeHours.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvEmployeeHours.BackgroundColor = System.Drawing.Color.White;
             this.dgvEmployeeHours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployeeHours.GridColor = System.Drawing.Color.Black;
+            this.dgvEmployeeHours.GridColor = System.Drawing.Color.White;
             this.dgvEmployeeHours.Location = new System.Drawing.Point(21, 315);
             this.dgvEmployeeHours.Name = "dgvEmployeeHours";
             this.dgvEmployeeHours.Size = new System.Drawing.Size(932, 366);
@@ -795,7 +836,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(972, 749);
+            this.ClientSize = new System.Drawing.Size(1267, 749);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Employee Tracking System";
@@ -876,6 +917,10 @@
         private System.Windows.Forms.TextBox txtEmpHrsFind;
         private System.Windows.Forms.Label lblTotalHoursValue;
         private System.Windows.Forms.Label lblHoursTotal;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox rtbRunJason;
+        private System.Windows.Forms.RichTextBox rtbJson;
+        private System.Windows.Forms.Button button2;
     }
 }
 

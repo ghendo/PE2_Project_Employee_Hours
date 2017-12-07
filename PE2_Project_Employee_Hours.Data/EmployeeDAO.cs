@@ -5,11 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using PE2_Project_Employee_Hours.Domain;
+using System.Net.Http;
+using System.Net;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace PE2_Project_Employee_Hours.Data
 {
     public class EmployeeDAO
     {
+        static HttpClient client = new HttpClient();
         public void InsertEmployee(Employee emp)
         {
             //connection object
@@ -232,6 +237,51 @@ namespace PE2_Project_Employee_Hours.Data
 
             return i;
         }
+
+ 
+
+
+        //public static async Task<HttpResponseMessage> Runjson()
+        //{
+
+        //    //connection object
+        //    SqlConnection conn = new SqlConnection();
+        //    conn.ConnectionString = "Server = tcp:itsd.database.windows.net,1433; Initial Catalog = itsdmain; Persist Security Info = False; User ID = { your_username }; Password ={ your_password}; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;.ConnectionString";
+
+        //    conn.Open();
+
+        //    //3.Create a command object
+        //    SqlCommand cmd = new SqlCommand("sp_state_all_JSON", conn);
+        //    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+        //    var jsonResult = new StringBuilder();
+
+        //    // Execute the command 
+
+        //    var reader = cmd.ExecuteReader();
+
+        //    //5.Handle the results
+        //    if (!reader.HasRows)
+        //    {
+        //        jsonResult.Append("[]");
+        //    }
+        //    while (reader.Read())
+        //    {
+
+        //        jsonResult.Append(reader.GetValue(0).ToString());
+        //    }
+
+        //    conn.Close();
+
+        //    return new HttpResponseMessage(HttpStatusCode.OK)
+        //    {
+        //        Content = new StringContent(jsonResult.ToString(), Encoding.UTF8, "application/json")
+        //    };
+
+
+        //}
+
     }
 
 }
