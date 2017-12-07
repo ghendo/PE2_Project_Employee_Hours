@@ -100,11 +100,15 @@ namespace ITSD_Start
             //call service to send to database
 
             BatchService service = new BatchService();
-            //ResultEnum result = service.InsertBatch(batch);
-
-
-
-            rtbTestBatchInsert.Text = service.InsertBatch(batch).ToString();
+            ResultEnum result = service.InsertBatch(batch);
+            if (result == ResultEnum.Success)
+            {
+                MessageBox.Show("Job Saved");
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong");
+            }
 
         }
 

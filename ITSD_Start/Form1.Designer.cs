@@ -30,6 +30,11 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgvBatch = new System.Windows.Forms.DataGridView();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.rtbTestBatchInsert = new System.Windows.Forms.RichTextBox();
+            this.btnInsertState = new System.Windows.Forms.Button();
+            this.btnBatchInsert = new System.Windows.Forms.Button();
             this.txtBatchBatchReference = new System.Windows.Forms.TextBox();
             this.txtBatchRecycledKilos = new System.Windows.Forms.TextBox();
             this.txtBatchMiscKilos = new System.Windows.Forms.TextBox();
@@ -63,11 +68,6 @@
             this.lblBatchBatchReference = new System.Windows.Forms.Label();
             this.lblBatchID = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnBatchInsert = new System.Windows.Forms.Button();
-            this.btnInsertState = new System.Windows.Forms.Button();
-            this.rtbTestBatchInsert = new System.Windows.Forms.RichTextBox();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.dgvBatch = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBatch)).BeginInit();
@@ -129,6 +129,59 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Enter Batch";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dgvBatch
+            // 
+            this.dgvBatch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBatch.Location = new System.Drawing.Point(12, 347);
+            this.dgvBatch.Name = "dgvBatch";
+            this.dgvBatch.Size = new System.Drawing.Size(1454, 519);
+            this.dgvBatch.TabIndex = 7;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(838, 107);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(169, 33);
+            this.btnDelete.TabIndex = 6;
+            this.btnDelete.Text = "Delete Batch";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // rtbTestBatchInsert
+            // 
+            this.rtbTestBatchInsert.Location = new System.Drawing.Point(1041, 8);
+            this.rtbTestBatchInsert.Name = "rtbTestBatchInsert";
+            this.rtbTestBatchInsert.Size = new System.Drawing.Size(371, 96);
+            this.rtbTestBatchInsert.TabIndex = 5;
+            this.rtbTestBatchInsert.Text = "";
+
+            // 
+            // btnInsertState
+            // 
+            this.btnInsertState.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsertState.Location = new System.Drawing.Point(838, 55);
+            this.btnInsertState.Name = "btnInsertState";
+            this.btnInsertState.Size = new System.Drawing.Size(169, 35);
+            this.btnInsertState.TabIndex = 4;
+            this.btnInsertState.Text = "Enter State";
+            this.btnInsertState.UseVisualStyleBackColor = true;
+            this.btnInsertState.Click += new System.EventHandler(this.btnInsertState_Click);
+            // 
+            // btnBatchInsert
+            // 
+            this.btnBatchInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBatchInsert.Location = new System.Drawing.Point(838, 6);
+            this.btnBatchInsert.Name = "btnBatchInsert";
+            this.btnBatchInsert.Size = new System.Drawing.Size(169, 32);
+            this.btnBatchInsert.TabIndex = 3;
+            this.btnBatchInsert.Text = "Enter Batch";
+            this.btnBatchInsert.UseVisualStyleBackColor = true;
+            this.btnBatchInsert.Click += new System.EventHandler(this.btnBatchInsert_Click);
             // 
             // txtBatchBatchReference
             // 
@@ -423,68 +476,16 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1476, 441);
+            this.tabPage2.Size = new System.Drawing.Size(1534, 876);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btnBatchInsert
-            // 
-            this.btnBatchInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchInsert.Location = new System.Drawing.Point(838, 6);
-            this.btnBatchInsert.Name = "btnBatchInsert";
-            this.btnBatchInsert.Size = new System.Drawing.Size(169, 32);
-            this.btnBatchInsert.TabIndex = 3;
-            this.btnBatchInsert.Text = "Enter Batch";
-            this.btnBatchInsert.UseVisualStyleBackColor = true;
-            this.btnBatchInsert.Click += new System.EventHandler(this.btnBatchInsert_Click);
-            // 
-            // btnInsertState
-            // 
-            this.btnInsertState.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertState.Location = new System.Drawing.Point(838, 55);
-            this.btnInsertState.Name = "btnInsertState";
-            this.btnInsertState.Size = new System.Drawing.Size(169, 35);
-            this.btnInsertState.TabIndex = 4;
-            this.btnInsertState.Text = "Enter State";
-            this.btnInsertState.UseVisualStyleBackColor = true;
-            this.btnInsertState.Click += new System.EventHandler(this.btnInsertState_Click);
-            // 
-            // rtbTestBatchInsert
-            // 
-            this.rtbTestBatchInsert.Location = new System.Drawing.Point(1041, 8);
-            this.rtbTestBatchInsert.Name = "rtbTestBatchInsert";
-            this.rtbTestBatchInsert.Size = new System.Drawing.Size(371, 96);
-            this.rtbTestBatchInsert.TabIndex = 5;
-            this.rtbTestBatchInsert.Text = "";
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(838, 107);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(169, 33);
-            this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "Delete Batch";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // dgvBatch
-            // 
-            this.dgvBatch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBatch.Location = new System.Drawing.Point(12, 347);
-            this.dgvBatch.Name = "dgvBatch";
-            this.dgvBatch.Size = new System.Drawing.Size(1454, 519);
-            this.dgvBatch.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1482, 912);
+            this.ClientSize = new System.Drawing.Size(1144, 749);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
