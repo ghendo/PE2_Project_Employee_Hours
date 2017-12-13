@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PE2_Project_Employee_Hours.Domain
 {
-    public class States
+    public class State
     {
         public int StateId { get; set; }
         public string StateName { get; set; }

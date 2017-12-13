@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PE2_Project_Employee_Hours.Domain
 {
-    public class recycler
+    public class Recycler
     {
         public int recyclerid { get; set; }
         public string recyclername { get; set; }

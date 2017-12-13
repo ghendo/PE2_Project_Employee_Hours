@@ -2134,7 +2134,7 @@ namespace PE2_Project_Employee_Hours.View
 
                 JValue j = d.First.First as JValue;
           
-                var result = JsonConvert.DeserializeObject<List<States>>(j.ToString());
+                var result = JsonConvert.DeserializeObject<List<State>>(j.ToString());
 
                 foreach (var item in result)
                 {
@@ -2151,8 +2151,8 @@ namespace PE2_Project_Employee_Hours.View
         private void button2_Click_1(object sender, EventArgs e)
         {
             JArray jsonArray = new JArray();
-            List<States> states = new List<States>();
-            States state = new States();
+            List<State> states = new List<State>();
+            State state = new State();
             state.StateName = rtbRunJason.Text;
             state.Abbreviation = rtbJson.Text;
             states.Add(state);

@@ -1,22 +1,23 @@
-﻿using System;
+﻿using PE2_Project_Employee_Hours.Data;
+using PE2_Project_Employee_Hours.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PE2_Project_Employee_Hours.Data;
-using PE2_Project_Employee_Hours.Domain;
 
 namespace PE2_Project_Employee_Hours.Logic
 {
-    public class StateService
+
+    public class RecyclerService
     {
-        public ResultEnum InsertState(State state)
+        public ResultEnum InsertRecycler (Recycler recycler)
         {
             ResultEnum result = ResultEnum.Success;
             try
             {
-                StateDAO dao = new StateDAO();
-                dao.InsertState(state);
+                RecyclerDAO dao = new RecyclerDAO();
+                dao.InsertRecycler(recycler);
                 result = ResultEnum.Fail;
             }
             catch
@@ -26,13 +27,13 @@ namespace PE2_Project_Employee_Hours.Logic
             return result;
         }
 
-        public Result<List<State>> getAllStates()
+        public Result<List<Recycler>> getAllRecyclers()
         {
-            Result<List<State>> result = new Result<List<State>>();
+            Result<List<Recycler>> result = new Result<List<Recycler>>();
             try
             {
-                StateDAO dao = new StateDAO();
-                result.Data = dao.GetAllStates();
+                RecyclerDAO dao = new RecyclerDAO();
+                result.Data = dao.GetAllRecyclers();
                 result.Status = ResultEnum.Success;
             }
             catch (Exception)

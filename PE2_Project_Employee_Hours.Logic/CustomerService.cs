@@ -1,22 +1,22 @@
-﻿using System;
+﻿using PE2_Project_Employee_Hours.Data;
+using PE2_Project_Employee_Hours.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PE2_Project_Employee_Hours.Data;
-using PE2_Project_Employee_Hours.Domain;
 
 namespace PE2_Project_Employee_Hours.Logic
 {
-    public class StateService
+    public class CustomerService
     {
-        public ResultEnum InsertState(State state)
+        public ResultEnum InsertCustomer(Customer customer)
         {
             ResultEnum result = ResultEnum.Success;
             try
             {
-                StateDAO dao = new StateDAO();
-                dao.InsertState(state);
+                CustomerDAO dao = new CustomerDAO();
+                dao.InsertCustomer(customer);
                 result = ResultEnum.Fail;
             }
             catch
@@ -26,13 +26,13 @@ namespace PE2_Project_Employee_Hours.Logic
             return result;
         }
 
-        public Result<List<State>> getAllStates()
+        public Result<List<Customer>> getAllCustomers()
         {
-            Result<List<State>> result = new Result<List<State>>();
+            Result<List<Customer>> result = new Result<List<Customer>>();
             try
             {
-                StateDAO dao = new StateDAO();
-                result.Data = dao.GetAllStates();
+                CustomerDAO dao = new CustomerDAO();
+                result.Data = dao.GetAllCustomers();
                 result.Status = ResultEnum.Success;
             }
             catch (Exception)

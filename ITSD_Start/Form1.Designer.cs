@@ -30,6 +30,9 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cboBatchCustomers = new System.Windows.Forms.ComboBox();
+            this.cboBatchRecycler = new System.Windows.Forms.ComboBox();
+            this.cboBatchStates = new System.Windows.Forms.ComboBox();
             this.dgvBatch = new System.Windows.Forms.DataGridView();
             this.btnDelete = new System.Windows.Forms.Button();
             this.rtbTestBatchInsert = new System.Windows.Forms.RichTextBox();
@@ -46,10 +49,7 @@
             this.txtBatchPrinterKilos = new System.Windows.Forms.TextBox();
             this.txtBatchPCKilos = new System.Windows.Forms.TextBox();
             this.txtBatchDate = new System.Windows.Forms.TextBox();
-            this.txtBatchCustomer = new System.Windows.Forms.TextBox();
             this.txtBatchSuburb = new System.Windows.Forms.TextBox();
-            this.txtBatchRecycler = new System.Windows.Forms.TextBox();
-            this.txtBatchState = new System.Windows.Forms.TextBox();
             this.txtBatchBatchID = new System.Windows.Forms.TextBox();
             this.lblRecyledKilograms = new System.Windows.Forms.Label();
             this.lblMiscKilograms = new System.Windows.Forms.Label();
@@ -77,14 +77,18 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(0, 12);
+            this.tabControl1.Location = new System.Drawing.Point(0, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1542, 902);
+            this.tabControl1.Size = new System.Drawing.Size(1166, 902);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.AutoScroll = true;
+            this.tabPage1.Controls.Add(this.cboBatchCustomers);
+            this.tabPage1.Controls.Add(this.cboBatchRecycler);
+            this.tabPage1.Controls.Add(this.cboBatchStates);
             this.tabPage1.Controls.Add(this.dgvBatch);
             this.tabPage1.Controls.Add(this.btnDelete);
             this.tabPage1.Controls.Add(this.rtbTestBatchInsert);
@@ -101,10 +105,7 @@
             this.tabPage1.Controls.Add(this.txtBatchPrinterKilos);
             this.tabPage1.Controls.Add(this.txtBatchPCKilos);
             this.tabPage1.Controls.Add(this.txtBatchDate);
-            this.tabPage1.Controls.Add(this.txtBatchCustomer);
             this.tabPage1.Controls.Add(this.txtBatchSuburb);
-            this.tabPage1.Controls.Add(this.txtBatchRecycler);
-            this.tabPage1.Controls.Add(this.txtBatchState);
             this.tabPage1.Controls.Add(this.txtBatchBatchID);
             this.tabPage1.Controls.Add(this.lblRecyledKilograms);
             this.tabPage1.Controls.Add(this.lblMiscKilograms);
@@ -125,10 +126,40 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1534, 876);
+            this.tabPage1.Size = new System.Drawing.Size(1158, 876);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Enter Batch";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cboBatchCustomers
+            // 
+            this.cboBatchCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBatchCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBatchCustomers.FormattingEnabled = true;
+            this.cboBatchCustomers.Location = new System.Drawing.Point(198, 165);
+            this.cboBatchCustomers.Name = "cboBatchCustomers";
+            this.cboBatchCustomers.Size = new System.Drawing.Size(247, 32);
+            this.cboBatchCustomers.TabIndex = 10001;
+            // 
+            // cboBatchRecycler
+            // 
+            this.cboBatchRecycler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBatchRecycler.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBatchRecycler.FormattingEnabled = true;
+            this.cboBatchRecycler.Location = new System.Drawing.Point(198, 99);
+            this.cboBatchRecycler.Name = "cboBatchRecycler";
+            this.cboBatchRecycler.Size = new System.Drawing.Size(247, 32);
+            this.cboBatchRecycler.TabIndex = 10000;
+            // 
+            // cboBatchStates
+            // 
+            this.cboBatchStates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBatchStates.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboBatchStates.FormattingEnabled = true;
+            this.cboBatchStates.Location = new System.Drawing.Point(198, 66);
+            this.cboBatchStates.Name = "cboBatchStates";
+            this.cboBatchStates.Size = new System.Drawing.Size(121, 32);
+            this.cboBatchStates.TabIndex = 2;
             // 
             // dgvBatch
             // 
@@ -136,10 +167,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBatch.Location = new System.Drawing.Point(12, 347);
+            this.dgvBatch.Location = new System.Drawing.Point(10, 339);
             this.dgvBatch.Name = "dgvBatch";
-            this.dgvBatch.Size = new System.Drawing.Size(1454, 519);
-            this.dgvBatch.TabIndex = 7;
+            this.dgvBatch.Size = new System.Drawing.Size(1143, 391);
+            this.dgvBatch.TabIndex = 18;
+            this.dgvBatch.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBatch_CellContentClick);
             // 
             // btnDelete
             // 
@@ -147,7 +179,7 @@
             this.btnDelete.Location = new System.Drawing.Point(838, 107);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(169, 33);
-            this.btnDelete.TabIndex = 6;
+            this.btnDelete.TabIndex = 9999;
             this.btnDelete.Text = "Delete Batch";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -156,10 +188,9 @@
             // 
             this.rtbTestBatchInsert.Location = new System.Drawing.Point(1041, 8);
             this.rtbTestBatchInsert.Name = "rtbTestBatchInsert";
-            this.rtbTestBatchInsert.Size = new System.Drawing.Size(371, 96);
-            this.rtbTestBatchInsert.TabIndex = 5;
+            this.rtbTestBatchInsert.Size = new System.Drawing.Size(44, 96);
+            this.rtbTestBatchInsert.TabIndex = 9999;
             this.rtbTestBatchInsert.Text = "";
-
             // 
             // btnInsertState
             // 
@@ -167,7 +198,7 @@
             this.btnInsertState.Location = new System.Drawing.Point(838, 55);
             this.btnInsertState.Name = "btnInsertState";
             this.btnInsertState.Size = new System.Drawing.Size(169, 35);
-            this.btnInsertState.TabIndex = 4;
+            this.btnInsertState.TabIndex = 9999;
             this.btnInsertState.Text = "Enter State";
             this.btnInsertState.UseVisualStyleBackColor = true;
             this.btnInsertState.Click += new System.EventHandler(this.btnInsertState_Click);
@@ -178,7 +209,7 @@
             this.btnBatchInsert.Location = new System.Drawing.Point(838, 6);
             this.btnBatchInsert.Name = "btnBatchInsert";
             this.btnBatchInsert.Size = new System.Drawing.Size(169, 32);
-            this.btnBatchInsert.TabIndex = 3;
+            this.btnBatchInsert.TabIndex = 9999;
             this.btnBatchInsert.Text = "Enter Batch";
             this.btnBatchInsert.UseVisualStyleBackColor = true;
             this.btnBatchInsert.Click += new System.EventHandler(this.btnBatchInsert_Click);
@@ -189,7 +220,7 @@
             this.txtBatchBatchReference.Location = new System.Drawing.Point(198, 33);
             this.txtBatchBatchReference.Name = "txtBatchBatchReference";
             this.txtBatchBatchReference.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchBatchReference.TabIndex = 2;
+            this.txtBatchBatchReference.TabIndex = 1;
             // 
             // txtBatchRecycledKilos
             // 
@@ -197,7 +228,8 @@
             this.txtBatchRecycledKilos.Location = new System.Drawing.Point(707, 198);
             this.txtBatchRecycledKilos.Name = "txtBatchRecycledKilos";
             this.txtBatchRecycledKilos.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchRecycledKilos.TabIndex = 1;
+            this.txtBatchRecycledKilos.TabIndex = 13;
+            this.txtBatchRecycledKilos.Text = "0";
             // 
             // txtBatchMiscKilos
             // 
@@ -205,7 +237,8 @@
             this.txtBatchMiscKilos.Location = new System.Drawing.Point(707, 165);
             this.txtBatchMiscKilos.Name = "txtBatchMiscKilos";
             this.txtBatchMiscKilos.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchMiscKilos.TabIndex = 1;
+            this.txtBatchMiscKilos.TabIndex = 12;
+            this.txtBatchMiscKilos.Text = "0";
             // 
             // txtBatchPrintingPressKilos
             // 
@@ -213,7 +246,8 @@
             this.txtBatchPrintingPressKilos.Location = new System.Drawing.Point(707, 132);
             this.txtBatchPrintingPressKilos.Name = "txtBatchPrintingPressKilos";
             this.txtBatchPrintingPressKilos.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchPrintingPressKilos.TabIndex = 1;
+            this.txtBatchPrintingPressKilos.TabIndex = 11;
+            this.txtBatchPrintingPressKilos.Text = "0";
             // 
             // txtBatchFlatPanelMonitorKilos
             // 
@@ -221,7 +255,8 @@
             this.txtBatchFlatPanelMonitorKilos.Location = new System.Drawing.Point(707, 99);
             this.txtBatchFlatPanelMonitorKilos.Name = "txtBatchFlatPanelMonitorKilos";
             this.txtBatchFlatPanelMonitorKilos.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchFlatPanelMonitorKilos.TabIndex = 1;
+            this.txtBatchFlatPanelMonitorKilos.TabIndex = 10;
+            this.txtBatchFlatPanelMonitorKilos.Text = "0";
             // 
             // txtBatchFlatPanelTvKilos
             // 
@@ -229,7 +264,8 @@
             this.txtBatchFlatPanelTvKilos.Location = new System.Drawing.Point(707, 66);
             this.txtBatchFlatPanelTvKilos.Name = "txtBatchFlatPanelTvKilos";
             this.txtBatchFlatPanelTvKilos.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchFlatPanelTvKilos.TabIndex = 1;
+            this.txtBatchFlatPanelTvKilos.TabIndex = 9;
+            this.txtBatchFlatPanelTvKilos.Text = "0";
             // 
             // txtBatchMonitorKilos
             // 
@@ -237,7 +273,8 @@
             this.txtBatchMonitorKilos.Location = new System.Drawing.Point(707, 33);
             this.txtBatchMonitorKilos.Name = "txtBatchMonitorKilos";
             this.txtBatchMonitorKilos.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchMonitorKilos.TabIndex = 1;
+            this.txtBatchMonitorKilos.TabIndex = 8;
+            this.txtBatchMonitorKilos.Text = "0";
             // 
             // txtBatchCrtTvKilos
             // 
@@ -245,7 +282,8 @@
             this.txtBatchCrtTvKilos.Location = new System.Drawing.Point(707, 0);
             this.txtBatchCrtTvKilos.Name = "txtBatchCrtTvKilos";
             this.txtBatchCrtTvKilos.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchCrtTvKilos.TabIndex = 1;
+            this.txtBatchCrtTvKilos.TabIndex = 7;
+            this.txtBatchCrtTvKilos.Text = "0";
             // 
             // txtBatchPrinterKilos
             // 
@@ -253,7 +291,8 @@
             this.txtBatchPrinterKilos.Location = new System.Drawing.Point(707, 266);
             this.txtBatchPrinterKilos.Name = "txtBatchPrinterKilos";
             this.txtBatchPrinterKilos.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchPrinterKilos.TabIndex = 1;
+            this.txtBatchPrinterKilos.TabIndex = 15;
+            this.txtBatchPrinterKilos.Text = "0";
             // 
             // txtBatchPCKilos
             // 
@@ -261,7 +300,8 @@
             this.txtBatchPCKilos.Location = new System.Drawing.Point(707, 233);
             this.txtBatchPCKilos.Name = "txtBatchPCKilos";
             this.txtBatchPCKilos.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchPCKilos.TabIndex = 1;
+            this.txtBatchPCKilos.TabIndex = 14;
+            this.txtBatchPCKilos.Text = "0";
             // 
             // txtBatchDate
             // 
@@ -269,15 +309,7 @@
             this.txtBatchDate.Location = new System.Drawing.Point(198, 200);
             this.txtBatchDate.Name = "txtBatchDate";
             this.txtBatchDate.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchDate.TabIndex = 1;
-            // 
-            // txtBatchCustomer
-            // 
-            this.txtBatchCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchCustomer.Location = new System.Drawing.Point(198, 167);
-            this.txtBatchCustomer.Name = "txtBatchCustomer";
-            this.txtBatchCustomer.Size = new System.Drawing.Size(247, 29);
-            this.txtBatchCustomer.TabIndex = 1;
+            this.txtBatchDate.TabIndex = 6;
             // 
             // txtBatchSuburb
             // 
@@ -285,23 +317,7 @@
             this.txtBatchSuburb.Location = new System.Drawing.Point(198, 134);
             this.txtBatchSuburb.Name = "txtBatchSuburb";
             this.txtBatchSuburb.Size = new System.Drawing.Size(247, 29);
-            this.txtBatchSuburb.TabIndex = 1;
-            // 
-            // txtBatchRecycler
-            // 
-            this.txtBatchRecycler.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchRecycler.Location = new System.Drawing.Point(198, 101);
-            this.txtBatchRecycler.Name = "txtBatchRecycler";
-            this.txtBatchRecycler.Size = new System.Drawing.Size(247, 29);
-            this.txtBatchRecycler.TabIndex = 1;
-            // 
-            // txtBatchState
-            // 
-            this.txtBatchState.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchState.Location = new System.Drawing.Point(198, 68);
-            this.txtBatchState.Name = "txtBatchState";
-            this.txtBatchState.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchState.TabIndex = 1;
+            this.txtBatchSuburb.TabIndex = 4;
             // 
             // txtBatchBatchID
             // 
@@ -309,7 +325,7 @@
             this.txtBatchBatchID.Location = new System.Drawing.Point(198, 0);
             this.txtBatchBatchID.Name = "txtBatchBatchID";
             this.txtBatchBatchID.Size = new System.Drawing.Size(100, 29);
-            this.txtBatchBatchID.TabIndex = 1;
+            this.txtBatchBatchID.TabIndex = 0;
             // 
             // lblRecyledKilograms
             // 
@@ -438,7 +454,7 @@
             this.lblRecyclerID.Location = new System.Drawing.Point(8, 104);
             this.lblRecyclerID.Name = "lblRecyclerID";
             this.lblRecyclerID.Size = new System.Drawing.Size(84, 24);
-            this.lblRecyclerID.TabIndex = 0;
+            this.lblRecyclerID.TabIndex = 9999;
             this.lblRecyclerID.Text = "Recycler";
             // 
             // lblStaeID
@@ -448,7 +464,7 @@
             this.lblStaeID.Location = new System.Drawing.Point(8, 71);
             this.lblStaeID.Name = "lblStaeID";
             this.lblStaeID.Size = new System.Drawing.Size(51, 24);
-            this.lblStaeID.TabIndex = 0;
+            this.lblStaeID.TabIndex = 9999;
             this.lblStaeID.Text = "State";
             // 
             // lblBatchBatchReference
@@ -457,9 +473,9 @@
             this.lblBatchBatchReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBatchBatchReference.Location = new System.Drawing.Point(6, 36);
             this.lblBatchBatchReference.Name = "lblBatchBatchReference";
-            this.lblBatchBatchReference.Size = new System.Drawing.Size(150, 24);
-            this.lblBatchBatchReference.TabIndex = 0;
-            this.lblBatchBatchReference.Text = "Batch Reference";
+            this.lblBatchBatchReference.Size = new System.Drawing.Size(134, 24);
+            this.lblBatchBatchReference.TabIndex = 9999;
+            this.lblBatchBatchReference.Text = "Job Reference";
             // 
             // lblBatchID
             // 
@@ -467,16 +483,16 @@
             this.lblBatchID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBatchID.Location = new System.Drawing.Point(8, 3);
             this.lblBatchID.Name = "lblBatchID";
-            this.lblBatchID.Size = new System.Drawing.Size(79, 24);
-            this.lblBatchID.TabIndex = 0;
-            this.lblBatchID.Text = "Batch ID";
+            this.lblBatchID.Size = new System.Drawing.Size(63, 24);
+            this.lblBatchID.TabIndex = 9999;
+            this.lblBatchID.Text = "Job ID";
             // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1534, 876);
+            this.tabPage2.Size = new System.Drawing.Size(1158, 876);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -485,7 +501,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1144, 749);
+            this.AutoScroll = true;
+            this.AutoScrollMargin = new System.Drawing.Size(5, 5);
+            this.AutoScrollMinSize = new System.Drawing.Size(5, 5);
+            this.ClientSize = new System.Drawing.Size(1178, 766);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -512,10 +531,7 @@
         private System.Windows.Forms.TextBox txtBatchPrinterKilos;
         private System.Windows.Forms.TextBox txtBatchPCKilos;
         private System.Windows.Forms.TextBox txtBatchDate;
-        private System.Windows.Forms.TextBox txtBatchCustomer;
         private System.Windows.Forms.TextBox txtBatchSuburb;
-        private System.Windows.Forms.TextBox txtBatchRecycler;
-        private System.Windows.Forms.TextBox txtBatchState;
         private System.Windows.Forms.TextBox txtBatchBatchID;
         private System.Windows.Forms.Label lblRecyledKilograms;
         private System.Windows.Forms.Label lblMiscKilograms;
@@ -540,6 +556,9 @@
         private System.Windows.Forms.RichTextBox rtbTestBatchInsert;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DataGridView dgvBatch;
+        private System.Windows.Forms.ComboBox cboBatchStates;
+        private System.Windows.Forms.ComboBox cboBatchRecycler;
+        private System.Windows.Forms.ComboBox cboBatchCustomers;
     }
 }
 
