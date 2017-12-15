@@ -2,6 +2,7 @@
 using PE2_Project_Employee_Hours.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,39 @@ namespace PE2_Project_Employee_Hours.Logic
             {
                 CustomerDAO dao = new CustomerDAO();
                 dao.InsertCustomer(customer);
+            
+            }
+            catch
+            {
                 result = ResultEnum.Fail;
+            }
+            return result;
+        }
+
+        public ResultEnum UpdateCustomer(Customer customer)
+        {
+            ResultEnum result = ResultEnum.Success;
+            try
+            {
+                CustomerDAO dao = new CustomerDAO();
+                dao.UpdateCustomer(customer);
+              
+            }
+            catch
+            {
+                result = ResultEnum.Fail;
+            }
+            return result;
+        }
+
+        public ResultEnum DeleteCustomer(Customer customer)
+        {
+            ResultEnum result = ResultEnum.Success;
+            try
+            {
+                CustomerDAO dao = new CustomerDAO();
+                dao.DeleteCustomer(customer);
+
             }
             catch
             {
@@ -33,6 +66,23 @@ namespace PE2_Project_Employee_Hours.Logic
             {
                 CustomerDAO dao = new CustomerDAO();
                 result.Data = dao.GetAllCustomers();
+                result.Status = ResultEnum.Success;
+            }
+            catch (Exception)
+            {
+
+                result.Status = ResultEnum.Fail;
+            }
+            return result;
+        }
+
+        public Result<DataTable> getAllCustomersDT()
+        {
+            Result<DataTable> result = new Result<DataTable>();
+            try
+            {
+                CustomerDAO dao = new CustomerDAO();
+                result.Data = dao.GetAllCustomersDT();
                 result.Status = ResultEnum.Success;
             }
             catch (Exception)
