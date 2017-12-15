@@ -56,7 +56,7 @@ namespace ITSD_Start
         private void loadBatchForm()
         {
 
-            LoadBatchDGV(0, SortOrder.Ascending);
+            LoadBatchDGVDt(0, SortOrder.Ascending);
             LoadStatesCbo();
             LoadRecylerCbo();
             LoadCustomerCbo();
@@ -79,6 +79,7 @@ namespace ITSD_Start
             //call service method
             BatchService service = new BatchService();
             result = service.GetAllBatches();
+            
 
             if (result.Status == ResultEnum.Success)
             {
@@ -94,6 +95,50 @@ namespace ITSD_Start
 
                 //set the data in dgv manager
                 dgvBatchManager.SetResult();
+
+                //set dvg manager last updated row
+                //String searchValue = EmpLastUpdate().Data.EmployeeId.ToString();
+                //dgvBatchManager.SetLastUpdatedRow(searchValue);
+
+
+                //load dgv
+                dgvBatchManager.LoadDgv();
+                //setup columns TODO move to dgv manager
+                //TODO set column headers text setDGVemployeeColumnDetails();
+
+
+            }
+            else
+            {
+                MessageBox.Show("Database Error");
+            }
+
+        }
+
+        private void LoadBatchDGVDt(int sortCol, SortOrder sortOrder)
+        {
+
+            //null return object
+            Result<DataTable> result = new Result<DataTable>();
+            //call service method
+            BatchService service = new BatchService();
+            result = service.GetAllBatchesDT();
+
+
+            if (result.Status == ResultEnum.Success)
+            {
+                //set the sort properties of dgv manager
+                dgvBatchManager.SortColumn = sortCol;
+                dgvBatchManager.SortDirection = sortOrder;
+
+                //send result.data to dgv manager
+                dgvBatchManager.datatable = result.Data;
+
+                //sort result
+                //TODO SortBatchResult();
+
+                //set the data in dgv manager
+                dgvBatchManager.SetResultDT();
 
                 //set dvg manager last updated row
                 //String searchValue = EmpLastUpdate().Data.EmployeeId.ToString();
@@ -393,11 +438,6 @@ namespace ITSD_Start
             ClearBatchForm();
         }
 
-        private void btmBatchUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCustomerInsert_Click(object sender, EventArgs e)
         {
             Customer customer = new Customer();
@@ -518,5 +558,7 @@ namespace ITSD_Start
             }
             loadCustomerForm();
         }
+
+
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -145,22 +146,22 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Jobs";
             this.tabPage1.UseVisualStyleBackColor = true;
+
             // 
             // btmBatchUpdate
             // 
             this.btmBatchUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btmBatchUpdate.Location = new System.Drawing.Point(838, 116);
+            this.btmBatchUpdate.Location = new System.Drawing.Point(847, 177);
             this.btmBatchUpdate.Name = "btmBatchUpdate";
             this.btmBatchUpdate.Size = new System.Drawing.Size(169, 30);
             this.btmBatchUpdate.TabIndex = 10003;
             this.btmBatchUpdate.Text = "Update";
             this.btmBatchUpdate.UseVisualStyleBackColor = true;
-            this.btmBatchUpdate.Click += new System.EventHandler(this.btmBatchUpdate_Click);
             // 
             // btnBatchClear
             // 
             this.btnBatchClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchClear.Location = new System.Drawing.Point(838, 80);
+            this.btnBatchClear.Location = new System.Drawing.Point(847, 141);
             this.btnBatchClear.Name = "btnBatchClear";
             this.btnBatchClear.Size = new System.Drawing.Size(169, 30);
             this.btnBatchClear.TabIndex = 10002;
@@ -173,7 +174,7 @@
             this.cboBatchCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBatchCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBatchCustomers.FormattingEnabled = true;
-            this.cboBatchCustomers.Location = new System.Drawing.Point(198, 165);
+            this.cboBatchCustomers.Location = new System.Drawing.Point(207, 226);
             this.cboBatchCustomers.Name = "cboBatchCustomers";
             this.cboBatchCustomers.Size = new System.Drawing.Size(247, 32);
             this.cboBatchCustomers.TabIndex = 10001;
@@ -183,7 +184,7 @@
             this.cboBatchRecycler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBatchRecycler.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBatchRecycler.FormattingEnabled = true;
-            this.cboBatchRecycler.Location = new System.Drawing.Point(198, 99);
+            this.cboBatchRecycler.Location = new System.Drawing.Point(207, 160);
             this.cboBatchRecycler.Name = "cboBatchRecycler";
             this.cboBatchRecycler.Size = new System.Drawing.Size(247, 32);
             this.cboBatchRecycler.TabIndex = 10000;
@@ -193,27 +194,29 @@
             this.cboBatchStates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBatchStates.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBatchStates.FormattingEnabled = true;
-            this.cboBatchStates.Location = new System.Drawing.Point(198, 66);
+            this.cboBatchStates.Location = new System.Drawing.Point(207, 127);
             this.cboBatchStates.Name = "cboBatchStates";
             this.cboBatchStates.Size = new System.Drawing.Size(121, 32);
             this.cboBatchStates.TabIndex = 2;
             // 
             // dgvBatch
             // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvBatch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBatch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBatch.Location = new System.Drawing.Point(10, 339);
+            this.dgvBatch.Location = new System.Drawing.Point(18, 387);
             this.dgvBatch.Name = "dgvBatch";
-            this.dgvBatch.Size = new System.Drawing.Size(1107, 425);
+            this.dgvBatch.Size = new System.Drawing.Size(1107, 381);
             this.dgvBatch.TabIndex = 18;
             this.dgvBatch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBatch_CellClick);
             // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(838, 43);
+            this.btnDelete.Location = new System.Drawing.Point(847, 104);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(169, 30);
             this.btnDelete.TabIndex = 9999;
@@ -223,7 +226,7 @@
             // 
             // rtbTestBatchInsert
             // 
-            this.rtbTestBatchInsert.Location = new System.Drawing.Point(1041, 8);
+            this.rtbTestBatchInsert.Location = new System.Drawing.Point(1050, 69);
             this.rtbTestBatchInsert.Name = "rtbTestBatchInsert";
             this.rtbTestBatchInsert.Size = new System.Drawing.Size(44, 96);
             this.rtbTestBatchInsert.TabIndex = 9999;
@@ -232,7 +235,7 @@
             // btnBatchInsert
             // 
             this.btnBatchInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchInsert.Location = new System.Drawing.Point(838, 6);
+            this.btnBatchInsert.Location = new System.Drawing.Point(847, 67);
             this.btnBatchInsert.Name = "btnBatchInsert";
             this.btnBatchInsert.Size = new System.Drawing.Size(169, 30);
             this.btnBatchInsert.TabIndex = 9999;
@@ -243,7 +246,7 @@
             // txtBatchBatchReference
             // 
             this.txtBatchBatchReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchBatchReference.Location = new System.Drawing.Point(198, 33);
+            this.txtBatchBatchReference.Location = new System.Drawing.Point(207, 94);
             this.txtBatchBatchReference.Name = "txtBatchBatchReference";
             this.txtBatchBatchReference.Size = new System.Drawing.Size(121, 29);
             this.txtBatchBatchReference.TabIndex = 1;
@@ -251,7 +254,7 @@
             // txtBatchRecycledKilos
             // 
             this.txtBatchRecycledKilos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchRecycledKilos.Location = new System.Drawing.Point(707, 198);
+            this.txtBatchRecycledKilos.Location = new System.Drawing.Point(716, 259);
             this.txtBatchRecycledKilos.Name = "txtBatchRecycledKilos";
             this.txtBatchRecycledKilos.Size = new System.Drawing.Size(100, 29);
             this.txtBatchRecycledKilos.TabIndex = 13;
@@ -260,7 +263,7 @@
             // txtBatchMiscKilos
             // 
             this.txtBatchMiscKilos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchMiscKilos.Location = new System.Drawing.Point(707, 165);
+            this.txtBatchMiscKilos.Location = new System.Drawing.Point(716, 226);
             this.txtBatchMiscKilos.Name = "txtBatchMiscKilos";
             this.txtBatchMiscKilos.Size = new System.Drawing.Size(100, 29);
             this.txtBatchMiscKilos.TabIndex = 12;
@@ -269,7 +272,7 @@
             // txtBatchPrintingPressKilos
             // 
             this.txtBatchPrintingPressKilos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchPrintingPressKilos.Location = new System.Drawing.Point(707, 132);
+            this.txtBatchPrintingPressKilos.Location = new System.Drawing.Point(716, 193);
             this.txtBatchPrintingPressKilos.Name = "txtBatchPrintingPressKilos";
             this.txtBatchPrintingPressKilos.Size = new System.Drawing.Size(100, 29);
             this.txtBatchPrintingPressKilos.TabIndex = 11;
@@ -278,7 +281,7 @@
             // txtBatchFlatPanelMonitorKilos
             // 
             this.txtBatchFlatPanelMonitorKilos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchFlatPanelMonitorKilos.Location = new System.Drawing.Point(707, 99);
+            this.txtBatchFlatPanelMonitorKilos.Location = new System.Drawing.Point(716, 160);
             this.txtBatchFlatPanelMonitorKilos.Name = "txtBatchFlatPanelMonitorKilos";
             this.txtBatchFlatPanelMonitorKilos.Size = new System.Drawing.Size(100, 29);
             this.txtBatchFlatPanelMonitorKilos.TabIndex = 10;
@@ -287,7 +290,7 @@
             // txtBatchFlatPanelTvKilos
             // 
             this.txtBatchFlatPanelTvKilos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchFlatPanelTvKilos.Location = new System.Drawing.Point(707, 66);
+            this.txtBatchFlatPanelTvKilos.Location = new System.Drawing.Point(716, 127);
             this.txtBatchFlatPanelTvKilos.Name = "txtBatchFlatPanelTvKilos";
             this.txtBatchFlatPanelTvKilos.Size = new System.Drawing.Size(100, 29);
             this.txtBatchFlatPanelTvKilos.TabIndex = 9;
@@ -296,7 +299,7 @@
             // txtBatchMonitorKilos
             // 
             this.txtBatchMonitorKilos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchMonitorKilos.Location = new System.Drawing.Point(707, 33);
+            this.txtBatchMonitorKilos.Location = new System.Drawing.Point(716, 94);
             this.txtBatchMonitorKilos.Name = "txtBatchMonitorKilos";
             this.txtBatchMonitorKilos.Size = new System.Drawing.Size(100, 29);
             this.txtBatchMonitorKilos.TabIndex = 8;
@@ -305,7 +308,7 @@
             // txtBatchCrtTvKilos
             // 
             this.txtBatchCrtTvKilos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchCrtTvKilos.Location = new System.Drawing.Point(707, 0);
+            this.txtBatchCrtTvKilos.Location = new System.Drawing.Point(716, 61);
             this.txtBatchCrtTvKilos.Name = "txtBatchCrtTvKilos";
             this.txtBatchCrtTvKilos.Size = new System.Drawing.Size(100, 29);
             this.txtBatchCrtTvKilos.TabIndex = 7;
@@ -314,7 +317,7 @@
             // txtBatchPrinterKilos
             // 
             this.txtBatchPrinterKilos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchPrinterKilos.Location = new System.Drawing.Point(707, 266);
+            this.txtBatchPrinterKilos.Location = new System.Drawing.Point(716, 327);
             this.txtBatchPrinterKilos.Name = "txtBatchPrinterKilos";
             this.txtBatchPrinterKilos.Size = new System.Drawing.Size(100, 29);
             this.txtBatchPrinterKilos.TabIndex = 15;
@@ -323,7 +326,7 @@
             // txtBatchPCKilos
             // 
             this.txtBatchPCKilos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchPCKilos.Location = new System.Drawing.Point(707, 233);
+            this.txtBatchPCKilos.Location = new System.Drawing.Point(716, 294);
             this.txtBatchPCKilos.Name = "txtBatchPCKilos";
             this.txtBatchPCKilos.Size = new System.Drawing.Size(100, 29);
             this.txtBatchPCKilos.TabIndex = 14;
@@ -332,7 +335,7 @@
             // txtBatchDate
             // 
             this.txtBatchDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchDate.Location = new System.Drawing.Point(198, 200);
+            this.txtBatchDate.Location = new System.Drawing.Point(207, 261);
             this.txtBatchDate.Name = "txtBatchDate";
             this.txtBatchDate.Size = new System.Drawing.Size(121, 29);
             this.txtBatchDate.TabIndex = 6;
@@ -340,7 +343,7 @@
             // txtBatchSuburb
             // 
             this.txtBatchSuburb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchSuburb.Location = new System.Drawing.Point(198, 134);
+            this.txtBatchSuburb.Location = new System.Drawing.Point(207, 195);
             this.txtBatchSuburb.Name = "txtBatchSuburb";
             this.txtBatchSuburb.Size = new System.Drawing.Size(247, 29);
             this.txtBatchSuburb.TabIndex = 4;
@@ -348,7 +351,7 @@
             // txtBatchBatchID
             // 
             this.txtBatchBatchID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchBatchID.Location = new System.Drawing.Point(198, 0);
+            this.txtBatchBatchID.Location = new System.Drawing.Point(207, 61);
             this.txtBatchBatchID.Name = "txtBatchBatchID";
             this.txtBatchBatchID.Size = new System.Drawing.Size(121, 29);
             this.txtBatchBatchID.TabIndex = 0;
@@ -357,7 +360,7 @@
             // 
             this.lblRecyledKilograms.AutoSize = true;
             this.lblRecyledKilograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecyledKilograms.Location = new System.Drawing.Point(451, 201);
+            this.lblRecyledKilograms.Location = new System.Drawing.Point(460, 262);
             this.lblRecyledKilograms.Name = "lblRecyledKilograms";
             this.lblRecyledKilograms.Size = new System.Drawing.Size(134, 24);
             this.lblRecyledKilograms.TabIndex = 0;
@@ -367,7 +370,7 @@
             // 
             this.lblMiscKilograms.AutoSize = true;
             this.lblMiscKilograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMiscKilograms.Location = new System.Drawing.Point(451, 168);
+            this.lblMiscKilograms.Location = new System.Drawing.Point(460, 229);
             this.lblMiscKilograms.Name = "lblMiscKilograms";
             this.lblMiscKilograms.Size = new System.Drawing.Size(137, 24);
             this.lblMiscKilograms.TabIndex = 0;
@@ -377,7 +380,7 @@
             // 
             this.lblPrintPressesKilograms.AutoSize = true;
             this.lblPrintPressesKilograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrintPressesKilograms.Location = new System.Drawing.Point(451, 135);
+            this.lblPrintPressesKilograms.Location = new System.Drawing.Point(460, 196);
             this.lblPrintPressesKilograms.Name = "lblPrintPressesKilograms";
             this.lblPrintPressesKilograms.Size = new System.Drawing.Size(190, 24);
             this.lblPrintPressesKilograms.TabIndex = 0;
@@ -387,7 +390,7 @@
             // 
             this.lblFlatPanelMonitorKilograms.AutoSize = true;
             this.lblFlatPanelMonitorKilograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFlatPanelMonitorKilograms.Location = new System.Drawing.Point(451, 102);
+            this.lblFlatPanelMonitorKilograms.Location = new System.Drawing.Point(460, 163);
             this.lblFlatPanelMonitorKilograms.Name = "lblFlatPanelMonitorKilograms";
             this.lblFlatPanelMonitorKilograms.Size = new System.Drawing.Size(206, 24);
             this.lblFlatPanelMonitorKilograms.TabIndex = 0;
@@ -397,7 +400,7 @@
             // 
             this.lblFlatPanelTvKilograms.AutoSize = true;
             this.lblFlatPanelTvKilograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFlatPanelTvKilograms.Location = new System.Drawing.Point(451, 69);
+            this.lblFlatPanelTvKilograms.Location = new System.Drawing.Point(460, 130);
             this.lblFlatPanelTvKilograms.Name = "lblFlatPanelTvKilograms";
             this.lblFlatPanelTvKilograms.Size = new System.Drawing.Size(168, 24);
             this.lblFlatPanelTvKilograms.TabIndex = 0;
@@ -407,7 +410,7 @@
             // 
             this.lblCrtMonitorKilograms.AutoSize = true;
             this.lblCrtMonitorKilograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCrtMonitorKilograms.Location = new System.Drawing.Point(451, 36);
+            this.lblCrtMonitorKilograms.Location = new System.Drawing.Point(460, 97);
             this.lblCrtMonitorKilograms.Name = "lblCrtMonitorKilograms";
             this.lblCrtMonitorKilograms.Size = new System.Drawing.Size(161, 24);
             this.lblCrtMonitorKilograms.TabIndex = 0;
@@ -417,7 +420,7 @@
             // 
             this.lblCrtTvKilograms.AutoSize = true;
             this.lblCrtTvKilograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCrtTvKilograms.Location = new System.Drawing.Point(451, 3);
+            this.lblCrtTvKilograms.Location = new System.Drawing.Point(460, 64);
             this.lblCrtTvKilograms.Name = "lblCrtTvKilograms";
             this.lblCrtTvKilograms.Size = new System.Drawing.Size(123, 24);
             this.lblCrtTvKilograms.TabIndex = 0;
@@ -427,7 +430,7 @@
             // 
             this.lblPrinterKilograms.AutoSize = true;
             this.lblPrinterKilograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrinterKilograms.Location = new System.Drawing.Point(451, 269);
+            this.lblPrinterKilograms.Location = new System.Drawing.Point(460, 330);
             this.lblPrinterKilograms.Name = "lblPrinterKilograms";
             this.lblPrinterKilograms.Size = new System.Drawing.Size(109, 24);
             this.lblPrinterKilograms.TabIndex = 0;
@@ -437,7 +440,7 @@
             // 
             this.LBLPcKilograms.AutoSize = true;
             this.LBLPcKilograms.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LBLPcKilograms.Location = new System.Drawing.Point(451, 236);
+            this.LBLPcKilograms.Location = new System.Drawing.Point(460, 297);
             this.LBLPcKilograms.Name = "LBLPcKilograms";
             this.LBLPcKilograms.Size = new System.Drawing.Size(80, 24);
             this.LBLPcKilograms.TabIndex = 0;
@@ -447,7 +450,7 @@
             // 
             this.lblDateCompleted.AutoSize = true;
             this.lblDateCompleted.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateCompleted.Location = new System.Drawing.Point(8, 203);
+            this.lblDateCompleted.Location = new System.Drawing.Point(17, 264);
             this.lblDateCompleted.Name = "lblDateCompleted";
             this.lblDateCompleted.Size = new System.Drawing.Size(145, 24);
             this.lblDateCompleted.TabIndex = 0;
@@ -457,7 +460,7 @@
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomer.Location = new System.Drawing.Point(8, 170);
+            this.lblCustomer.Location = new System.Drawing.Point(17, 231);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(91, 24);
             this.lblCustomer.TabIndex = 0;
@@ -467,7 +470,7 @@
             // 
             this.lblStieSuburb.AutoSize = true;
             this.lblStieSuburb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStieSuburb.Location = new System.Drawing.Point(8, 137);
+            this.lblStieSuburb.Location = new System.Drawing.Point(17, 198);
             this.lblStieSuburb.Name = "lblStieSuburb";
             this.lblStieSuburb.Size = new System.Drawing.Size(108, 24);
             this.lblStieSuburb.TabIndex = 0;
@@ -477,7 +480,7 @@
             // 
             this.lblRecyclerID.AutoSize = true;
             this.lblRecyclerID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecyclerID.Location = new System.Drawing.Point(8, 104);
+            this.lblRecyclerID.Location = new System.Drawing.Point(17, 165);
             this.lblRecyclerID.Name = "lblRecyclerID";
             this.lblRecyclerID.Size = new System.Drawing.Size(84, 24);
             this.lblRecyclerID.TabIndex = 9999;
@@ -487,7 +490,7 @@
             // 
             this.lblStaeID.AutoSize = true;
             this.lblStaeID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaeID.Location = new System.Drawing.Point(8, 71);
+            this.lblStaeID.Location = new System.Drawing.Point(17, 132);
             this.lblStaeID.Name = "lblStaeID";
             this.lblStaeID.Size = new System.Drawing.Size(51, 24);
             this.lblStaeID.TabIndex = 9999;
@@ -497,7 +500,7 @@
             // 
             this.lblBatchBatchReference.AutoSize = true;
             this.lblBatchBatchReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBatchBatchReference.Location = new System.Drawing.Point(6, 36);
+            this.lblBatchBatchReference.Location = new System.Drawing.Point(17, 97);
             this.lblBatchBatchReference.Name = "lblBatchBatchReference";
             this.lblBatchBatchReference.Size = new System.Drawing.Size(134, 24);
             this.lblBatchBatchReference.TabIndex = 9999;
@@ -507,7 +510,7 @@
             // 
             this.lblBatchID.AutoSize = true;
             this.lblBatchID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBatchID.Location = new System.Drawing.Point(8, 3);
+            this.lblBatchID.Location = new System.Drawing.Point(17, 64);
             this.lblBatchID.Name = "lblBatchID";
             this.lblBatchID.Size = new System.Drawing.Size(63, 24);
             this.lblBatchID.TabIndex = 9999;
@@ -640,7 +643,7 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(5, 5);
             this.AutoScrollMinSize = new System.Drawing.Size(5, 5);
-            this.ClientSize = new System.Drawing.Size(1186, 547);
+            this.ClientSize = new System.Drawing.Size(1186, 813);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
