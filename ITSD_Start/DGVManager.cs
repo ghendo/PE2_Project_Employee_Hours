@@ -12,7 +12,7 @@ namespace ITSD_Start
     public class DGVManager<T>
     {
         //Properties
-        public DataGridView Dgv { get; set; }
+        public DataGridView Dgv { get; set; } 
         public T ResultData { get; set; }
         public DataTable datatable { get; set; }
 

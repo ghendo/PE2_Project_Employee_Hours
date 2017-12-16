@@ -55,11 +55,10 @@ namespace ITSD_Start
 
         private void loadBatchForm()
         {
-
-            LoadBatchDGVDt(0, SortOrder.Ascending);
             LoadStatesCbo();
             LoadRecylerCbo();
             LoadCustomerCbo();
+            LoadBatchDGVDt(0, SortOrder.Ascending);
             ClearBatchForm();
         }
 
@@ -71,53 +70,9 @@ namespace ITSD_Start
 
         }
 
-        private void LoadBatchDGV(int sortCol, SortOrder sortOrder)
-        {
-            
-            //null return object
-            Result<List<Batch>> result = new Result<List<Batch>>();
-            //call service method
-            BatchService service = new BatchService();
-            result = service.GetAllBatches();
-            
-
-            if (result.Status == ResultEnum.Success)
-            {
-                //set the sort properties of dgv manager
-                dgvBatchManager.SortColumn = sortCol;
-                dgvBatchManager.SortDirection = sortOrder;
-
-                //send result.data to dgv manager
-                dgvBatchManager.ResultData = result.Data;
-
-                //sort result
-                //TODO SortBatchResult();
-
-                //set the data in dgv manager
-                dgvBatchManager.SetResult();
-
-                //set dvg manager last updated row
-                //String searchValue = EmpLastUpdate().Data.EmployeeId.ToString();
-                //dgvBatchManager.SetLastUpdatedRow(searchValue);
-
-
-                //load dgv
-                dgvBatchManager.LoadDgv();
-                //setup columns TODO move to dgv manager
-                //TODO set column headers text setDGVemployeeColumnDetails();
-
-
-            }
-            else
-            {
-                MessageBox.Show("Database Error");
-            }
-
-        }
-
         private void LoadBatchDGVDt(int sortCol, SortOrder sortOrder)
         {
-
+            dgvBatchManager.Dgv.ReadOnly = true;
             //null return object
             Result<DataTable> result = new Result<DataTable>();
             //call service method
@@ -133,10 +88,6 @@ namespace ITSD_Start
 
                 //send result.data to dgv manager
                 dgvBatchManager.datatable = result.Data;
-
-                //sort result
-                //TODO SortBatchResult();
-
                 //set the data in dgv manager
                 dgvBatchManager.SetResultDT();
 
@@ -147,8 +98,7 @@ namespace ITSD_Start
 
                 //load dgv
                 dgvBatchManager.LoadDgv();
-                //setup columns TODO move to dgv manager
-                //TODO set column headers text setDGVemployeeColumnDetails();
+                setDGVbatchColumnDetails();
 
 
             }
@@ -159,10 +109,134 @@ namespace ITSD_Start
 
         }
 
+        private void setDGVbatchColumnDetails()
+        {
+            //set column width and headers
+            DataGridViewColumn batchid = dgvBatchManager.Dgv.Columns["batchid"];
+            batchid.HeaderText = "Job ID";
+            batchid.Width = 80;
+            batchid.Visible = false;
+
+            DataGridViewColumn batchreference = dgvBatchManager.Dgv.Columns["batchreference"];
+            batchreference.DisplayIndex = 0;
+            batchreference.Frozen = true;
+            
+            DataGridViewColumn stateid = dgvBatchManager.Dgv.Columns["stateid"];
+            stateid.Visible = false;
+
+            DataGridViewColumn stateAbbreviation = new DataGridViewColumn();
+            stateAbbreviation.Name = "stateAbbreviation";
+            stateAbbreviation.Width = 60;
+            stateAbbreviation.HeaderText = "State";
+            stateAbbreviation.CellTemplate = new DataGridViewTextBoxCell(); ;
+            dgvBatchManager.Dgv.Columns.Insert(1, stateAbbreviation);
+            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
+            {
+                if (item.IsNewRow)
+                {
+                    break;
+                }
+                string cellState = "";
+                foreach (State state in cboBatchStates.Items)
+                {
+
+                    if (state.StateId == Convert.ToInt32(item.Cells["stateid"].Value.ToString()))
+                    {
+                        cellState = state.Abbreviation;
+                        break;
+                    }
+                }
+                item.Cells["stateAbbreviation"].Value = cellState;
+            }
+
+            DataGridViewColumn recyclerid = dgvBatchManager.Dgv.Columns["recyclerid"];
+            recyclerid.Visible = false;
+
+            DataGridViewColumn recyclername = new DataGridViewColumn();
+            recyclername.Name = "recyclername";
+            recyclername.Width = 120;
+            recyclername.HeaderText = "Recycler";
+            recyclername.CellTemplate = new DataGridViewTextBoxCell(); ;
+            dgvBatchManager.Dgv.Columns.Insert(2, recyclername);
+            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
+            {
+                if (item.IsNewRow)
+                {
+                    break;
+                }
+                string cellRecycler = "";
+                foreach (Recycler recycler in cboBatchRecycler.Items)
+                {
+
+                    if (recycler.recyclerid == Convert.ToInt32(item.Cells["recyclerid"].Value.ToString()))
+                    {
+                        cellRecycler = recycler.recyclername;
+                        break;
+                    }
+                }
+                item.Cells["recyclername"].Value = cellRecycler;
+            }
+
+            DataGridViewColumn customername = new DataGridViewColumn();
+            customername.Name = "customername";
+            customername.Width = 120;
+            customername.HeaderText = "Customer";
+            customername.CellTemplate = new DataGridViewTextBoxCell(); ;
+            dgvBatchManager.Dgv.Columns.Insert(3, customername);
+            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
+            {
+                if (item.IsNewRow)
+                {
+                    break;
+                }
+                string cellCustomer = "";
+                foreach (Customer customer in cboBatchCustomers.Items)
+                {
+
+                    if (customer.customerid == Convert.ToInt32(item.Cells["customerid"].Value.ToString()))
+                    {
+                        cellCustomer = customer.customername;
+                        break;
+                    }
+                }
+                item.Cells["customername"].Value = cellCustomer;
+            }
+
+            DataGridViewColumn customerid = dgvBatchManager.Dgv.Columns["customerid"];
+            customerid.Visible = false;
+
+            DataGridViewColumn datecompleted = dgvBatchManager.Dgv.Columns["datecompleted"];
+            datecompleted.HeaderText = "Date";
+            datecompleted.Width = 80;
+            datecompleted.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            DataGridViewColumn pckilograms = dgvBatchManager.Dgv.Columns["pckilograms"];
+            pckilograms.HeaderText = "PC Kg";
+            pckilograms.Width = 80;
+
+            //DataGridViewColumn col5 = dgvEmployeeManager.Dgv.Columns[5];
+            //col5.HeaderText = "Date of Birth";
+            //col5.Width = 130;
+            //DataGridViewColumn col4 = dgvEmployeeManager.Dgv.Columns[4];
+            //col4.HeaderText = "Phone";
+            //col4.Width = 140;
+            //DataGridViewColumn col3 = dgvEmployeeManager.Dgv.Columns[3];
+            //col3.HeaderText = "Email";
+            //col3.Width = 210;
+            //DataGridViewColumn col2 = dgvEmployeeManager.Dgv.Columns[2];
+            //col2.HeaderText = "Last Name";
+            //col2.Width = 160;
+            //DataGridViewColumn col1 = dgvEmployeeManager.Dgv.Columns[1];
+            //col1.HeaderText = "First name";
+            //col1.Width = 160;
+            //DataGridViewColumn col0 = dgvEmployeeManager.Dgv.Columns[0];
+            //col0.HeaderText = "Id";
+            //col0.Width = 80;
+        }
 
         private void LoadCustomerDGV(int sortCol, SortOrder sortOrder)
         {
-
+            dgvCustomerManager.Dgv.ReadOnly = true;
             //null return object
             Result<DataTable> result = new Result<DataTable>();
             //call service method
@@ -205,6 +279,7 @@ namespace ITSD_Start
             }
 
         }
+
         private void btnBatchInsert_Click(object sender, EventArgs e)
         {
             //null object for saving
@@ -314,7 +389,6 @@ namespace ITSD_Start
             loadBatchForm();
         }
             
-
         private void LoadStatesCbo()
         {
             Result<List<State>> result = new Result<List<State>>();
@@ -334,7 +408,6 @@ namespace ITSD_Start
             }
 
         }
-
 
         private void LoadRecylerCbo()
         {
@@ -386,14 +459,20 @@ namespace ITSD_Start
                 {
                     return;
                 }
+                //Do nothing if data entry row at the end
                 DataGridViewRow selectedRow = dgvBatchManager.Dgv.Rows[index];
+                //Do nothing if data entry row at the end
+                if (selectedRow.IsNewRow)
+                {
+                    return;
+                }
 
                 
                 txtBatchBatchID.Text = selectedRow.Cells["batchid"].Value.ToString();
                 txtBatchBatchReference.Text = selectedRow.Cells["batchreference"].Value.ToString();
                 foreach (State item in cboBatchStates.Items)
                 {
-                    if (item.StateId == (int)selectedRow.Cells["stateid"].Value)
+                    if (item.StateId == Convert.ToInt32(selectedRow.Cells["stateid"].Value))
                     {
                         cboBatchStates.SelectedItem = item;
                     }
@@ -401,7 +480,7 @@ namespace ITSD_Start
 
                 foreach (Recycler item in cboBatchRecycler.Items)
                 {
-                    if (item.recyclerid == (int)selectedRow.Cells["recyclerid"].Value)
+                    if (item.recyclerid == Convert.ToInt32(selectedRow.Cells["recyclerid"].Value))
                     {
                         cboBatchRecycler.SelectedItem = item;
                     }
@@ -409,7 +488,7 @@ namespace ITSD_Start
                 txtBatchSuburb.Text = selectedRow.Cells["sitesuburb"].Value.ToString();
                 foreach (Customer item in cboBatchCustomers.Items)
                 {
-                    if (item.customerid == (int)selectedRow.Cells["customerid"].Value)
+                    if (item.customerid == Convert.ToInt32(selectedRow.Cells["customerid"].Value))
                     {
                         cboBatchCustomers.SelectedItem = item;
                     }
@@ -497,24 +576,43 @@ namespace ITSD_Start
 
         private void dgvCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // get the Row Index
-            int index = e.RowIndex;// get the Row Index
-            //Do nothing if header
-            if (index < 0)
+            try
             {
+                // get the Row Index
+                int index = e.RowIndex;
+                DataGridViewRow selectedRow = dgvCustomerManager.Dgv.Rows[index];
+                //Do nothing if data entry row at the end
+                if (selectedRow.IsNewRow)
+                {
+                    return;
+                }
+
+
+                //Do nothing if header
+                if (index < 0)
+                {
+                    return;
+                }
+
+                txtCustomerName.Text = selectedRow.Cells["customername"].Value.ToString();
+                txtCustomerID.Text = selectedRow.Cells["customerid"].Value.ToString();
+                txtCustomerSuburb.Text = selectedRow.Cells["customersuburb"].Value.ToString();
+            }
+            catch (Exception)
+            {
+
                 return;
             }
-            DataGridViewRow selectedRow = dgvCustomerManager.Dgv.Rows[index];
-            txtCustomerName.Text = selectedRow.Cells["customername"].Value.ToString();
-            txtCustomerID.Text = selectedRow.Cells["customerid"].Value.ToString();
-            txtCustomerSuburb.Text = selectedRow.Cells["customersuburb"].Value.ToString();
+           
         }
+
         private void CustomerFormClear()
         {
             txtCustomerID.Text = "";
             txtCustomerName.Text = "";
             txtCustomerSuburb.Text = "";
         }
+
         private void btnCustomerClear_Click(object sender, EventArgs e)
         {
             CustomerFormClear();

@@ -94,7 +94,7 @@ namespace PE2_Project_Employee_Hours.Logic
             try
             {
                 BatchDAO dao = new BatchDAO();
-                result.Data = dao.GetAllBatchesDtAsync().Result;
+                result.Data = dao.GetAllBatchesDT();
 
             }
             catch

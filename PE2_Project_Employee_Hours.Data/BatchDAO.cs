@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Data;
+using System.Net.Http.Formatting;
 
 namespace PE2_Project_Employee_Hours.Data
 {
@@ -129,23 +130,8 @@ namespace PE2_Project_Employee_Hours.Data
             }
         }
 
-        public async Task<DataTable> GetAllBatchesDtAsync()
-        {
-            using (var httpClient = new HttpClient())
-            {
-                Batch batch = new Batch();
-                //Serialise payload to JSON string and assign to stringpayload
-                var stringPayload = JsonConvert.SerializeObject(batch);
 
-                //Assign stringpayload to http content
-                var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync(new Uri("https://prod-27.australiaeast.logic.azure.com:443/workflows/13abb53a17e946ad82a528af65582bb2/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=lIauvKFX-t3X1qfQOYx8blIOIqtgd4C-rarOiRdaHY0"), httpContent);
-                var result = JsonConvert.DeserializeObject<DataTable>(response.Content.ToString());
-
-                return result;
-
-            }
-        }
+        
 
 
 
