@@ -146,7 +146,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Jobs";
             this.tabPage1.UseVisualStyleBackColor = true;
-
             // 
             // btmBatchUpdate
             // 
@@ -212,6 +211,7 @@
             this.dgvBatch.Size = new System.Drawing.Size(1107, 381);
             this.dgvBatch.TabIndex = 18;
             this.dgvBatch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBatch_CellClick);
+            this.dgvBatch.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvBatch_DataBindingComplete);
             // 
             // btnDelete
             // 

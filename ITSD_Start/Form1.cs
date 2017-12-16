@@ -124,83 +124,12 @@ namespace ITSD_Start
             DataGridViewColumn stateid = dgvBatchManager.Dgv.Columns["stateid"];
             stateid.Visible = false;
 
-            DataGridViewColumn stateAbbreviation = new DataGridViewColumn();
-            stateAbbreviation.Name = "stateAbbreviation";
-            stateAbbreviation.Width = 60;
-            stateAbbreviation.HeaderText = "State";
-            stateAbbreviation.CellTemplate = new DataGridViewTextBoxCell(); ;
-            dgvBatchManager.Dgv.Columns.Insert(1, stateAbbreviation);
-            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
-            {
-                if (item.IsNewRow)
-                {
-                    break;
-                }
-                string cellState = "";
-                foreach (State state in cboBatchStates.Items)
-                {
 
-                    if (state.StateId == Convert.ToInt32(item.Cells["stateid"].Value.ToString()))
-                    {
-                        cellState = state.Abbreviation;
-                        break;
-                    }
-                }
-                item.Cells["stateAbbreviation"].Value = cellState;
-            }
+            
 
             DataGridViewColumn recyclerid = dgvBatchManager.Dgv.Columns["recyclerid"];
             recyclerid.Visible = false;
 
-            DataGridViewColumn recyclername = new DataGridViewColumn();
-            recyclername.Name = "recyclername";
-            recyclername.Width = 120;
-            recyclername.HeaderText = "Recycler";
-            recyclername.CellTemplate = new DataGridViewTextBoxCell(); ;
-            dgvBatchManager.Dgv.Columns.Insert(2, recyclername);
-            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
-            {
-                if (item.IsNewRow)
-                {
-                    break;
-                }
-                string cellRecycler = "";
-                foreach (Recycler recycler in cboBatchRecycler.Items)
-                {
-
-                    if (recycler.recyclerid == Convert.ToInt32(item.Cells["recyclerid"].Value.ToString()))
-                    {
-                        cellRecycler = recycler.recyclername;
-                        break;
-                    }
-                }
-                item.Cells["recyclername"].Value = cellRecycler;
-            }
-
-            DataGridViewColumn customername = new DataGridViewColumn();
-            customername.Name = "customername";
-            customername.Width = 120;
-            customername.HeaderText = "Customer";
-            customername.CellTemplate = new DataGridViewTextBoxCell(); ;
-            dgvBatchManager.Dgv.Columns.Insert(3, customername);
-            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
-            {
-                if (item.IsNewRow)
-                {
-                    break;
-                }
-                string cellCustomer = "";
-                foreach (Customer customer in cboBatchCustomers.Items)
-                {
-
-                    if (customer.customerid == Convert.ToInt32(item.Cells["customerid"].Value.ToString()))
-                    {
-                        cellCustomer = customer.customername;
-                        break;
-                    }
-                }
-                item.Cells["customername"].Value = cellCustomer;
-            }
 
             DataGridViewColumn customerid = dgvBatchManager.Dgv.Columns["customerid"];
             customerid.Visible = false;
@@ -232,6 +161,99 @@ namespace ITSD_Start
             //DataGridViewColumn col0 = dgvEmployeeManager.Dgv.Columns[0];
             //col0.HeaderText = "Id";
             //col0.Width = 80;
+
+       
+        }
+
+        private void LoadBatchDataManualColumns()
+        {
+            DataGridViewColumn stateAbbreviation = new DataGridViewColumn();
+            if (dgvBatchManager.Dgv.Columns["stateAbbreviation"] == null)
+            {
+
+                stateAbbreviation.Name = "stateAbbreviation";
+                stateAbbreviation.Width = 60;
+                stateAbbreviation.HeaderText = "State";
+                stateAbbreviation.CellTemplate = new DataGridViewTextBoxCell(); ;
+                dgvBatchManager.Dgv.Columns.Insert(1, stateAbbreviation);
+            }
+
+            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
+            {
+
+                if (item.IsNewRow)
+                {
+                    break;
+                }
+                string cellState = "";
+                foreach (State state in cboBatchStates.Items)
+                {
+
+                    if (state.StateId == Convert.ToInt32(item.Cells["stateid"].Value.ToString()))
+                    {
+                        cellState = state.Abbreviation;
+                        break;
+                    }
+                }
+                item.Cells["stateAbbreviation"].Value = cellState;
+            }
+
+            DataGridViewColumn recyclername = new DataGridViewColumn();
+            if (dgvBatchManager.Dgv.Columns["recyclername"] == null)
+            {
+                recyclername.Name = "recyclername";
+                recyclername.Width = 120;
+                recyclername.HeaderText = "Recycler";
+                recyclername.CellTemplate = new DataGridViewTextBoxCell(); ;
+                dgvBatchManager.Dgv.Columns.Insert(2, recyclername);
+            }
+            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
+            {
+                if (item.IsNewRow)
+                {
+                    break;
+                }
+                string cellRecycler = "";
+                foreach (Recycler recycler in cboBatchRecycler.Items)
+                {
+
+                    if (recycler.recyclerid == Convert.ToInt32(item.Cells["recyclerid"].Value.ToString()))
+                    {
+                        cellRecycler = recycler.recyclername;
+                        break;
+                    }
+                }
+                item.Cells["recyclername"].Value = cellRecycler;
+            }
+
+            DataGridViewColumn customername = new DataGridViewColumn();
+            if (dgvBatchManager.Dgv.Columns["customername"] == null)
+            {
+                customername.Name = "customername";
+                customername.Width = 120;
+                customername.HeaderText = "Customer";
+                customername.CellTemplate = new DataGridViewTextBoxCell(); ;
+                dgvBatchManager.Dgv.Columns.Insert(3, customername);
+            }
+
+            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
+            {
+                if (item.IsNewRow)
+                {
+                    break;
+                }
+                string cellCustomer = "";
+                foreach (Customer customer in cboBatchCustomers.Items)
+                {
+
+                    if (customer.customerid == Convert.ToInt32(item.Cells["customerid"].Value.ToString()))
+                    {
+                        cellCustomer = customer.customername;
+                        break;
+                    }
+                }
+                item.Cells["customername"].Value = cellCustomer;
+            }
         }
 
         private void LoadCustomerDGV(int sortCol, SortOrder sortOrder)
@@ -457,6 +479,7 @@ namespace ITSD_Start
                 //Do nothing if header
                 if (index < 0)
                 {
+
                     return;
                 }
                 //Do nothing if data entry row at the end
@@ -503,6 +526,7 @@ namespace ITSD_Start
                 txtBatchRecycledKilos.Text = selectedRow.Cells["recycledkilograms"].Value.ToString();
                 txtBatchPCKilos.Text = selectedRow.Cells["pckilograms"].Value.ToString();
                 txtBatchPrinterKilos.Text = selectedRow.Cells["printerkilograms"].Value.ToString();
+
 
             }
             catch (Exception m)
@@ -657,6 +681,9 @@ namespace ITSD_Start
             loadCustomerForm();
         }
 
-
+        private void dgvBatch_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            LoadBatchDataManualColumns();
+        }
     }
 }
