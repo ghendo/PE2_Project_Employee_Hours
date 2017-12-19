@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PE2_Project_Employee_Hours.Domain;
 using PE2_Project_Employee_Hours.Logic;
+using SpreadsheetLight;
 
 namespace ITSD_Start
 {
     public partial class Form1 : Form
     {
         
-        DGVManager<List<Batch>> dgvBatchManager = new DGVManager<List<Batch>>();
+        DGVManager<DataTable> dgvBatchManager = new DGVManager<DataTable>();
         DGVManager<DataTable> dgvCustomerManager = new DGVManager<DataTable>();
         public Form1()
         {
@@ -41,15 +42,15 @@ namespace ITSD_Start
             txtBatchSuburb.Text = "";
             cboBatchCustomers.SelectedIndex = -1;
             txtBatchDate.Text = "";
-            txtBatchCrtTvKilos.Text = "";
-            txtBatchMonitorKilos.Text = "";
-            txtBatchFlatPanelMonitorKilos.Text = "";
-            txtBatchFlatPanelTvKilos.Text = "";
-            txtBatchPrintingPressKilos.Text = "";
-            txtBatchMiscKilos.Text = "";
-            txtBatchRecycledKilos.Text = "";
-            txtBatchPCKilos.Text = "";
-            txtBatchPrinterKilos.Text = "";
+            txtBatchCrtTvKilos.Text = "0";
+            txtBatchMonitorKilos.Text = "0";
+            txtBatchFlatPanelMonitorKilos.Text = "0";
+            txtBatchFlatPanelTvKilos.Text = "0";
+            txtBatchPrintingPressKilos.Text = "0";
+            txtBatchMiscKilos.Text = "0";
+            txtBatchRecycledKilos.Text = "0";
+            txtBatchPCKilos.Text = "0";
+            txtBatchPrinterKilos.Text = "0";
 
         }
 
@@ -69,15 +70,16 @@ namespace ITSD_Start
             
 
         }
-
-        private void LoadBatchDGVDt(int sortCol, SortOrder sortOrder)
+        
+        private async void LoadBatchDGVDt(int sortCol, SortOrder sortOrder)
         {
             dgvBatchManager.Dgv.ReadOnly = true;
             //null return object
             Result<DataTable> result = new Result<DataTable>();
             //call service method
             BatchService service = new BatchService();
-            result = service.GetAllBatchesDT();
+            //result = service.GetAllBatchesDT();
+            result = await service.GetAllBatchedDtASYNC();
 
 
             if (result.Status == ResultEnum.Success)
@@ -87,7 +89,7 @@ namespace ITSD_Start
                 dgvBatchManager.SortDirection = sortOrder;
 
                 //send result.data to dgv manager
-                dgvBatchManager.datatable = result.Data;
+                dgvBatchManager.ResultData = result.Data;
                 //set the data in dgv manager
                 dgvBatchManager.SetResultDT();
 
@@ -113,19 +115,15 @@ namespace ITSD_Start
         {
             //set column width and headers
             DataGridViewColumn batchid = dgvBatchManager.Dgv.Columns["batchid"];
-            batchid.HeaderText = "Job ID";
-            batchid.Width = 80;
             batchid.Visible = false;
 
             DataGridViewColumn batchreference = dgvBatchManager.Dgv.Columns["batchreference"];
             batchreference.DisplayIndex = 0;
+            batchreference.Width = 120;
             batchreference.Frozen = true;
             
             DataGridViewColumn stateid = dgvBatchManager.Dgv.Columns["stateid"];
             stateid.Visible = false;
-
-
-            
 
             DataGridViewColumn recyclerid = dgvBatchManager.Dgv.Columns["recyclerid"];
             recyclerid.Visible = false;
@@ -138,31 +136,72 @@ namespace ITSD_Start
             datecompleted.HeaderText = "Date";
             datecompleted.Width = 80;
             datecompleted.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            datecompleted.DisplayIndex = 6;
+
+            DataGridViewColumn sitesuburb = dgvBatchManager.Dgv.Columns["sitesuburb"];
+            sitesuburb.HeaderText = "Site Suburb";
+            sitesuburb.Width = 80;
+            sitesuburb.DisplayIndex = 5;
 
             DataGridViewColumn pckilograms = dgvBatchManager.Dgv.Columns["pckilograms"];
             pckilograms.HeaderText = "PC Kg";
             pckilograms.Width = 80;
+            pckilograms.DisplayIndex = 7;
 
-            //DataGridViewColumn col5 = dgvEmployeeManager.Dgv.Columns[5];
-            //col5.HeaderText = "Date of Birth";
-            //col5.Width = 130;
-            //DataGridViewColumn col4 = dgvEmployeeManager.Dgv.Columns[4];
-            //col4.HeaderText = "Phone";
-            //col4.Width = 140;
-            //DataGridViewColumn col3 = dgvEmployeeManager.Dgv.Columns[3];
-            //col3.HeaderText = "Email";
-            //col3.Width = 210;
-            //DataGridViewColumn col2 = dgvEmployeeManager.Dgv.Columns[2];
-            //col2.HeaderText = "Last Name";
-            //col2.Width = 160;
-            //DataGridViewColumn col1 = dgvEmployeeManager.Dgv.Columns[1];
-            //col1.HeaderText = "First name";
-            //col1.Width = 160;
-            //DataGridViewColumn col0 = dgvEmployeeManager.Dgv.Columns[0];
-            //col0.HeaderText = "Id";
-            //col0.Width = 80;
+            DataGridViewColumn printerkilograms = dgvBatchManager.Dgv.Columns["printerkilograms"];
+            printerkilograms.HeaderText = "Printer Kg";
+            printerkilograms.Width = 80;
+            printerkilograms.DisplayIndex = 8;
 
-       
+            DataGridViewColumn crtmonitorkilograms = dgvBatchManager.Dgv.Columns["crtmonitorkilograms"];
+            crtmonitorkilograms.HeaderText = "CRT Monitor Kg";
+            crtmonitorkilograms.Width = 80;
+            crtmonitorkilograms.DisplayIndex = 10;
+
+
+            DataGridViewColumn crttvkilograms = dgvBatchManager.Dgv.Columns["crttvkilograms"];
+            crttvkilograms.HeaderText = "CRT TV Kg";
+            crttvkilograms.Width = 80;
+            crttvkilograms.DisplayIndex = 9;
+
+
+            DataGridViewColumn flatpaneltvkilograms = dgvBatchManager.Dgv.Columns["flatpaneltvkilograms"];
+            flatpaneltvkilograms.HeaderText = "Flat Panel TV Kg";
+            flatpaneltvkilograms.Width = 80;
+            flatpaneltvkilograms.DisplayIndex = 11;
+
+
+
+            DataGridViewColumn flatpanelmonitorkilograms = dgvBatchManager.Dgv.Columns["flatpanelmonitorkilograms"];
+            flatpanelmonitorkilograms.HeaderText = "Flat Panel Monitor Kg";
+            flatpanelmonitorkilograms.Width = 80;
+            flatpanelmonitorkilograms.DisplayIndex = 12;
+
+
+            DataGridViewColumn printingpresseskilograms = dgvBatchManager.Dgv.Columns["printingpresseskilograms"];
+            printingpresseskilograms.HeaderText = "Printing Presses Kg";
+            printingpresseskilograms.Width = 80;
+            printingpresseskilograms.DisplayIndex = 13;
+
+
+            DataGridViewColumn misckilograms = dgvBatchManager.Dgv.Columns["misckilograms"];
+            misckilograms.HeaderText = "Printing Presses Kg";
+            misckilograms.Width = 80;
+            misckilograms.DisplayIndex = 14;
+
+
+            DataGridViewColumn recycledkilograms = dgvBatchManager.Dgv.Columns["recycledkilograms"];
+            recycledkilograms.HeaderText = "Recycled Kg";
+            recycledkilograms.Width = 80;
+            recycledkilograms.DisplayIndex = 16;
+
+
+
+
+            DataGridViewColumn rowversion = dgvBatchManager.Dgv.Columns["rowversion"];
+            rowversion.Visible = false;
+
+
         }
 
         private void LoadBatchDataManualColumns()
@@ -174,6 +213,7 @@ namespace ITSD_Start
                 stateAbbreviation.Name = "stateAbbreviation";
                 stateAbbreviation.Width = 60;
                 stateAbbreviation.HeaderText = "State";
+                stateAbbreviation.DisplayIndex = 1;
                 stateAbbreviation.CellTemplate = new DataGridViewTextBoxCell(); ;
                 dgvBatchManager.Dgv.Columns.Insert(1, stateAbbreviation);
             }
@@ -204,6 +244,8 @@ namespace ITSD_Start
                 recyclername.Name = "recyclername";
                 recyclername.Width = 120;
                 recyclername.HeaderText = "Recycler";
+                recyclername.DisplayIndex = 2;
+
                 recyclername.CellTemplate = new DataGridViewTextBoxCell(); ;
                 dgvBatchManager.Dgv.Columns.Insert(2, recyclername);
             }
@@ -232,6 +274,7 @@ namespace ITSD_Start
                 customername.Name = "customername";
                 customername.Width = 120;
                 customername.HeaderText = "Customer";
+                customername.DisplayIndex = 3;
                 customername.CellTemplate = new DataGridViewTextBoxCell(); ;
                 dgvBatchManager.Dgv.Columns.Insert(3, customername);
             }
@@ -254,6 +297,38 @@ namespace ITSD_Start
                 }
                 item.Cells["customername"].Value = cellCustomer;
             }
+
+            DataGridViewColumn totalkilograms = new DataGridViewColumn();
+            if (dgvBatchManager.Dgv.Columns["totalkilograms"] == null)
+            {
+                totalkilograms.Name = "totalkilograms";
+                totalkilograms.Width = 80;
+                totalkilograms.HeaderText = "Total Kg";
+                totalkilograms.DisplayIndex = 15;
+                totalkilograms.CellTemplate = new DataGridViewTextBoxCell(); ;
+                dgvBatchManager.Dgv.Columns.Insert(14, totalkilograms);
+            }
+
+            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
+            {
+                if (item.IsNewRow)
+                {
+                    break;
+                }
+                decimal cellTotal = 0;
+                cellTotal +=
+                Convert.ToDecimal(item.Cells["pckilograms"].Value) +
+
+                Convert.ToDecimal(item.Cells["printerkilograms"].Value) +
+                Convert.ToDecimal(item.Cells["crttvkilograms"].Value) +
+                Convert.ToDecimal(item.Cells["crtmonitorkilograms"].Value) +
+                Convert.ToDecimal(item.Cells["flatpaneltvkilograms"].Value) +
+                Convert.ToDecimal(item.Cells["flatpanelmonitorkilograms"].Value) +
+                Convert.ToDecimal(item.Cells["printingpresseskilograms"].Value) +
+                Convert.ToDecimal(item.Cells["misckilograms"].Value) ;
+
+                item.Cells["totalkilograms"].Value = cellTotal.ToString();
+            }
         }
 
         private void LoadCustomerDGV(int sortCol, SortOrder sortOrder)
@@ -273,9 +348,7 @@ namespace ITSD_Start
 
                 // send result.data to dgv manager
                 dgvCustomerManager.ResultData = result.Data;
-                //dgvCustomerManager.Dgv.Sort(dgvCustomerManager.Dgv.Columns[2]);
-                //sort result
-                //TODO SortBatchResult();
+
 
                 //set the data in dgv manager
                 dgvCustomerManager.SetResult();
@@ -684,6 +757,44 @@ namespace ITSD_Start
         private void dgvBatch_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             LoadBatchDataManualColumns();
+        }
+
+        private void btnBatchRelaod_Click(object sender, EventArgs e)
+        {
+            loadBatchForm();
+        }
+
+        private void btnBatchSavetoExcel_Click(object sender, EventArgs e)
+        {
+            using (SLDocument sl = new SLDocument())
+            {
+                SLTextImportOptions tio = new SLTextImportOptions();
+                //set first spreadsheet row
+                int row = 3;
+                DataTable batchList = dgvBatchManager.ResultData;
+
+                foreach (DataRow batch in batchList.Rows)
+                {
+                    sl.AutoFitColumn("B");
+                    sl.SetCellValue("B" + row, batch["batchid"].ToString());
+                    sl.AutoFitColumn("C");
+                    sl.SetCellValue("c" + row, batch["batchreference"].ToString());
+                    sl.AutoFitColumn("D");
+                    tio.SetColumnFormat(4, SLTextImportColumnFormatValues.DateDMY);
+                    sl.SetCellValue("D" + row, Convert.ToDateTime(batch["datecompleted"].ToString()).ToShortDateString());
+                    sl.AutoFitColumn("E");
+                    sl.SetCellValue("E" + row, batch["customerid"].ToString());
+                    sl.AutoFitColumn("F");
+                    sl.SetCellValue("F" + row, batch["sitesuburb"].ToString());
+                    row++;
+                }
+                //sl.SetCellValue("B3", "Test Value");
+                DialogResult result = saveFileDialog1.ShowDialog();
+                MessageBox.Show("result " + saveFileDialog1.FileName);
+                //sl.SaveAs(@"C:\Users\ghend\Documents\Employees.xlsx");
+
+                sl.SaveAs(saveFileDialog1.FileName + ".xlxs");
+            }
         }
     }
 }

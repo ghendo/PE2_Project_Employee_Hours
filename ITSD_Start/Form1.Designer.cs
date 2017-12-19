@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btmBatchUpdate = new System.Windows.Forms.Button();
             this.btnBatchClear = new System.Windows.Forms.Button();
             this.cboBatchCustomers = new System.Windows.Forms.ComboBox();
             this.cboBatchRecycler = new System.Windows.Forms.ComboBox();
@@ -81,6 +80,9 @@
             this.lblCustomerSuburb = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
             this.lblCustomerId = new System.Windows.Forms.Label();
+            this.btnBatchRelaod = new System.Windows.Forms.Button();
+            this.btnBatchSavetoExcel = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBatch)).BeginInit();
@@ -101,7 +103,8 @@
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
-            this.tabPage1.Controls.Add(this.btmBatchUpdate);
+            this.tabPage1.Controls.Add(this.btnBatchSavetoExcel);
+            this.tabPage1.Controls.Add(this.btnBatchRelaod);
             this.tabPage1.Controls.Add(this.btnBatchClear);
             this.tabPage1.Controls.Add(this.cboBatchCustomers);
             this.tabPage1.Controls.Add(this.cboBatchRecycler);
@@ -147,16 +150,6 @@
             this.tabPage1.Text = "Jobs";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // btmBatchUpdate
-            // 
-            this.btmBatchUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btmBatchUpdate.Location = new System.Drawing.Point(847, 177);
-            this.btmBatchUpdate.Name = "btmBatchUpdate";
-            this.btmBatchUpdate.Size = new System.Drawing.Size(169, 30);
-            this.btmBatchUpdate.TabIndex = 10003;
-            this.btmBatchUpdate.Text = "Update";
-            this.btmBatchUpdate.UseVisualStyleBackColor = true;
-            // 
             // btnBatchClear
             // 
             this.btnBatchClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -200,8 +193,8 @@
             // 
             // dgvBatch
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvBatch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvBatch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvBatch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -540,8 +533,8 @@
             // 
             // dgvCustomer
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvCustomer.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvCustomer.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.Location = new System.Drawing.Point(0, 209);
             this.dgvCustomer.Name = "dgvCustomer";
@@ -636,6 +629,28 @@
             this.lblCustomerId.TabIndex = 0;
             this.lblCustomerId.Text = "Customer ID";
             // 
+            // btnBatchRelaod
+            // 
+            this.btnBatchRelaod.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBatchRelaod.Location = new System.Drawing.Point(847, 178);
+            this.btnBatchRelaod.Name = "btnBatchRelaod";
+            this.btnBatchRelaod.Size = new System.Drawing.Size(169, 33);
+            this.btnBatchRelaod.TabIndex = 10003;
+            this.btnBatchRelaod.Text = "Reload";
+            this.btnBatchRelaod.UseVisualStyleBackColor = true;
+            this.btnBatchRelaod.Click += new System.EventHandler(this.btnBatchRelaod_Click);
+            // 
+            // btnBatchSavetoExcel
+            // 
+            this.btnBatchSavetoExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBatchSavetoExcel.Location = new System.Drawing.Point(847, 218);
+            this.btnBatchSavetoExcel.Name = "btnBatchSavetoExcel";
+            this.btnBatchSavetoExcel.Size = new System.Drawing.Size(169, 35);
+            this.btnBatchSavetoExcel.TabIndex = 10004;
+            this.btnBatchSavetoExcel.Text = "Save as Excel";
+            this.btnBatchSavetoExcel.UseVisualStyleBackColor = true;
+            this.btnBatchSavetoExcel.Click += new System.EventHandler(this.btnBatchSavetoExcel_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -646,7 +661,7 @@
             this.ClientSize = new System.Drawing.Size(1186, 813);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "ITSD";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -711,7 +726,9 @@
         private System.Windows.Forms.Label lblCustomerSuburb;
         private System.Windows.Forms.Label lblCustomerName;
         private System.Windows.Forms.Label lblCustomerId;
-        private System.Windows.Forms.Button btmBatchUpdate;
+        private System.Windows.Forms.Button btnBatchRelaod;
+        private System.Windows.Forms.Button btnBatchSavetoExcel;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

@@ -14,7 +14,7 @@ namespace PE2_Project_Employee_Hours.Data
         {
             //connection object
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=altec.homeip.net;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
+            conn.ConnectionString = @"Data Source=127.0.0.1;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
 
             //open connection
             conn.Open();
@@ -39,7 +39,7 @@ namespace PE2_Project_Employee_Hours.Data
         {
             //2. Create a connection object
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=altec.homeip.net;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
+            conn.ConnectionString = @"Data Source=127.0.0.1;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
             conn.Open();
 
             //3.Create a command object
@@ -65,7 +65,7 @@ namespace PE2_Project_Employee_Hours.Data
             EmployeeHours eh = new EmployeeHours();
            //2. Create a connection object
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=altec.homeip.net;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
+            conn.ConnectionString = @"Data Source=127.0.0.1;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
             conn.Open();
 
             //3.Create a command object
@@ -95,7 +95,7 @@ namespace PE2_Project_Employee_Hours.Data
 
             //2. Create a connection object
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=altec.homeip.net;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
+            conn.ConnectionString = @"Data Source=127.0.0.1;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
             conn.Open();
 
             //3.Create a command object
@@ -128,7 +128,7 @@ namespace PE2_Project_Employee_Hours.Data
 
             //2. Create a connection object
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=altec.homeip.net;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
+            conn.ConnectionString = @"Data Source=127.0.0.1;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
             conn.Open();
 
             //3.Create a command object
@@ -161,7 +161,7 @@ namespace PE2_Project_Employee_Hours.Data
 
             //2. Create a connection object
             SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = @"Data Source=altec.homeip.net;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
+            conn.ConnectionString = @"Data Source=127.0.0.1;Initial Catalog=PE2_Project_Employee_Hours;User ID=sa;Password=vRdoZJPoyev4KAx7vLB";
             conn.Open();
 
             //3.Create a command object

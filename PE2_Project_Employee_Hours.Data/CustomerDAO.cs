@@ -115,6 +115,8 @@ namespace PE2_Project_Employee_Hours.Data
             {
                 var response = httpClient.GetStringAsync(new Uri("https://prod-05.australiaeast.logic.azure.com:443/workflows/f3b1df6e84824fdb8757075d859194a0/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qM0lBis78fuZLY8Ky3p7s_D9KOWOXdRqaVLitEimaQ4")).Result;
                 var result = JsonConvert.DeserializeObject<DataTable>(response);
+                
+
                 return result;
             }
         }

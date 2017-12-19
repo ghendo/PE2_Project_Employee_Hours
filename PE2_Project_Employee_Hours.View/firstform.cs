@@ -2003,8 +2003,12 @@ namespace PE2_Project_Employee_Hours.View
         private void btnPrintEmployee_Click(object sender, EventArgs e)
         {
             //Open print dialog
-            if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+            {
                 printDocument1.Print();
+            }
+            //if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
+            //    printDocument1.Print();
 
         }
 
@@ -2175,6 +2179,11 @@ namespace PE2_Project_Employee_Hours.View
                     // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
                 }
             }
+
+        }
+
+        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        {
 
         }
     }

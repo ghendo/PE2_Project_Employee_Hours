@@ -14,11 +14,10 @@ namespace ITSD_Start
         //Properties
         public DataGridView Dgv { get; set; } 
         public T ResultData { get; set; }
-        public DataTable datatable { get; set; }
-
+        //public DataTable DataTable { get; set; }
         public int SortColumn { get; set; } = 0;
-    public SortOrder SortDirection { get; set; } = SortOrder.Ascending;
-    public DataGridViewRow LastUpdatedRow { get; set; }
+        public SortOrder SortDirection { get; set; } = SortOrder.Ascending;
+        public DataGridViewRow LastUpdatedRow { get; set; }
 
     //constructors
 
@@ -86,16 +85,12 @@ namespace ITSD_Start
         public void SetResultDT()
         {
             //transfer result to dgv property
-            Dgv.DataSource = datatable;
+            Dgv.DataSource = ResultData;
         }
 
         //Load Dvg
         public void LoadDgv()
             {
-
-                //Apply stored properties to the DGV
-                //set the sort glyph
-                Dgv.Columns[SortColumn].HeaderCell.SortGlyphDirection = SortDirection;
 
                 //highlight the last updated row if available
                 SetLastRecordHighlight();
