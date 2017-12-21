@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnBatchSavetoExcel = new System.Windows.Forms.Button();
+            this.btnBatchRelaod = new System.Windows.Forms.Button();
             this.btnBatchClear = new System.Windows.Forms.Button();
             this.cboBatchCustomers = new System.Windows.Forms.ComboBox();
             this.cboBatchRecycler = new System.Windows.Forms.ComboBox();
@@ -80,20 +83,28 @@
             this.lblCustomerSuburb = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
             this.lblCustomerId = new System.Windows.Forms.Label();
-            this.btnBatchRelaod = new System.Windows.Forms.Button();
-            this.btnBatchSavetoExcel = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dgvRecycler = new System.Windows.Forms.DataGridView();
+            this.txtRecyclerTabRecyclerName = new System.Windows.Forms.TextBox();
+            this.txtRecyclerTabRecyclerIdf = new System.Windows.Forms.TextBox();
+            this.lblRecyclerTabRecyclerName = new System.Windows.Forms.Label();
+            this.lblRecyclerTabRecyclerID = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.btnRecyclerTabSave = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBatch)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRecycler)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(0, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -149,6 +160,29 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Jobs";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Enter += new System.EventHandler(this.tabPage1_Enter);
+            // 
+            // btnBatchSavetoExcel
+            // 
+            this.btnBatchSavetoExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBatchSavetoExcel.Location = new System.Drawing.Point(847, 218);
+            this.btnBatchSavetoExcel.Name = "btnBatchSavetoExcel";
+            this.btnBatchSavetoExcel.Size = new System.Drawing.Size(169, 35);
+            this.btnBatchSavetoExcel.TabIndex = 10004;
+            this.btnBatchSavetoExcel.Text = "Save as Excel";
+            this.btnBatchSavetoExcel.UseVisualStyleBackColor = true;
+            this.btnBatchSavetoExcel.Click += new System.EventHandler(this.btnBatchSavetoExcel_Click);
+            // 
+            // btnBatchRelaod
+            // 
+            this.btnBatchRelaod.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBatchRelaod.Location = new System.Drawing.Point(847, 178);
+            this.btnBatchRelaod.Name = "btnBatchRelaod";
+            this.btnBatchRelaod.Size = new System.Drawing.Size(169, 33);
+            this.btnBatchRelaod.TabIndex = 10003;
+            this.btnBatchRelaod.Text = "Reload";
+            this.btnBatchRelaod.UseVisualStyleBackColor = true;
+            this.btnBatchRelaod.Click += new System.EventHandler(this.btnBatchRelaod_Click);
             // 
             // btnBatchClear
             // 
@@ -193,11 +227,12 @@
             // 
             // dgvBatch
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvBatch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvBatch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBatch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvBatch.BackgroundColor = System.Drawing.Color.White;
             this.dgvBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBatch.Location = new System.Drawing.Point(18, 387);
             this.dgvBatch.Name = "dgvBatch";
@@ -533,8 +568,9 @@
             // 
             // dgvCustomer
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvCustomer.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvCustomer.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvCustomer.BackgroundColor = System.Drawing.Color.White;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.Location = new System.Drawing.Point(0, 209);
             this.dgvCustomer.Name = "dgvCustomer";
@@ -629,27 +665,80 @@
             this.lblCustomerId.TabIndex = 0;
             this.lblCustomerId.Text = "Customer ID";
             // 
-            // btnBatchRelaod
+            // tabPage3
             // 
-            this.btnBatchRelaod.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchRelaod.Location = new System.Drawing.Point(847, 178);
-            this.btnBatchRelaod.Name = "btnBatchRelaod";
-            this.btnBatchRelaod.Size = new System.Drawing.Size(169, 33);
-            this.btnBatchRelaod.TabIndex = 10003;
-            this.btnBatchRelaod.Text = "Reload";
-            this.btnBatchRelaod.UseVisualStyleBackColor = true;
-            this.btnBatchRelaod.Click += new System.EventHandler(this.btnBatchRelaod_Click);
+            this.tabPage3.Controls.Add(this.btnRecyclerTabSave);
+            this.tabPage3.Controls.Add(this.dgvRecycler);
+            this.tabPage3.Controls.Add(this.txtRecyclerTabRecyclerName);
+            this.tabPage3.Controls.Add(this.txtRecyclerTabRecyclerIdf);
+            this.tabPage3.Controls.Add(this.lblRecyclerTabRecyclerName);
+            this.tabPage3.Controls.Add(this.lblRecyclerTabRecyclerID);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1158, 876);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Recyclers";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
             // 
-            // btnBatchSavetoExcel
+            // dgvRecycler
             // 
-            this.btnBatchSavetoExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchSavetoExcel.Location = new System.Drawing.Point(847, 218);
-            this.btnBatchSavetoExcel.Name = "btnBatchSavetoExcel";
-            this.btnBatchSavetoExcel.Size = new System.Drawing.Size(169, 35);
-            this.btnBatchSavetoExcel.TabIndex = 10004;
-            this.btnBatchSavetoExcel.Text = "Save as Excel";
-            this.btnBatchSavetoExcel.UseVisualStyleBackColor = true;
-            this.btnBatchSavetoExcel.Click += new System.EventHandler(this.btnBatchSavetoExcel_Click);
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvRecycler.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvRecycler.BackgroundColor = System.Drawing.Color.White;
+            this.dgvRecycler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRecycler.Location = new System.Drawing.Point(23, 170);
+            this.dgvRecycler.Name = "dgvRecycler";
+            this.dgvRecycler.Size = new System.Drawing.Size(1106, 588);
+            this.dgvRecycler.TabIndex = 2;
+            this.dgvRecycler.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecycler_CellClick);
+            // 
+            // txtRecyclerTabRecyclerName
+            // 
+            this.txtRecyclerTabRecyclerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRecyclerTabRecyclerName.Location = new System.Drawing.Point(267, 98);
+            this.txtRecyclerTabRecyclerName.Name = "txtRecyclerTabRecyclerName";
+            this.txtRecyclerTabRecyclerName.Size = new System.Drawing.Size(381, 29);
+            this.txtRecyclerTabRecyclerName.TabIndex = 1;
+            // 
+            // txtRecyclerTabRecyclerIdf
+            // 
+            this.txtRecyclerTabRecyclerIdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRecyclerTabRecyclerIdf.Location = new System.Drawing.Point(267, 54);
+            this.txtRecyclerTabRecyclerIdf.Name = "txtRecyclerTabRecyclerIdf";
+            this.txtRecyclerTabRecyclerIdf.Size = new System.Drawing.Size(100, 29);
+            this.txtRecyclerTabRecyclerIdf.TabIndex = 1;
+            // 
+            // lblRecyclerTabRecyclerName
+            // 
+            this.lblRecyclerTabRecyclerName.AutoSize = true;
+            this.lblRecyclerTabRecyclerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecyclerTabRecyclerName.Location = new System.Drawing.Point(19, 103);
+            this.lblRecyclerTabRecyclerName.Name = "lblRecyclerTabRecyclerName";
+            this.lblRecyclerTabRecyclerName.Size = new System.Drawing.Size(140, 24);
+            this.lblRecyclerTabRecyclerName.TabIndex = 0;
+            this.lblRecyclerTabRecyclerName.Text = "Recycler Name";
+            // 
+            // lblRecyclerTabRecyclerID
+            // 
+            this.lblRecyclerTabRecyclerID.AutoSize = true;
+            this.lblRecyclerTabRecyclerID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecyclerTabRecyclerID.Location = new System.Drawing.Point(19, 54);
+            this.lblRecyclerTabRecyclerID.Name = "lblRecyclerTabRecyclerID";
+            this.lblRecyclerTabRecyclerID.Size = new System.Drawing.Size(106, 24);
+            this.lblRecyclerTabRecyclerID.TabIndex = 0;
+            this.lblRecyclerTabRecyclerID.Text = "Recycler ID";
+            // 
+            // btnRecyclerTabSave
+            // 
+            this.btnRecyclerTabSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecyclerTabSave.Location = new System.Drawing.Point(984, 52);
+            this.btnRecyclerTabSave.Name = "btnRecyclerTabSave";
+            this.btnRecyclerTabSave.Size = new System.Drawing.Size(145, 29);
+            this.btnRecyclerTabSave.TabIndex = 3;
+            this.btnRecyclerTabSave.Text = "Save";
+            this.btnRecyclerTabSave.UseVisualStyleBackColor = true;
+            this.btnRecyclerTabSave.Click += new System.EventHandler(this.btnRecyclerTabSave_Click);
             // 
             // Form1
             // 
@@ -670,6 +759,9 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRecycler)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -729,6 +821,13 @@
         private System.Windows.Forms.Button btnBatchRelaod;
         private System.Windows.Forms.Button btnBatchSavetoExcel;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label lblRecyclerTabRecyclerName;
+        private System.Windows.Forms.Label lblRecyclerTabRecyclerID;
+        private System.Windows.Forms.DataGridView dgvRecycler;
+        private System.Windows.Forms.TextBox txtRecyclerTabRecyclerName;
+        private System.Windows.Forms.TextBox txtRecyclerTabRecyclerIdf;
+        private System.Windows.Forms.Button btnRecyclerTabSave;
     }
 }
 

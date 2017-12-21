@@ -76,13 +76,31 @@ namespace PE2_Project_Employee_Hours.Logic
             return result;
         }
 
-        public Result<DataTable> getAllCustomersDT()
+
+        public async Task<Result<DataTable>> GetAllCustomersDtASYNC()
         {
             Result<DataTable> result = new Result<DataTable>();
             try
             {
                 CustomerDAO dao = new CustomerDAO();
-                result.Data = dao.GetAllCustomersDT();
+                result.Data = await dao.GetAllCustomersDtASYNC();
+                result.Status = ResultEnum.Success;
+            }
+            catch (Exception)
+            {
+
+                result.Status = ResultEnum.Fail;
+            }
+            return result;
+        }
+
+        public async Task<Result<List<Customer>>> GetAllCustomersListASYNC()
+        {
+            Result<List<Customer>> result = new Result<List<Customer>>();
+            try
+            {
+                CustomerDAO dao = new CustomerDAO();
+                result.Data = await dao.GetAllCustomersListASYNC();
                 result.Status = ResultEnum.Success;
             }
             catch (Exception)

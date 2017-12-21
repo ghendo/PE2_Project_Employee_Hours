@@ -109,6 +109,13 @@ namespace PE2_Project_Employee_Hours.Data
             }
         }
 
+        public async Task<List<Customer>> GetAllCustomersListASYNC()
+        {
+            var response = await GetAllCustomersData();
+            var result = JsonConvert.DeserializeObject<List<Customer>>(response);
+            return result;
+        }
+
         public DataTable GetAllCustomersDT()
         {
             using (var httpClient = new HttpClient())
@@ -118,6 +125,22 @@ namespace PE2_Project_Employee_Hours.Data
                 
 
                 return result;
+            }
+        }
+
+        public async Task<DataTable> GetAllCustomersDtASYNC()
+        {
+            string response = await GetAllCustomersData();
+            var result = JsonConvert.DeserializeObject<DataTable>(response);
+            return result;
+        }
+
+        private async Task<String> GetAllCustomersData()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetStringAsync(new Uri("https://prod-05.australiaeast.logic.azure.com:443/workflows/f3b1df6e84824fdb8757075d859194a0/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qM0lBis78fuZLY8Ky3p7s_D9KOWOXdRqaVLitEimaQ4"));
+                return response;
             }
         }
     }

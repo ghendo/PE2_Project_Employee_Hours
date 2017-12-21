@@ -18,6 +18,7 @@ namespace ITSD_Start
         
         DGVManager<DataTable> dgvBatchManager = new DGVManager<DataTable>();
         DGVManager<DataTable> dgvCustomerManager = new DGVManager<DataTable>();
+        DGVManager<DataTable> dgvRecyclerManager = new DGVManager<DataTable>();
         public Form1()
         {
             InitializeComponent();
@@ -28,9 +29,11 @@ namespace ITSD_Start
         {
             txtBatchBatchID.ReadOnly = true;
             txtCustomerID.ReadOnly = true;
+            txtRecyclerTabRecyclerIdf.ReadOnly = true;
             dgvBatchManager.Dgv = dgvBatch;
             dgvCustomerManager.Dgv = dgvCustomer;
-            loadBatchForm();
+            dgvRecyclerManager.Dgv = dgvRecycler;
+            LoadBatchForm();
         }
 
         private void ClearBatchForm()
@@ -54,7 +57,7 @@ namespace ITSD_Start
 
         }
 
-        private void loadBatchForm()
+        private void LoadBatchForm()
         {
             LoadStatesCbo();
             LoadRecylerCbo();
@@ -63,7 +66,7 @@ namespace ITSD_Start
             ClearBatchForm();
         }
 
-        private void loadCustomerForm()
+        private void LoadCustomerForm()
         {
             LoadCustomerDGV(0, SortOrder.Ascending);
             CustomerFormClear();
@@ -331,14 +334,14 @@ namespace ITSD_Start
             }
         }
 
-        private void LoadCustomerDGV(int sortCol, SortOrder sortOrder)
+        private async void LoadCustomerDGV(int sortCol, SortOrder sortOrder)
         {
             dgvCustomerManager.Dgv.ReadOnly = true;
             //null return object
             Result<DataTable> result = new Result<DataTable>();
             //call service method
             CustomerService service = new CustomerService();
-            result = service.getAllCustomersDT();
+            result = await service.GetAllCustomersDtASYNC();
 
             if (result.Status == ResultEnum.Success)
             {
@@ -373,6 +376,43 @@ namespace ITSD_Start
                 MessageBox.Show("Database Error");
             }
 
+        }
+
+        private async void LoadRecyclerDGV(int sortCol, SortOrder sortOrder)
+        {
+            dgvRecyclerManager.Dgv.ReadOnly = true;
+            //null return object
+            Result<DataTable> result = new Result<DataTable>();
+            //call service method
+            RecyclerService service = new RecyclerService();
+            result = await service.GetAllRecyclersDtASYNC();
+
+            if (result.Status == ResultEnum.Success)
+            {
+                //set the sort properties of dgv manager
+                dgvRecyclerManager.SortColumn = sortCol;
+                dgvRecyclerManager.SortDirection = sortOrder;
+
+                // send result.data to dgv manager
+                dgvRecyclerManager.ResultData = result.Data;
+
+
+                //set the data in dgv manager
+                dgvRecyclerManager.SetResult();
+
+                dgvRecyclerManager.Dgv.Columns["rowversion"].Visible = false;
+
+
+                //set dvg manager last updated row
+                //String searchValue = EmpLastUpdate().Data.EmployeeId.ToString();
+                //dgvBatchManager.SetLastUpdatedRow(searchValue);
+
+
+                //load dgv
+                dgvRecyclerManager.LoadDgv();
+                //setup columns TODO move to dgv manager
+                //TODO set column headers text setDGVemployeeColumnDetails();
+            }
         }
 
         private void btnBatchInsert_Click(object sender, EventArgs e)
@@ -447,7 +487,7 @@ namespace ITSD_Start
             }
 
             //reload dgv
-            loadBatchForm();
+            LoadBatchForm();
 
         }
 
@@ -481,7 +521,7 @@ namespace ITSD_Start
             {
                 MessageBox.Show("Something went wrong");
             }
-            loadBatchForm();
+            LoadBatchForm();
         }
             
         private void LoadStatesCbo()
@@ -504,11 +544,11 @@ namespace ITSD_Start
 
         }
 
-        private void LoadRecylerCbo()
+        private async void LoadRecylerCbo()
         {
             Result<List<Recycler>> result = new Result<List<Recycler>>();
             RecyclerService service = new RecyclerService();
-            result = service.getAllRecyclers();
+            result = await service.GetAllRecyclersListASYNC();
             if (result.Status == ResultEnum.Success)
             {
                 List<Recycler> list = result.Data;
@@ -524,11 +564,11 @@ namespace ITSD_Start
 
         }
 
-        private void LoadCustomerCbo()
+        private async void LoadCustomerCbo()
         {
             Result<List<Customer>> result = new Result<List<Customer>>();
             CustomerService service = new CustomerService();
-            result = service.getAllCustomers();
+            result = await service.GetAllCustomersListASYNC();
             if (result.Status == ResultEnum.Success)
             {
                 List<Customer> list = result.Data;
@@ -662,13 +702,13 @@ namespace ITSD_Start
 
                 MessageBox.Show("Oops something went wrong");
             }
-            loadCustomerForm();
+            LoadCustomerForm();
         }
 
         private void tabPage2_Enter(object sender, EventArgs e)
         {
 
-            loadCustomerForm();
+            LoadCustomerForm();
         }
 
         private void dgvCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -708,6 +748,13 @@ namespace ITSD_Start
             txtCustomerID.Text = "";
             txtCustomerName.Text = "";
             txtCustomerSuburb.Text = "";
+        }
+
+        private void RecyclerFormClear()
+        {
+            txtRecyclerTabRecyclerIdf.Text = "";
+            txtRecyclerTabRecyclerName.Text = "";
+
         }
 
         private void btnCustomerClear_Click(object sender, EventArgs e)
@@ -751,7 +798,7 @@ namespace ITSD_Start
 
                 MessageBox.Show("Oops something went wrong");
             }
-            loadCustomerForm();
+            LoadCustomerForm();
         }
 
         private void dgvBatch_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -761,7 +808,7 @@ namespace ITSD_Start
 
         private void btnBatchRelaod_Click(object sender, EventArgs e)
         {
-            loadBatchForm();
+            LoadBatchForm();
         }
 
         private void btnBatchSavetoExcel_Click(object sender, EventArgs e)
@@ -795,6 +842,80 @@ namespace ITSD_Start
 
                 sl.SaveAs(saveFileDialog1.FileName + ".xlxs");
             }
+        }
+
+        private void tabPage3_Enter(object sender, EventArgs e)
+        {
+            LoadRecyclerDGV(0, SortOrder.Ascending);
+            RecyclerFormClear();
+        }
+
+        private void LoadRecycler()
+        {
+            LoadRecyclerDGV(0, SortOrder.Ascending);
+            RecyclerFormClear();
+        }
+
+        private void dgvRecycler_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Enter(object sender, EventArgs e)
+        {
+            LoadBatchForm();
+            ClearBatchForm();
+        }
+
+        private async void btnRecyclerTabSave_Click(object sender, EventArgs e)
+        {
+            Recycler recycler = new Recycler();
+            try
+            {
+                //load recycler object with data
+                if (txtRecyclerTabRecyclerIdf.Text != "")
+                {
+                    recycler.recyclerid = Convert.ToInt32(txtRecyclerTabRecyclerIdf.Text);
+                }
+                recycler.recyclername = txtRecyclerTabRecyclerName.Text;
+
+
+                //insert data into database
+                //new service object
+                RecyclerService service = new RecyclerService();
+                //test if update or insert
+                if (txtCustomerID.Text == "")
+                {
+                    ResultEnum result = await service.InsetRecyclerDtASYNC(recycler);
+                    if (result == ResultEnum.Success)
+                    {
+                        MessageBox.Show("Recycler Saved");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Something went wrong");
+                    }
+                }
+                else
+                {
+                    ResultEnum result = await service.InsetRecyclerDtASYNC(recycler);
+                    if (result == ResultEnum.Success)
+                    {
+                        MessageBox.Show("Recycler Updated");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Something went wrong");
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Oops something went wrong");
+            }
+            LoadRecycler();
         }
     }
 }
