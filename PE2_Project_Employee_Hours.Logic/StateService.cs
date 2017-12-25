@@ -42,5 +42,22 @@ namespace PE2_Project_Employee_Hours.Logic
             }
             return result;
         }
+
+        public async Task<Result<List<State>>> getAllStatesListASYNC()
+        {
+            Result<List<State>> result = new Result<List<State>>();
+            try
+            {
+                StateDAO dao = new StateDAO();
+                result.Data = await dao.GetAllStatesListASYNC();
+                result.Status = ResultEnum.Success;
+            }
+            catch (Exception)
+            {
+
+                result.Status = ResultEnum.Fail;
+            }
+            return result;
+        }
     }
 }

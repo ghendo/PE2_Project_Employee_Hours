@@ -68,42 +68,6 @@ namespace PE2_Project_Employee_Hours.Logic
             return result;
         }
 
-        public Result<List<Batch>> GetAllBatches()
-        {
-            //null result
-            Result<List<Batch>> result = new Result<List<Batch>>();
-            result.Status = ResultEnum.Success;
-            try
-            {
-                BatchDAO dao = new BatchDAO();
-                result.Data = dao.GetAllBatches();
-
-            }
-            catch
-            {
-                result.Status = ResultEnum.Fail;
-            }
-            return result;
-        }
-
-        public Result<DataTable> GetAllBatchesDT()
-        {
-            //null result
-            Result<DataTable> result = new Result<DataTable>();
-            result.Status = ResultEnum.Success;
-            try
-            {
-                BatchDAO dao = new BatchDAO();
-                result.Data = dao.GetAllBatchesDT();
-
-            }
-            catch
-            {
-                result.Status = ResultEnum.Fail;
-            }
-            return result;
-        }
-
         public async Task<Result<DataTable>> GetAllBatchedDtASYNC()
         {
             //null result
