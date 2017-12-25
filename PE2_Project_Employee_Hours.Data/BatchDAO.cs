@@ -95,31 +95,13 @@ namespace PE2_Project_Employee_Hours.Data
                 if (response.Result != null)
                 {
                     var code = response.Result.StatusCode.ToString();
-
-                    //JsonConvert.DeserializeObject<string>(response);
-
                 }
 
             }
 
         }
 
-
-        public List<Batch> GetAllBatches()
-        {
-            using (var httpClient = new HttpClient())
-            {
-                Batch batch = new Batch();
-                var response = httpClient.GetStringAsync(new Uri("https://prod-30.australiaeast.logic.azure.com:443/workflows/cefc1af60b134254a96cd3bc606c15bd/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=PLExap2RD5pYLYy86dLrriztRRvaMjQYDJu4Ap4ExMA")).Result;
-                var result = JsonConvert.DeserializeObject<List<Batch>>(response);
-                result.Add(batch);
-                return result;
-
-            }
-        }
-
-
-        public async Task<DataTable> GetAllBatchedDtASYNC()
+        public async Task<DataTable> GetAllBatchesDtASYNC()
         {
             using (httpClient)
             {

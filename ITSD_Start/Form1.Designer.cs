@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgvBatchTotals = new System.Windows.Forms.DataGridView();
             this.btnBatchSavetoExcel = new System.Windows.Forms.Button();
             this.btnBatchRelaod = new System.Windows.Forms.Button();
             this.btnBatchClear = new System.Windows.Forms.Button();
@@ -84,15 +85,16 @@
             this.lblCustomerName = new System.Windows.Forms.Label();
             this.lblCustomerId = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnRecyclerTabSave = new System.Windows.Forms.Button();
             this.dgvRecycler = new System.Windows.Forms.DataGridView();
             this.txtRecyclerTabRecyclerName = new System.Windows.Forms.TextBox();
             this.txtRecyclerTabRecyclerIdf = new System.Windows.Forms.TextBox();
             this.lblRecyclerTabRecyclerName = new System.Windows.Forms.Label();
             this.lblRecyclerTabRecyclerID = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.btnRecyclerTabSave = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBatchTotals)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBatch)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
@@ -114,6 +116,7 @@
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
+            this.tabPage1.Controls.Add(this.dgvBatchTotals);
             this.tabPage1.Controls.Add(this.btnBatchSavetoExcel);
             this.tabPage1.Controls.Add(this.btnBatchRelaod);
             this.tabPage1.Controls.Add(this.btnBatchClear);
@@ -161,6 +164,21 @@
             this.tabPage1.Text = "Jobs";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Enter += new System.EventHandler(this.tabPage1_Enter);
+            // 
+            // dgvBatchTotals
+            // 
+            this.dgvBatchTotals.AllowUserToAddRows = false;
+            this.dgvBatchTotals.AllowUserToDeleteRows = false;
+            this.dgvBatchTotals.AllowUserToResizeColumns = false;
+            this.dgvBatchTotals.AllowUserToResizeRows = false;
+            this.dgvBatchTotals.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dgvBatchTotals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBatchTotals.Location = new System.Drawing.Point(18, 401);
+            this.dgvBatchTotals.Name = "dgvBatchTotals";
+            this.dgvBatchTotals.ReadOnly = true;
+            this.dgvBatchTotals.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dgvBatchTotals.Size = new System.Drawing.Size(1107, 25);
+            this.dgvBatchTotals.TabIndex = 10005;
             // 
             // btnBatchSavetoExcel
             // 
@@ -227,6 +245,9 @@
             // 
             // dgvBatch
             // 
+            this.dgvBatch.AllowUserToAddRows = false;
+            this.dgvBatch.AllowUserToDeleteRows = false;
+            this.dgvBatch.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dgvBatch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBatch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -234,12 +255,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvBatch.BackgroundColor = System.Drawing.Color.White;
             this.dgvBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBatch.Location = new System.Drawing.Point(18, 387);
+            this.dgvBatch.Location = new System.Drawing.Point(18, 425);
             this.dgvBatch.Name = "dgvBatch";
-            this.dgvBatch.Size = new System.Drawing.Size(1107, 381);
+            this.dgvBatch.Size = new System.Drawing.Size(1107, 343);
             this.dgvBatch.TabIndex = 18;
             this.dgvBatch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBatch_CellClick);
+            this.dgvBatch.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvBatch_ColumnWidthChanged);
             this.dgvBatch.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvBatch_DataBindingComplete);
+            this.dgvBatch.Scroll += new System.Windows.Forms.ScrollEventHandler(this.dgvBatch_Scroll);
             // 
             // btnDelete
             // 
@@ -681,6 +704,17 @@
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
             // 
+            // btnRecyclerTabSave
+            // 
+            this.btnRecyclerTabSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecyclerTabSave.Location = new System.Drawing.Point(984, 52);
+            this.btnRecyclerTabSave.Name = "btnRecyclerTabSave";
+            this.btnRecyclerTabSave.Size = new System.Drawing.Size(145, 29);
+            this.btnRecyclerTabSave.TabIndex = 3;
+            this.btnRecyclerTabSave.Text = "Save";
+            this.btnRecyclerTabSave.UseVisualStyleBackColor = true;
+            this.btnRecyclerTabSave.Click += new System.EventHandler(this.btnRecyclerTabSave_Click);
+            // 
             // dgvRecycler
             // 
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -729,17 +763,6 @@
             this.lblRecyclerTabRecyclerID.TabIndex = 0;
             this.lblRecyclerTabRecyclerID.Text = "Recycler ID";
             // 
-            // btnRecyclerTabSave
-            // 
-            this.btnRecyclerTabSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecyclerTabSave.Location = new System.Drawing.Point(984, 52);
-            this.btnRecyclerTabSave.Name = "btnRecyclerTabSave";
-            this.btnRecyclerTabSave.Size = new System.Drawing.Size(145, 29);
-            this.btnRecyclerTabSave.TabIndex = 3;
-            this.btnRecyclerTabSave.Text = "Save";
-            this.btnRecyclerTabSave.UseVisualStyleBackColor = true;
-            this.btnRecyclerTabSave.Click += new System.EventHandler(this.btnRecyclerTabSave_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -755,6 +778,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBatchTotals)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBatch)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -828,6 +852,7 @@
         private System.Windows.Forms.TextBox txtRecyclerTabRecyclerName;
         private System.Windows.Forms.TextBox txtRecyclerTabRecyclerIdf;
         private System.Windows.Forms.Button btnRecyclerTabSave;
+        private System.Windows.Forms.DataGridView dgvBatchTotals;
     }
 }
 

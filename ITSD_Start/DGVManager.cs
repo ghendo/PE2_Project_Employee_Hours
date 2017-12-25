@@ -82,11 +82,7 @@ namespace ITSD_Start
                 //transfer result to dgv property
                 Dgv.DataSource = ResultData;
             }
-        public void SetResultDT()
-        {
-            //transfer result to dgv property
-            Dgv.DataSource = ResultData;
-        }
+
 
         //Load Dvg
         public void LoadDgv()
