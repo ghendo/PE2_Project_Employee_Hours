@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using PE2_Project_Employee_Hours.Domain;
 using PE2_Project_Employee_Hours.Logic;
 using SpreadsheetLight;
@@ -97,6 +98,7 @@ namespace ITSD_Start
                 //set the data in dgv manager
                 dgvBatchManager.SetResult();
 
+
                 //calculate totals
 
                 //set dvg manager last updated row
@@ -144,32 +146,33 @@ namespace ITSD_Start
             dc = new DataColumn("datecompleted", typeof(string));
             dt.Columns.Add(dc);
 
-            dc = new DataColumn("pckilograms", typeof(double));
+            dc = new DataColumn("pckilograms", typeof(decimal));
             dt.Columns.Add(dc);
 
-            dc = new DataColumn("printerkilograms", typeof(double));
+            dc = new DataColumn("printerkilograms", typeof(decimal));
             dt.Columns.Add(dc);
 
-            dc = new DataColumn("crttvkilograms", typeof(double));
+            dc = new DataColumn("crttvkilograms", typeof(decimal));
             dt.Columns.Add(dc);
 
-            dc = new DataColumn("crtmonitorkilograms", typeof(double));
+            dc = new DataColumn("crtmonitorkilograms", typeof(decimal));
             dt.Columns.Add(dc);
 
-            dc = new DataColumn("flatpaneltvkilograms", typeof(double));
+            dc = new DataColumn("flatpaneltvkilograms", typeof(decimal));
             dt.Columns.Add(dc);
 
-            dc = new DataColumn("flatpanelmonitorkilograms", typeof(double));
+            dc = new DataColumn("flatpanelmonitorkilograms", typeof(decimal));
             dt.Columns.Add(dc);
 
-            dc = new DataColumn("printingpresseskilograms", typeof(double));
+            dc = new DataColumn("printingpresseskilograms", typeof(decimal));
             dt.Columns.Add(dc);
 
-            dc = new DataColumn("misckilograms", typeof(double));
+            dc = new DataColumn("misckilograms", typeof(decimal));
             dt.Columns.Add(dc);
 
-            dc = new DataColumn("recycledkilograms", typeof(double));
+            dc = new DataColumn("recycledkilograms", typeof(decimal));
             dt.Columns.Add(dc);
+            
 
 
             DataRow dr = dt.NewRow();
@@ -180,7 +183,7 @@ namespace ITSD_Start
             dr["customername"] = "";
             dr["sitesuburb"] = "";
             dr["datecompleted"] = "Totals";
-            dr["pckilograms"] = dgvBatchManager.ResultData.Compute("Sum(pckilograms)", "");
+            dr["pckilograms"] = dgvBatchManager.ResultData.Compute("Sum(pckilograms)", "").ToString();
             dr["printerkilograms"] = dgvBatchManager.ResultData.Compute("Sum(printerkilograms)", "");
             dr["crttvkilograms"] = dgvBatchManager.ResultData.Compute("Sum(crttvkilograms)", "");
             dr["crtmonitorkilograms"] = dgvBatchManager.ResultData.Compute("Sum(crtmonitorkilograms)", "");
@@ -194,13 +197,71 @@ namespace ITSD_Start
             dgvBatchTotalsManager.ResultData = dt;
             dgvBatchTotalsManager.SetResult();
             dgvBatchTotalsManager.Dgv.Columns["batchreference"].Frozen = true; ;
+
+            DataGridViewCellStyle headerStyle = new DataGridViewCellStyle();
+            headerStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
+            DataGridViewColumn pckilograms = dgvBatchTotalsManager.Dgv.Columns["pckilograms"];
+            pckilograms.HeaderCell.Style = headerStyle;
+            pckilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            pckilograms.DefaultCellStyle.Format = "F2";
+
+            DataGridViewColumn printerkilograms = dgvBatchTotalsManager.Dgv.Columns["printerkilograms"];
+            printerkilograms.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            printerkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            printerkilograms.DefaultCellStyle.Format = "F2";
+
+            DataGridViewColumn crttvkilograms = dgvBatchTotalsManager.Dgv.Columns["crttvkilograms"];
+            crttvkilograms.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            crttvkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            crttvkilograms.DefaultCellStyle.Format = "F2";
+
+            DataGridViewColumn crtmonitorkilograms = dgvBatchTotalsManager.Dgv.Columns["crtmonitorkilograms"];
+            crtmonitorkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            crtmonitorkilograms.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            crtmonitorkilograms.DefaultCellStyle.Format = "F2";
+
+            DataGridViewColumn flatpaneltvkilograms = dgvBatchTotalsManager.Dgv.Columns["flatpaneltvkilograms"];
+            flatpaneltvkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            flatpaneltvkilograms.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            flatpaneltvkilograms.DefaultCellStyle.Format = "F2";
+
+            DataGridViewColumn flatpanelmonitorkilograms = dgvBatchTotalsManager.Dgv.Columns["flatpanelmonitorkilograms"];
+            flatpanelmonitorkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            flatpanelmonitorkilograms.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            flatpanelmonitorkilograms.DefaultCellStyle.Format = "F2";
+
+            DataGridViewColumn printingpresseskilograms = dgvBatchTotalsManager.Dgv.Columns["printingpresseskilograms"];
+            printingpresseskilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            printingpresseskilograms.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            printingpresseskilograms.DefaultCellStyle.Format = "F2";
+
+            DataGridViewColumn misckilograms = dgvBatchTotalsManager.Dgv.Columns["misckilograms"];
+            misckilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            misckilograms.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            misckilograms.DefaultCellStyle.Format = "F2";
+
+            DataGridViewColumn recycledkilograms = dgvBatchTotalsManager.Dgv.Columns["recycledkilograms"];
+            recycledkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            recycledkilograms.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            recycledkilograms.DefaultCellStyle.Format = "F2";
+
+
             //supress column headers
             dgvBatchTotalsManager.Dgv.ColumnHeadersVisible = false;
+
+            dgvBatchManager.Dgv.Rows[0].HeaderCell.Value = "my text";
+            dgvBatchTotalsManager.Dgv.RowHeadersWidth = 80;
+            dgvBatchTotalsManager.Dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 
         }
 
         private void setDGVbatchColumnDetails()
         {
+            DataGridViewCellStyle headerStyle = new DataGridViewCellStyle();
+            headerStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
             //set column width and headers
             DataGridViewColumn batchid = dgvBatchManager.Dgv.Columns["batchid"];
             batchid.HeaderText = "Job No";
@@ -225,7 +286,7 @@ namespace ITSD_Start
 
             DataGridViewColumn abbreviation = dgvBatchManager.Dgv.Columns["abbreviation"];
             abbreviation.HeaderText = "State";
-            //abbreviation.Width = 80;
+            abbreviation.Width = 80;
             abbreviation.DisplayIndex = 2;
 
             DataGridViewColumn recyclername = dgvBatchManager.Dgv.Columns["recyclername"];
@@ -245,65 +306,95 @@ namespace ITSD_Start
 
             DataGridViewColumn datecompleted = dgvBatchManager.Dgv.Columns["datecompleted"];
             datecompleted.HeaderText = "Date";
+            datecompleted.HeaderCell.Style = headerStyle;
             datecompleted.Width = 80;
             datecompleted.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             datecompleted.DisplayIndex = 6;
 
             DataGridViewColumn pckilograms = dgvBatchManager.Dgv.Columns["pckilograms"];
             pckilograms.HeaderText = "PC Kg";
+            pckilograms.HeaderCell.Style = headerStyle;
             pckilograms.Width = 80;
             pckilograms.DisplayIndex = 7;
+            pckilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            pckilograms.DefaultCellStyle.Format = "F2";
 
             DataGridViewColumn printerkilograms = dgvBatchManager.Dgv.Columns["printerkilograms"];
             printerkilograms.HeaderText = "Printer Kg";
+            printerkilograms.HeaderCell.Style = headerStyle;
             printerkilograms.Width = 80;
             printerkilograms.DisplayIndex = 8;
+            printerkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            printerkilograms.DefaultCellStyle.Format = "F2";
 
             DataGridViewColumn crttvkilograms = dgvBatchManager.Dgv.Columns["crttvkilograms"];
             crttvkilograms.HeaderText = "CRT TV Kg";
+            crttvkilograms.HeaderCell.Style = headerStyle;
             crttvkilograms.Width = 80;
             crttvkilograms.DisplayIndex = 9;
+            crttvkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            crttvkilograms.DefaultCellStyle.Format = "F2";
 
             DataGridViewColumn crtmonitorkilograms = dgvBatchManager.Dgv.Columns["crtmonitorkilograms"];
             crtmonitorkilograms.HeaderText = "CRT Monitor Kg";
+            crtmonitorkilograms.HeaderCell.Style = headerStyle;
             crtmonitorkilograms.Width = 80;
             crtmonitorkilograms.DisplayIndex = 10;
+            crtmonitorkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            crtmonitorkilograms.DefaultCellStyle.Format = "F2";
 
             DataGridViewColumn flatpaneltvkilograms = dgvBatchManager.Dgv.Columns["flatpaneltvkilograms"];
             flatpaneltvkilograms.HeaderText = "Flat Panel TV Kg";
+            flatpaneltvkilograms.HeaderCell.Style = headerStyle;
             flatpaneltvkilograms.Width = 80;
             flatpaneltvkilograms.DisplayIndex = 11;
+            flatpaneltvkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            flatpaneltvkilograms.DefaultCellStyle.Format = "F2";
 
 
 
             DataGridViewColumn flatpanelmonitorkilograms = dgvBatchManager.Dgv.Columns["flatpanelmonitorkilograms"];
             flatpanelmonitorkilograms.HeaderText = "Flat Panel Monitor Kg";
+            flatpanelmonitorkilograms.HeaderCell.Style = headerStyle;
             flatpanelmonitorkilograms.Width = 80;
             flatpanelmonitorkilograms.DisplayIndex = 12;
+            flatpanelmonitorkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            flatpanelmonitorkilograms.DefaultCellStyle.Format = "F2";
 
 
             DataGridViewColumn printingpresseskilograms = dgvBatchManager.Dgv.Columns["printingpresseskilograms"];
             printingpresseskilograms.HeaderText = "Printing Presses Kg";
+            printingpresseskilograms.HeaderCell.Style = headerStyle;
             printingpresseskilograms.Width = 80;
             printingpresseskilograms.DisplayIndex = 13;
+            printingpresseskilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            printingpresseskilograms.DefaultCellStyle.Format = "F2";
 
 
             DataGridViewColumn misckilograms = dgvBatchManager.Dgv.Columns["misckilograms"];
             misckilograms.HeaderText = "Printing Presses Kg";
+            misckilograms.HeaderCell.Style = headerStyle;
             misckilograms.Width = 80;
             misckilograms.DisplayIndex = 14;
+            misckilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            misckilograms.DefaultCellStyle.Format = "F2";
 
 
             DataGridViewColumn recycledkilograms = dgvBatchManager.Dgv.Columns["recycledkilograms"];
             recycledkilograms.HeaderText = "Recycled Kg";
+            recycledkilograms.HeaderCell.Style = headerStyle;
             recycledkilograms.Width = 80;
             recycledkilograms.DisplayIndex = 15;
+            recycledkilograms.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            recycledkilograms.DefaultCellStyle.Format = "F2";
 
             DataGridViewColumn rowversion = dgvBatchManager.Dgv.Columns["rowversion"];
             rowversion.Visible = false;
 
+            dgvBatchManager.Dgv.Rows[0].HeaderCell.Value = "my text";
+            dgvBatchManager.Dgv.RowHeadersWidth = 80;
 
-
+            dgvBatchManager.Dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 
         }
 
@@ -794,6 +885,16 @@ namespace ITSD_Start
                 //set first spreadsheet row
                 int row = 3;
 
+
+                SLStyle styleAsNumber = s1.CreateStyle();
+                styleAsNumber.FormatCode = "#,##0.00";
+
+                SLStyle styleRightAlign = s1.CreateStyle();
+                styleRightAlign.SetHorizontalAlignment(DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Right);
+
+                SLStyle styleAsDate = s1.CreateStyle();
+                styleAsDate.FormatCode = "d-mmm-yyyy";
+
                 DataTable batchList = dgvBatchManager.ResultData;
                 //set column Headers
                 s1.SetCellValue("B2","Job No");
@@ -803,7 +904,10 @@ namespace ITSD_Start
                 s1.SetCellValue("F2", "Customer");
                 s1.SetCellValue("G2", "Suburb");
                 s1.SetCellValue("H2", "Date");
+                //s1.SetCellStyle("H2", styleRightAlign);
+
                 s1.SetCellValue("I2", "PC Kg");
+
                 s1.SetCellValue("J2", "Printer Kg");
                 s1.SetCellValue("K2", "CRT TV Kg");
                 s1.SetCellValue("L2", "CRT Monitor Kg");
@@ -837,37 +941,42 @@ namespace ITSD_Start
 
 
                     s1.SetColumnWidth("H", 12);
-                    SLStyle style = s1.CreateStyle();
-                    style.FormatCode = "d-mmm-yyyy";
-                    s1.SetCellStyle("H" + row, style);
-
-                    //tio.SetColumnFormat(8, SLTextImportColumnFormatValues.DateDMY);
                     s1.SetCellValue("H" + row, Convert.ToDateTime(batch["datecompleted"]));
+                    s1.SetCellStyle("H" + row, styleAsDate);
 
                     int columnWidthWieghts = 15;
                     s1.SetColumnWidth("I",columnWidthWieghts);
                     s1.SetCellValue("I" + row, (double)batch["pckilograms"]);
+                    s1.SetCellStyle("I" + row, styleAsNumber);
 
                     s1.SetColumnWidth("J", columnWidthWieghts);
                     s1.SetCellValue("J" + row, (double)batch["printerkilograms"]);
+                    s1.SetCellStyle("J" + row, styleAsNumber);
 
                     s1.SetColumnWidth("K", columnWidthWieghts);
                     s1.SetCellValue("K" + row, (double)batch["crttvkilograms"]);
+                    s1.SetCellStyle("K" + row, styleAsNumber);
 
                     s1.SetColumnWidth("L", columnWidthWieghts);
                     s1.SetCellValue("L" + row, (double)batch["crtmonitorkilograms"]);
+                    s1.SetCellStyle("L" + row, styleAsNumber);
 
                     s1.SetColumnWidth("M", columnWidthWieghts);
                     s1.SetCellValue("M" + row, (double)batch["flatpaneltvkilograms"]);
+                    s1.SetCellStyle("M" + row, styleAsNumber);
 
                     s1.SetColumnWidth("N", columnWidthWieghts);
                     s1.SetCellValue("N" + row, (double)batch["printingpresseskilograms"]);
+                    s1.SetCellStyle("N" + row, styleAsNumber);
 
                     s1.SetColumnWidth("O", columnWidthWieghts);
                     s1.SetCellValue("O" + row, (double)batch["misckilograms"]);
+                    s1.SetCellStyle("O" + row, styleAsNumber);
 
                     s1.SetColumnWidth("P", columnWidthWieghts);
                     s1.SetCellValue("P" + row, (double)batch["recycledkilograms"]);
+                    s1.SetCellStyle("P" + row, styleAsNumber);
+
 
                     row++;
                 }
