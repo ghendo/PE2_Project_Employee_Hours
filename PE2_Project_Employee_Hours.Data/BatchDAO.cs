@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Data;
 using System.Net.Http.Formatting;
 
+
 namespace PE2_Project_Employee_Hours.Data
 {
     public class BatchDAO
@@ -78,6 +79,7 @@ namespace PE2_Project_Employee_Hours.Data
 
         }
 
+
         public void DeleteBatch(Batch batch)
         {
 
@@ -103,7 +105,7 @@ namespace PE2_Project_Employee_Hours.Data
 
         public async Task<DataTable> GetAllBatchesDtASYNC()
         {
-            using (httpClient)
+
             {
                 var response = await GetAllBatchesData();
                 var result = JsonConvert.DeserializeObject<DataTable>(response);
@@ -114,10 +116,33 @@ namespace PE2_Project_Employee_Hours.Data
         
         private async Task<String> GetAllBatchesData()
         {
-            var response = await httpClient.GetStringAsync(new Uri("https://prod-30.australiaeast.logic.azure.com:443/workflows/cefc1af60b134254a96cd3bc606c15bd/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=PLExap2RD5pYLYy86dLrriztRRvaMjQYDJu4Ap4ExMA"));
-            return response;
+            using (httpClient)
+            {
+                var response =  await httpClient.GetStringAsync(new Uri("https://prod-30.australiaeast.logic.azure.com:443/workflows/cefc1af60b134254a96cd3bc606c15bd/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=PLExap2RD5pYLYy86dLrriztRRvaMjQYDJu4Ap4ExMA"));
+                return response;
+            }
+            
         }
 
+        public async Task<DataTable> FindBatchesDtASYNC(String findString)
+        {
+            using (httpClient)
+            {
+                var response = await FindBatchesData(findString);
+                var result = JsonConvert.DeserializeObject<DataTable>(response);
+                return result;
+            }
+
+        }
+
+        private async Task<String> FindBatchesData(String findString)
+        {
+
+            string url = "https://prod-07.australiaeast.logic.azure.com:443/workflows/47adbf1b810b47778f873abbaebc5920/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=dbhw4WAz1AP68_WtsWwOpLTx1S6tsl2_1GOzTO1dlB4";
+            url += "?find=" + findString;
+            var response = await httpClient.GetStringAsync(new Uri(url));
+            return response;
+        }
 
     }
 }

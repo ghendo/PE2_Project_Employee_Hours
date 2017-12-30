@@ -77,14 +77,14 @@ namespace ITSD_Start
 
         }
         
-        private async void LoadBatchDGVDt(int sortCol, SortOrder sortOrder)
+        private  async void LoadBatchDGVDt(int sortCol, SortOrder sortOrder)
         {
             dgvBatchManager.Dgv.ReadOnly = true;
             //null return object
             Result<DataTable> result = new Result<DataTable>();
             //call service method
             BatchService service = new BatchService();
-            result = await service.GetAllBatchedDtASYNC();
+            result =  await service.GetAllBatchedDtASYNC();
 
 
             if (result.Status == ResultEnum.Success)
@@ -109,19 +109,42 @@ namespace ITSD_Start
                 //load dgv
                 dgvBatchManager.LoadDgv();
 
-                CalculateTotalsBatch();
+                CalculateColumnnTotalsBatch();
+                CalculateRowTotalsBatch();
                 setDGVbatchColumnDetails();
 
 
             }
             else
             {
-                MessageBox.Show("Database Error");
+                MessageBox.Show("Cant get Jobs from databse");
             }
 
         }
 
-        private void CalculateTotalsBatch()
+        private void CalculateRowTotalsBatch()
+        {
+            
+            foreach (DataGridViewRow item in dgvBatchManager.Dgv.Rows)
+            {
+                decimal rowSum = 0;
+                rowSum +=
+                    Convert.ToDecimal(item.Cells["pckilograms"].Value) +
+                    Convert.ToDecimal(item.Cells["printerkilograms"].Value) +
+                    Convert.ToDecimal(item.Cells["crttvkilograms"].Value) +
+                    Convert.ToDecimal(item.Cells["crtmonitorkilograms"].Value) +
+                    Convert.ToDecimal(item.Cells["flatpaneltvkilograms"].Value) +
+                    Convert.ToDecimal(item.Cells["flatpanelmonitorkilograms"].Value) +
+                    Convert.ToDecimal(item.Cells["printingpresseskilograms"].Value) +
+                    Convert.ToDecimal(item.Cells["misckilograms"].Value) +
+                    Convert.ToDecimal(item.Cells["recycledkilograms"].Value)
+                    ;
+                item.HeaderCell.Value = rowSum.ToString("F2");
+
+            }
+        }
+
+        private void CalculateColumnnTotalsBatch()
         {
             DataTable dt = new DataTable();
             
@@ -251,7 +274,7 @@ namespace ITSD_Start
             //supress column headers
             dgvBatchTotalsManager.Dgv.ColumnHeadersVisible = false;
 
-            dgvBatchManager.Dgv.Rows[0].HeaderCell.Value = "my text";
+
             dgvBatchTotalsManager.Dgv.RowHeadersWidth = 80;
             dgvBatchTotalsManager.Dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 
@@ -390,10 +413,13 @@ namespace ITSD_Start
 
             DataGridViewColumn rowversion = dgvBatchManager.Dgv.Columns["rowversion"];
             rowversion.Visible = false;
-
-            dgvBatchManager.Dgv.Rows[0].HeaderCell.Value = "my text";
+            //set the with of the row header to fit the total
             dgvBatchManager.Dgv.RowHeadersWidth = 80;
-
+            //set the row header cell format to display as format 0.00
+            dgvBatchManager.Dgv.RowHeadersDefaultCellStyle.Format = "F2";
+            //align the row head cell content to the right
+            dgvBatchManager.Dgv.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //dont allow user to resize the row header
             dgvBatchManager.Dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 
         }
@@ -1018,8 +1044,8 @@ namespace ITSD_Start
 
         private void tabPage1_Enter(object sender, EventArgs e)
         {
-            LoadBatchForm();
-            ClearBatchForm();
+            //LoadBatchForm();
+            //ClearBatchForm();
         }
 
         private async void btnRecyclerTabSave_Click(object sender, EventArgs e)
@@ -1108,6 +1134,81 @@ namespace ITSD_Start
             {
                 MessageBox.Show(msg.ToString());
             }
+        }
+
+        private void txtBatchFindByAny_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            //if (e.KeyData == Keys.Tab)
+            //{
+            //    string findString = txtBatchFindByAny.Text;
+            //    LoadBatcheDGVFindAnyASYNC(findString);
+                
+            //}
+        }
+
+        private async Task LoadBatcheDGVFindAnyASYNC(string findString)
+        {
+            //call find method
+            BatchService service =  new BatchService();
+            Result<DataTable> result = await service.FindBatchesByAny(findString);
+
+            if (result.Status == ResultEnum.Success)
+            {
+                //show message if no records found
+                if (result.Data == null)
+                {
+                    MessageBox.Show("Nothing found");
+                    return;
+                }
+
+                //set the sort properties of dgv manager
+                dgvBatchManager.SortColumn = 0;
+                dgvBatchManager.SortDirection = SortOrder.Ascending;
+
+                //send result.data to dgv manager
+                dgvBatchManager.ResultData = result.Data;
+
+                //set the data in dgv manager
+                dgvBatchManager.SetResult();
+
+
+                //set dvg manager last updated row
+                //String searchValue = EmpLastUpdate().Data.EmployeeId.ToString();
+                //foreach (DataGridViewRow row in dgvEmployeeManager.Dgv.Rows)
+                //{
+                //    if (row.Cells["EmployeeId"].Value != null) // Need to check for null if data entry row exists
+                //    {
+                //        if (row.Cells["EmployeeId"].Value.ToString().Equals(searchValue))
+                //        {
+                //            //rowIndex = row.Index;
+                //            //set last updated row in manager
+                //            dgvEmployeeManager.LastUpdatedRow = row;
+                //            break;
+                //        }
+                //    }
+                //}
+
+                //load dgv
+                dgvBatchManager.LoadDgv();
+                CalculateColumnnTotalsBatch();
+                CalculateRowTotalsBatch();
+                setDGVbatchColumnDetails();
+            }
+        }
+
+        private async void LoadBatchFind(String findString)
+        {
+            LoadStatesCboASYNC();
+            LoadRecylerCboASYNC();
+            LoadCustomerCboASYNC();
+            await LoadBatcheDGVFindAnyASYNC(findString);
+            ClearBatchForm();
+        }
+
+        private  void btnBatchFind_Click(object sender, EventArgs e)
+        {
+            string findString = txtBatchFindByAny.Text;
+            LoadBatchFind(findString);
         }
     }
 }

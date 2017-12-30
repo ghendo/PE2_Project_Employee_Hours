@@ -85,5 +85,23 @@ namespace PE2_Project_Employee_Hours.Logic
             }
             return result;
         }
+
+        public async Task<Result<DataTable>> FindBatchesByAny(string findString)
+        {
+            //null result
+            Result<DataTable> result = new Result<DataTable>();
+            result.Status = ResultEnum.Success;
+            try
+            {
+                BatchDAO dao = new BatchDAO();
+                result.Data = await dao.FindBatchesDtASYNC(findString);
+
+            }
+            catch
+            {
+                result.Status = ResultEnum.Fail;
+            }
+            return result;
+        }
     }
 }

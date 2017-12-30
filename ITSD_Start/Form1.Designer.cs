@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvBatchTotals = new System.Windows.Forms.DataGridView();
@@ -92,6 +92,8 @@
             this.lblRecyclerTabRecyclerName = new System.Windows.Forms.Label();
             this.lblRecyclerTabRecyclerID = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.txtBatchFindByAny = new System.Windows.Forms.TextBox();
+            this.btnBatchFind = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBatchTotals)).BeginInit();
@@ -116,6 +118,8 @@
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
+            this.tabPage1.Controls.Add(this.btnBatchFind);
+            this.tabPage1.Controls.Add(this.txtBatchFindByAny);
             this.tabPage1.Controls.Add(this.dgvBatchTotals);
             this.tabPage1.Controls.Add(this.btnBatchSavetoExcel);
             this.tabPage1.Controls.Add(this.btnBatchRelaod);
@@ -249,8 +253,8 @@
             this.dgvBatch.AllowUserToDeleteRows = false;
             this.dgvBatch.AllowUserToResizeColumns = false;
             this.dgvBatch.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvBatch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvBatch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBatch.BackgroundColor = System.Drawing.Color.White;
             this.dgvBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBatch.Location = new System.Drawing.Point(18, 424);
@@ -589,8 +593,8 @@
             // 
             // dgvCustomer
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvCustomer.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvCustomer.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvCustomer.BackgroundColor = System.Drawing.Color.White;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.Location = new System.Drawing.Point(0, 209);
@@ -715,8 +719,8 @@
             // 
             // dgvRecycler
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvRecycler.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvRecycler.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvRecycler.BackgroundColor = System.Drawing.Color.White;
             this.dgvRecycler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRecycler.Location = new System.Drawing.Point(23, 170);
@@ -760,6 +764,27 @@
             this.lblRecyclerTabRecyclerID.Size = new System.Drawing.Size(106, 24);
             this.lblRecyclerTabRecyclerID.TabIndex = 0;
             this.lblRecyclerTabRecyclerID.Text = "Recycler ID";
+            // 
+            // txtBatchFindByAny
+            // 
+            this.txtBatchFindByAny.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBatchFindByAny.Location = new System.Drawing.Point(18, 26);
+            this.txtBatchFindByAny.Name = "txtBatchFindByAny";
+            this.txtBatchFindByAny.Size = new System.Drawing.Size(756, 29);
+            this.txtBatchFindByAny.TabIndex = 10006;
+            this.txtBatchFindByAny.Text = "10000";
+            this.txtBatchFindByAny.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtBatchFindByAny_PreviewKeyDown);
+            // 
+            // btnBatchFind
+            // 
+            this.btnBatchFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBatchFind.Location = new System.Drawing.Point(781, 26);
+            this.btnBatchFind.Name = "btnBatchFind";
+            this.btnBatchFind.Size = new System.Drawing.Size(35, 29);
+            this.btnBatchFind.TabIndex = 10007;
+            this.btnBatchFind.Text = "?";
+            this.btnBatchFind.UseVisualStyleBackColor = true;
+            this.btnBatchFind.Click += new System.EventHandler(this.btnBatchFind_Click);
             // 
             // Form1
             // 
@@ -851,6 +876,8 @@
         private System.Windows.Forms.TextBox txtRecyclerTabRecyclerIdf;
         private System.Windows.Forms.Button btnRecyclerTabSave;
         private System.Windows.Forms.DataGridView dgvBatchTotals;
+        private System.Windows.Forms.TextBox txtBatchFindByAny;
+        private System.Windows.Forms.Button btnBatchFind;
     }
 }
 
