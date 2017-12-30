@@ -17,7 +17,7 @@ namespace PE2_Project_Employee_Hours.Data
     {
         private readonly HttpClient httpClient = new HttpClient();
 
-        public void InsertBatch(Batch batch)
+        public async Task InsertBatch(Batch batch)
         {
 
             //null list of batches
@@ -32,20 +32,20 @@ namespace PE2_Project_Employee_Hours.Data
 
             //Assign stringpayload to http content
             var httpContent = new StringContent(stringPayload, Encoding.ASCII, "application/json");
-            using (var httpClient = new HttpClient())
-            {
-                //post data
-                var response = httpClient.PostAsync(new Uri("https://prod-25.australiaeast.logic.azure.com:443/workflows/e85d5ebce8ce4c21aa3fa29d704f6764/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5MoZePHcm-KFEGZjqkGsRb3hwyz7GhNrYnoKZimcRLg"), httpContent);
-                if (response.Result != null)
+            var response = await BatchInsertData(httpContent);
+                if (response != null)
                 {
-                    var code = response.Result.StatusCode.ToString();
-
-                    //JsonConvert.DeserializeObject<string>(response);
-                    // From here on you could deserialize the ResponseContent back again to a concrete C# type using Json.Net
+                    var code = response.StatusCode.ToString();
                 }
+        }
 
+        private async Task<HttpResponseMessage> BatchInsertData(StringContent httpContent)
+        {
+            using (httpClient)
+            {
+                var response = await httpClient.PostAsync(new Uri("https://prod-25.australiaeast.logic.azure.com:443/workflows/e85d5ebce8ce4c21aa3fa29d704f6764/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5MoZePHcm-KFEGZjqkGsRb3hwyz7GhNrYnoKZimcRLg"), httpContent);
+                return response; 
             }
-
         }
 
         public void UpdateBatch(Batch batch)
@@ -80,7 +80,7 @@ namespace PE2_Project_Employee_Hours.Data
         }
 
 
-        public void DeleteBatch(Batch batch)
+        public async Task DeleteBatch(Batch batch)
         {
 
             //Assign batch to variable
@@ -90,15 +90,24 @@ namespace PE2_Project_Employee_Hours.Data
 
             //Assign stringpayload to http content
             var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-            using (var httpClient = new HttpClient())
+            using (httpClient)
             {
-                //post data
-                var response = httpClient.PostAsync(new Uri("https://prod-13.australiaeast.logic.azure.com:443/workflows/c10c351bf0c84ff78ea4ac8cfe77681a/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=CzBBQrlH2Z0i7n2MhomJ9sdiu0-uMv6uzk-ovg6wR2k"), httpContent);
-                if (response.Result != null)
+                var response = await DeleteBatchData(httpContent);
+                if (response != null)
                 {
-                    var code = response.Result.StatusCode.ToString();
+                    var code = response.StatusCode.ToString();
                 }
 
+            }
+
+        }
+
+        private async Task<HttpResponseMessage> DeleteBatchData(StringContent httpContent)
+        {
+            using (httpClient)
+            {
+                var response = await httpClient.PostAsync(new Uri("https://prod-13.australiaeast.logic.azure.com:443/workflows/c10c351bf0c84ff78ea4ac8cfe77681a/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=CzBBQrlH2Z0i7n2MhomJ9sdiu0-uMv6uzk-ovg6wR2k"), httpContent);
+                return response;
             }
 
         }
@@ -124,24 +133,32 @@ namespace PE2_Project_Employee_Hours.Data
             
         }
 
-        public async Task<DataTable> FindBatchesDtASYNC(String findString)
+        public async  Task<DataTable> FindBatchesDtASYNC(String findString)
         {
-            using (httpClient)
-            {
-                var response = await FindBatchesData(findString);
+
+            
+                var response =  await FindBatchesData(findString);
                 var result = JsonConvert.DeserializeObject<DataTable>(response);
+                var blah = result.Rows[0][0];
+                Convert.ToString(blah);
                 return result;
-            }
+            
 
         }
 
         private async Task<String> FindBatchesData(String findString)
         {
+            using (httpClient)
+            {
 
-            string url = "https://prod-07.australiaeast.logic.azure.com:443/workflows/47adbf1b810b47778f873abbaebc5920/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=dbhw4WAz1AP68_WtsWwOpLTx1S6tsl2_1GOzTO1dlB4";
-            url += "?find=" + findString;
-            var response = await httpClient.GetStringAsync(new Uri(url));
-            return response;
+                string urlPart1 = "https://prod-07.australiaeast.logic.azure.com:443/workflows/47adbf1b810b47778f873abbaebc5920/triggers/manual/paths/invoke";
+                string urlPart2 = "?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=dbhw4WAz1AP68_WtsWwOpLTx1S6tsl2_1GOzTO1dlB4";
+
+                string url = urlPart1 + "/find/" + findString + urlPart2;
+                var response = await httpClient.GetStringAsync(new Uri(url));
+                return response;
+            }
+
         }
 
     }

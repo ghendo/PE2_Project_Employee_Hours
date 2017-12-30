@@ -11,14 +11,14 @@ namespace PE2_Project_Employee_Hours.Logic
 {
     public class BatchService
     {
-        public ResultEnum InsertBatch(Batch batch)
+        public async Task<ResultEnum> InsertBatch(Batch batch)
         {
             ResultEnum result = ResultEnum.Success;
 
             try
             {
                 BatchDAO dao = new BatchDAO();
-                dao.InsertBatch(batch);
+                await dao.InsertBatch(batch);
                 
 
             }
@@ -49,14 +49,14 @@ namespace PE2_Project_Employee_Hours.Logic
             return result;
         }
 
-        public ResultEnum DeleteBatch(Batch batch)
+        public async Task<ResultEnum> DeleteBatch(Batch batch)
         {
             ResultEnum result = ResultEnum.Success;
             
             try
             {
                 BatchDAO dao = new BatchDAO();
-                dao.DeleteBatch(batch);
+                await dao.DeleteBatch(batch);
 
 
             }
@@ -94,7 +94,7 @@ namespace PE2_Project_Employee_Hours.Logic
             try
             {
                 BatchDAO dao = new BatchDAO();
-                result.Data = await dao.FindBatchesDtASYNC(findString);
+                result.Data =  await dao.FindBatchesDtASYNC(findString);
 
             }
             catch

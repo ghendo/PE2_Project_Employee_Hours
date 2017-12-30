@@ -27,7 +27,7 @@ namespace ITSD_Start
             
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             txtBatchBatchID.ReadOnly = true;
             txtCustomerID.ReadOnly = true;
@@ -36,7 +36,7 @@ namespace ITSD_Start
             dgvBatchTotalsManager.Dgv = dgvBatchTotals;
             dgvCustomerManager.Dgv = dgvCustomer;
             dgvRecyclerManager.Dgv = dgvRecycler;
-            LoadBatchForm();
+            await LoadBatchForm();
         }
 
         private void ClearBatchForm()
@@ -60,24 +60,24 @@ namespace ITSD_Start
 
         }
 
-        private void LoadBatchForm()
+        private async Task LoadBatchForm()
         {
-            LoadStatesCboASYNC();
-            LoadRecylerCboASYNC();
-            LoadCustomerCboASYNC();
-            LoadBatchDGVDt(1, SortOrder.Descending);
+            await LoadStatesCboASYNC();
+            await LoadRecylerCboASYNC();
+            await LoadCustomerCboASYNC();
+            await LoadBatchDGVDtASYNC(1, SortOrder.Descending);
             ClearBatchForm();
         }
 
-        private void LoadCustomerForm()
+        private async void LoadCustomerForm()
         {
-            LoadCustomerDGV(0, SortOrder.Ascending);
+            await LoadCustomerDGV(0, SortOrder.Ascending);
             CustomerFormClear();
             
 
         }
         
-        private  async void LoadBatchDGVDt(int sortCol, SortOrder sortOrder)
+        private  async Task LoadBatchDGVDtASYNC(int sortCol, SortOrder sortOrder)
         {
             dgvBatchManager.Dgv.ReadOnly = true;
             //null return object
@@ -424,7 +424,7 @@ namespace ITSD_Start
 
         }
 
-        private async void LoadCustomerDGV(int sortCol, SortOrder sortOrder)
+        private async Task LoadCustomerDGV(int sortCol, SortOrder sortOrder)
         {
             dgvCustomerManager.Dgv.ReadOnly = true;
             //null return object
@@ -468,7 +468,7 @@ namespace ITSD_Start
 
         }
 
-        private async void LoadRecyclerDGV(int sortCol, SortOrder sortOrder)
+        private async Task LoadRecyclerDGV(int sortCol, SortOrder sortOrder)
         {
             dgvRecyclerManager.Dgv.ReadOnly = true;
             //null return object
@@ -505,7 +505,7 @@ namespace ITSD_Start
             }
         }
 
-        private void btnBatchInsert_Click(object sender, EventArgs e)
+        private async void btnBatchInsert_Click(object sender, EventArgs e)
         {
             //null object for saving
             Batch batch = new Batch();
@@ -553,7 +553,7 @@ namespace ITSD_Start
             //test if insert or update
             if (txtBatchBatchID.Text == "")
             {
-                ResultEnum result = service.InsertBatch(batch);
+                ResultEnum result = await service.InsertBatch(batch);
                 if (result == ResultEnum.Success)
                 {
                     MessageBox.Show("Job Saved");
@@ -581,7 +581,7 @@ namespace ITSD_Start
 
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private async void btnDelete_Click(object sender, EventArgs e)
         {
             Batch batch = new Batch();
             try
@@ -597,7 +597,7 @@ namespace ITSD_Start
                 //new service object
                 BatchService service = new BatchService();
 
-                ResultEnum result = service.DeleteBatch(batch);
+                ResultEnum result = await service.DeleteBatch(batch);
                 if (result == ResultEnum.Success)
                 {
                     MessageBox.Show("Job Deleted");
@@ -611,10 +611,10 @@ namespace ITSD_Start
             {
                 MessageBox.Show("Something went wrong");
             }
-            LoadBatchForm();
+            await LoadBatchForm();
         }
 
-        private async void LoadStatesCboASYNC()
+        private async Task LoadStatesCboASYNC()
         {
             Result<List<State>> result = new Result<List<State>>();
             StateService service = new StateService();
@@ -634,7 +634,7 @@ namespace ITSD_Start
             }
         }
 
-        private async void LoadRecylerCboASYNC()
+        private async Task LoadRecylerCboASYNC()
         {
             Result<List<Recycler>> result = new Result<List<Recycler>>();
             RecyclerService service = new RecyclerService();
@@ -655,7 +655,7 @@ namespace ITSD_Start
 
         }
 
-        private async void LoadCustomerCboASYNC()
+        private async Task LoadCustomerCboASYNC()
         {
             Result<List<Customer>> result = new Result<List<Customer>>();
             CustomerService service = new CustomerService();
@@ -898,11 +898,6 @@ namespace ITSD_Start
             
         }
 
-        private void btnBatchRelaod_Click(object sender, EventArgs e)
-        {
-            LoadBatchForm();
-        }
-
         private void btnBatchSavetoExcel_Click(object sender, EventArgs e)
         {
             using (SLDocument s1 = new SLDocument())
@@ -1025,15 +1020,15 @@ namespace ITSD_Start
             }
         }
 
-        private void tabPage3_Enter(object sender, EventArgs e)
+        private async void tabPage3_Enter(object sender, EventArgs e)
         {
-            LoadRecyclerDGV(0, SortOrder.Ascending);
+            await LoadRecyclerDGV(0, SortOrder.Ascending);
             RecyclerFormClear();
         }
 
-        private void LoadRecycler()
+        private async Task LoadRecycler()
         {
-            LoadRecyclerDGV(0, SortOrder.Ascending);
+            await LoadRecyclerDGV(0, SortOrder.Ascending);
             RecyclerFormClear();
         }
 
@@ -1096,7 +1091,7 @@ namespace ITSD_Start
 
                 MessageBox.Show("Oops something went wrong");
             }
-            LoadRecycler();
+            await LoadRecycler();
         }
 
         private void dgvBatch_Scroll(object sender, ScrollEventArgs e)
@@ -1136,21 +1131,23 @@ namespace ITSD_Start
             }
         }
 
-        private void txtBatchFindByAny_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private async void txtBatchFindByAny_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            //if (e.KeyData == Keys.Tab)
-            //{
-            //    string findString = txtBatchFindByAny.Text;
-            //    LoadBatcheDGVFindAnyASYNC(findString);
-                
-            //}
+            if (e.KeyData == Keys.Tab)
+            {
+                string findString = txtBatchFindByAny.Text;
+                await LoadBatchesDGVFindAnyASYNC(findString);
+
+            }
         }
 
-        private async Task LoadBatcheDGVFindAnyASYNC(string findString)
+        private async Task LoadBatchesDGVFindAnyASYNC(string findString)
         {
+
             //call find method
             BatchService service =  new BatchService();
-            Result<DataTable> result = await service.FindBatchesByAny(findString);
+            //Result<DataTable> result =  await service.FindBatchesByAny(findString);
+            Result<DataTable> result =  await service.FindBatchesByAny(findString);
 
             if (result.Status == ResultEnum.Success)
             {
@@ -1196,19 +1193,24 @@ namespace ITSD_Start
             }
         }
 
-        private async void LoadBatchFind(String findString)
+        private async Task LoadBatchFindAsync(String findString)
         {
-            LoadStatesCboASYNC();
-            LoadRecylerCboASYNC();
-            LoadCustomerCboASYNC();
-            await LoadBatcheDGVFindAnyASYNC(findString);
             ClearBatchForm();
+            await LoadStatesCboASYNC();
+            await LoadRecylerCboASYNC();
+            await LoadCustomerCboASYNC();
+            await LoadBatchesDGVFindAnyASYNC(findString);
         }
 
-        private  void btnBatchFind_Click(object sender, EventArgs e)
+        private async void btnBatchFind_Click(object sender, EventArgs e)
         {
             string findString = txtBatchFindByAny.Text;
-            LoadBatchFind(findString);
+            await LoadBatchFindAsync(findString);
+        }
+
+        private async void btnBatchReload_Click(object sender, EventArgs e)
+        {
+            await LoadBatchForm();
         }
     }
 }

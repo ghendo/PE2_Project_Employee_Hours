@@ -33,9 +33,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtBatchFindByAny = new System.Windows.Forms.TextBox();
             this.dgvBatchTotals = new System.Windows.Forms.DataGridView();
             this.btnBatchSavetoExcel = new System.Windows.Forms.Button();
-            this.btnBatchRelaod = new System.Windows.Forms.Button();
             this.btnBatchClear = new System.Windows.Forms.Button();
             this.cboBatchCustomers = new System.Windows.Forms.ComboBox();
             this.cboBatchRecycler = new System.Windows.Forms.ComboBox();
@@ -92,8 +92,7 @@
             this.lblRecyclerTabRecyclerName = new System.Windows.Forms.Label();
             this.lblRecyclerTabRecyclerID = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.txtBatchFindByAny = new System.Windows.Forms.TextBox();
-            this.btnBatchFind = new System.Windows.Forms.Button();
+            this.btnBatchReload = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBatchTotals)).BeginInit();
@@ -112,17 +111,16 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1186, 809);
+            this.tabControl1.Size = new System.Drawing.Size(1186, 836);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
-            this.tabPage1.Controls.Add(this.btnBatchFind);
+            this.tabPage1.Controls.Add(this.btnBatchReload);
             this.tabPage1.Controls.Add(this.txtBatchFindByAny);
             this.tabPage1.Controls.Add(this.dgvBatchTotals);
             this.tabPage1.Controls.Add(this.btnBatchSavetoExcel);
-            this.tabPage1.Controls.Add(this.btnBatchRelaod);
             this.tabPage1.Controls.Add(this.btnBatchClear);
             this.tabPage1.Controls.Add(this.cboBatchCustomers);
             this.tabPage1.Controls.Add(this.cboBatchRecycler);
@@ -163,11 +161,21 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1178, 783);
+            this.tabPage1.Size = new System.Drawing.Size(1178, 810);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Jobs";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Enter += new System.EventHandler(this.tabPage1_Enter);
+            // 
+            // txtBatchFindByAny
+            // 
+            this.txtBatchFindByAny.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBatchFindByAny.Location = new System.Drawing.Point(21, 16);
+            this.txtBatchFindByAny.Name = "txtBatchFindByAny";
+            this.txtBatchFindByAny.Size = new System.Drawing.Size(795, 29);
+            this.txtBatchFindByAny.TabIndex = 10006;
+            this.txtBatchFindByAny.Text = "10000";
+            this.txtBatchFindByAny.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtBatchFindByAny_PreviewKeyDown);
             // 
             // dgvBatchTotals
             // 
@@ -187,7 +195,7 @@
             // btnBatchSavetoExcel
             // 
             this.btnBatchSavetoExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchSavetoExcel.Location = new System.Drawing.Point(847, 218);
+            this.btnBatchSavetoExcel.Location = new System.Drawing.Point(846, 209);
             this.btnBatchSavetoExcel.Name = "btnBatchSavetoExcel";
             this.btnBatchSavetoExcel.Size = new System.Drawing.Size(169, 35);
             this.btnBatchSavetoExcel.TabIndex = 10004;
@@ -195,23 +203,12 @@
             this.btnBatchSavetoExcel.UseVisualStyleBackColor = true;
             this.btnBatchSavetoExcel.Click += new System.EventHandler(this.btnBatchSavetoExcel_Click);
             // 
-            // btnBatchRelaod
-            // 
-            this.btnBatchRelaod.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchRelaod.Location = new System.Drawing.Point(847, 178);
-            this.btnBatchRelaod.Name = "btnBatchRelaod";
-            this.btnBatchRelaod.Size = new System.Drawing.Size(169, 33);
-            this.btnBatchRelaod.TabIndex = 10003;
-            this.btnBatchRelaod.Text = "Reload";
-            this.btnBatchRelaod.UseVisualStyleBackColor = true;
-            this.btnBatchRelaod.Click += new System.EventHandler(this.btnBatchRelaod_Click);
-            // 
             // btnBatchClear
             // 
             this.btnBatchClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchClear.Location = new System.Drawing.Point(847, 141);
+            this.btnBatchClear.Location = new System.Drawing.Point(846, 135);
             this.btnBatchClear.Name = "btnBatchClear";
-            this.btnBatchClear.Size = new System.Drawing.Size(169, 30);
+            this.btnBatchClear.Size = new System.Drawing.Size(169, 35);
             this.btnBatchClear.TabIndex = 10002;
             this.btnBatchClear.Text = "Clear Form";
             this.btnBatchClear.UseVisualStyleBackColor = true;
@@ -269,9 +266,9 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(847, 104);
+            this.btnDelete.Location = new System.Drawing.Point(846, 98);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(169, 30);
+            this.btnDelete.Size = new System.Drawing.Size(169, 35);
             this.btnDelete.TabIndex = 9999;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -288,9 +285,9 @@
             // btnBatchInsert
             // 
             this.btnBatchInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchInsert.Location = new System.Drawing.Point(847, 67);
+            this.btnBatchInsert.Location = new System.Drawing.Point(846, 61);
             this.btnBatchInsert.Name = "btnBatchInsert";
-            this.btnBatchInsert.Size = new System.Drawing.Size(169, 30);
+            this.btnBatchInsert.Size = new System.Drawing.Size(169, 35);
             this.btnBatchInsert.TabIndex = 9999;
             this.btnBatchInsert.Text = "Save";
             this.btnBatchInsert.UseVisualStyleBackColor = true;
@@ -765,26 +762,16 @@
             this.lblRecyclerTabRecyclerID.TabIndex = 0;
             this.lblRecyclerTabRecyclerID.Text = "Recycler ID";
             // 
-            // txtBatchFindByAny
+            // btnBatchReload
             // 
-            this.txtBatchFindByAny.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBatchFindByAny.Location = new System.Drawing.Point(18, 26);
-            this.txtBatchFindByAny.Name = "txtBatchFindByAny";
-            this.txtBatchFindByAny.Size = new System.Drawing.Size(756, 29);
-            this.txtBatchFindByAny.TabIndex = 10006;
-            this.txtBatchFindByAny.Text = "10000";
-            this.txtBatchFindByAny.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtBatchFindByAny_PreviewKeyDown);
-            // 
-            // btnBatchFind
-            // 
-            this.btnBatchFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchFind.Location = new System.Drawing.Point(781, 26);
-            this.btnBatchFind.Name = "btnBatchFind";
-            this.btnBatchFind.Size = new System.Drawing.Size(35, 29);
-            this.btnBatchFind.TabIndex = 10007;
-            this.btnBatchFind.Text = "?";
-            this.btnBatchFind.UseVisualStyleBackColor = true;
-            this.btnBatchFind.Click += new System.EventHandler(this.btnBatchFind_Click);
+            this.btnBatchReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBatchReload.Location = new System.Drawing.Point(846, 172);
+            this.btnBatchReload.Name = "btnBatchReload";
+            this.btnBatchReload.Size = new System.Drawing.Size(169, 35);
+            this.btnBatchReload.TabIndex = 10007;
+            this.btnBatchReload.Text = "Reload";
+            this.btnBatchReload.UseVisualStyleBackColor = true;
+            this.btnBatchReload.Click += new System.EventHandler(this.btnBatchReload_Click);
             // 
             // Form1
             // 
@@ -793,7 +780,7 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(5, 5);
             this.AutoScrollMinSize = new System.Drawing.Size(5, 5);
-            this.ClientSize = new System.Drawing.Size(1186, 813);
+            this.ClientSize = new System.Drawing.Size(1178, 836);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "ITSD";
@@ -865,7 +852,6 @@
         private System.Windows.Forms.Label lblCustomerSuburb;
         private System.Windows.Forms.Label lblCustomerName;
         private System.Windows.Forms.Label lblCustomerId;
-        private System.Windows.Forms.Button btnBatchRelaod;
         private System.Windows.Forms.Button btnBatchSavetoExcel;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TabPage tabPage3;
@@ -877,7 +863,7 @@
         private System.Windows.Forms.Button btnRecyclerTabSave;
         private System.Windows.Forms.DataGridView dgvBatchTotals;
         private System.Windows.Forms.TextBox txtBatchFindByAny;
-        private System.Windows.Forms.Button btnBatchFind;
+        private System.Windows.Forms.Button btnBatchReload;
     }
 }
 
