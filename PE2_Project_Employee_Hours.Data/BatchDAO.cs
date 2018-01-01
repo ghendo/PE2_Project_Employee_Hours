@@ -17,7 +17,7 @@ namespace PE2_Project_Employee_Hours.Data
     {
         private readonly HttpClient httpClient = new HttpClient();
 
-        public async Task InsertBatch(Batch batch)
+        public async Task InsertBatchASYNC(Batch batch)
         {
 
             //null list of batches
@@ -32,14 +32,14 @@ namespace PE2_Project_Employee_Hours.Data
 
             //Assign stringpayload to http content
             var httpContent = new StringContent(stringPayload, Encoding.ASCII, "application/json");
-            var response = await BatchInsertData(httpContent);
+            var response = await BatchInsertDataASYNC(httpContent);
                 if (response != null)
                 {
                     var code = response.StatusCode.ToString();
                 }
         }
 
-        private async Task<HttpResponseMessage> BatchInsertData(StringContent httpContent)
+        private async Task<HttpResponseMessage> BatchInsertDataASYNC(StringContent httpContent)
         {
             using (httpClient)
             {
@@ -80,7 +80,7 @@ namespace PE2_Project_Employee_Hours.Data
         }
 
 
-        public async Task DeleteBatch(Batch batch)
+        public async Task DeleteBatchASYNC(Batch batch)
         {
 
             //Assign batch to variable
@@ -112,7 +112,7 @@ namespace PE2_Project_Employee_Hours.Data
 
         }
 
-        public async Task<DataTable> GetAllBatchesDtASYNC()
+        public async Task<DataTable> GetAllBatchesASYNC()
         {
 
             {

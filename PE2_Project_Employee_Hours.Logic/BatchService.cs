@@ -18,7 +18,7 @@ namespace PE2_Project_Employee_Hours.Logic
             try
             {
                 BatchDAO dao = new BatchDAO();
-                await dao.InsertBatch(batch);
+                await dao.InsertBatchASYNC(batch);
                 
 
             }
@@ -56,7 +56,7 @@ namespace PE2_Project_Employee_Hours.Logic
             try
             {
                 BatchDAO dao = new BatchDAO();
-                await dao.DeleteBatch(batch);
+                await dao.DeleteBatchASYNC(batch);
 
 
             }
@@ -76,7 +76,7 @@ namespace PE2_Project_Employee_Hours.Logic
             try
             {
                 BatchDAO dao = new BatchDAO();
-                result.Data = await dao.GetAllBatchesDtASYNC();
+                result.Data = await dao.GetAllBatchesASYNC();
 
             }
             catch
