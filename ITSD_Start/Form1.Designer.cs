@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            Telerik.WinControls.UI.GridViewSummaryItem gridViewSummaryItem1 = new Telerik.WinControls.UI.GridViewSummaryItem();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnBatchReload = new System.Windows.Forms.Button();
             this.txtBatchFindByAny = new System.Windows.Forms.TextBox();
             this.dgvBatchTotals = new System.Windows.Forms.DataGridView();
             this.btnBatchSavetoExcel = new System.Windows.Forms.Button();
@@ -92,7 +96,10 @@
             this.lblRecyclerTabRecyclerName = new System.Windows.Forms.Label();
             this.lblRecyclerTabRecyclerID = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.btnBatchReload = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
+            this.rgvBatch = new Telerik.WinControls.UI.RadGridView();
+            this.batchServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBatchTotals)).BeginInit();
@@ -101,6 +108,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecycler)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rgvBatch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgvBatch.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -108,6 +119,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(0, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -166,6 +178,17 @@
             this.tabPage1.Text = "Jobs";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Enter += new System.EventHandler(this.tabPage1_Enter);
+            // 
+            // btnBatchReload
+            // 
+            this.btnBatchReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBatchReload.Location = new System.Drawing.Point(846, 172);
+            this.btnBatchReload.Name = "btnBatchReload";
+            this.btnBatchReload.Size = new System.Drawing.Size(169, 35);
+            this.btnBatchReload.TabIndex = 10007;
+            this.btnBatchReload.Text = "Reload";
+            this.btnBatchReload.UseVisualStyleBackColor = true;
+            this.btnBatchReload.Click += new System.EventHandler(this.btnBatchReload_Click);
             // 
             // txtBatchFindByAny
             // 
@@ -250,8 +273,8 @@
             this.dgvBatch.AllowUserToDeleteRows = false;
             this.dgvBatch.AllowUserToResizeColumns = false;
             this.dgvBatch.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvBatch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvBatch.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBatch.BackgroundColor = System.Drawing.Color.White;
             this.dgvBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBatch.Location = new System.Drawing.Point(18, 424);
@@ -582,7 +605,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1178, 783);
+            this.tabPage2.Size = new System.Drawing.Size(1178, 810);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Customers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -590,8 +613,8 @@
             // 
             // dgvCustomer
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvCustomer.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvCustomer.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCustomer.BackgroundColor = System.Drawing.Color.White;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.Location = new System.Drawing.Point(0, 209);
@@ -697,7 +720,7 @@
             this.tabPage3.Controls.Add(this.lblRecyclerTabRecyclerID);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1178, 783);
+            this.tabPage3.Size = new System.Drawing.Size(1178, 810);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Recyclers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -716,8 +739,8 @@
             // 
             // dgvRecycler
             // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dgvRecycler.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dgvRecycler.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRecycler.BackgroundColor = System.Drawing.Color.White;
             this.dgvRecycler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRecycler.Location = new System.Drawing.Point(23, 170);
@@ -762,16 +785,38 @@
             this.lblRecyclerTabRecyclerID.TabIndex = 0;
             this.lblRecyclerTabRecyclerID.Text = "Recycler ID";
             // 
-            // btnBatchReload
+            // tabPage4
             // 
-            this.btnBatchReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBatchReload.Location = new System.Drawing.Point(846, 172);
-            this.btnBatchReload.Name = "btnBatchReload";
-            this.btnBatchReload.Size = new System.Drawing.Size(169, 35);
-            this.btnBatchReload.TabIndex = 10007;
-            this.btnBatchReload.Text = "Reload";
-            this.btnBatchReload.UseVisualStyleBackColor = true;
-            this.btnBatchReload.Click += new System.EventHandler(this.btnBatchReload_Click);
+            this.tabPage4.Controls.Add(this.rgvBatch);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1178, 810);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "New Style Test";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // rgvBatch
+            // 
+            this.rgvBatch.Location = new System.Drawing.Point(8, 76);
+            // 
+            // 
+            // 
+            gridViewSummaryItem1.AggregateExpression = null;
+            gridViewSummaryItem1.FormatString = "{0}";
+            gridViewSummaryItem1.Name = null;
+            this.rgvBatch.MasterTemplate.SummaryRowsBottom.Add(new Telerik.WinControls.UI.GridViewSummaryRowItem(new Telerik.WinControls.UI.GridViewSummaryItem[] {
+                gridViewSummaryItem1}));
+            this.rgvBatch.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.rgvBatch.Name = "rgvBatch";
+            this.rgvBatch.Size = new System.Drawing.Size(1132, 308);
+            this.rgvBatch.TabIndex = 0;
+            this.rgvBatch.Text = "radGridView1";
+            this.rgvBatch.UseScrollbarsInHierarchy = true;
+            this.rgvBatch.Click += new System.EventHandler(this.rgvBatch_Click);
+            // 
+            // batchServiceBindingSource
+            // 
+            this.batchServiceBindingSource.DataSource = typeof(PE2_Project_Employee_Hours.Logic.BatchService);
             // 
             // Form1
             // 
@@ -796,6 +841,10 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecycler)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rgvBatch.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgvBatch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -864,6 +913,10 @@
         private System.Windows.Forms.DataGridView dgvBatchTotals;
         private System.Windows.Forms.TextBox txtBatchFindByAny;
         private System.Windows.Forms.Button btnBatchReload;
+        private System.Windows.Forms.TabPage tabPage4;
+        private Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
+        private Telerik.WinControls.UI.RadGridView rgvBatch;
+        private System.Windows.Forms.BindingSource batchServiceBindingSource;
     }
 }
 

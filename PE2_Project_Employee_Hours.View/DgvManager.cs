@@ -24,6 +24,7 @@ namespace PE2_Project_Employee_Hours.View
     {
         //Properties
         public DataGridView Dgv { get; set; }
+
         public T ResultData { get; set; }
         public SpNameEnum StoredProcedure { get; set; }
         public int SortColumn { get; set; } = 0; 

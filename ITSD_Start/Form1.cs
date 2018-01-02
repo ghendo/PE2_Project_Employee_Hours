@@ -66,6 +66,7 @@ namespace ITSD_Start
             await LoadRecylerCboASYNC();
             await LoadCustomerCboASYNC();
             await LoadBatchDGVDtASYNC(1, SortOrder.Descending);
+            await LoadBatchRGVASYNC();
             ClearBatchForm();
         }
 
@@ -76,7 +77,34 @@ namespace ITSD_Start
             
 
         }
-        
+
+        private async Task LoadBatchRGVASYNC()
+        {
+            dgvBatchManager.Dgv.ReadOnly = true;
+            //null return object
+            Result<DataTable> result = new Result<DataTable>();
+            //call service method
+            BatchService service = new BatchService();
+            result = await service.GetAllBatchedDtASYNC();
+
+
+            if (result.Status == ResultEnum.Success)
+            {
+                //load the data into the rad gid
+                rgvBatch.DataSource = result.Data;
+                rgvBatch.EnableCustomFiltering = true;
+                rgvBatch.MasterTemplate.EnableFiltering = true;
+
+
+
+            }
+            else
+            {
+                MessageBox.Show("Cant get Jobs from databse");
+            }
+
+        }
+
         private  async Task LoadBatchDGVDtASYNC(int sortCol, SortOrder sortOrder)
         {
             dgvBatchManager.Dgv.ReadOnly = true;
@@ -577,7 +605,7 @@ namespace ITSD_Start
             }
 
             //reload dgv
-            LoadBatchForm();
+            await LoadBatchForm();
 
         }
 
@@ -1211,6 +1239,11 @@ namespace ITSD_Start
         private async void btnBatchReload_Click(object sender, EventArgs e)
         {
             await LoadBatchForm();
+        }
+
+        private void rgvBatch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
