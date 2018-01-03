@@ -11,6 +11,7 @@ using DocumentFormat.OpenXml.Drawing.Diagrams;
 using PE2_Project_Employee_Hours.Domain;
 using PE2_Project_Employee_Hours.Logic;
 using SpreadsheetLight;
+using Telerik.WinControls.UI;
 
 namespace ITSD_Start
 {
@@ -92,15 +93,18 @@ namespace ITSD_Start
             {
                 //load the data into the rad gid
                 rgvBatch.DataSource = result.Data;
-                rgvBatch.EnableCustomFiltering = true;
-                rgvBatch.MasterTemplate.EnableFiltering = true;
+
+                //setup the RGV details
+                SetRgvBatchDetails();
+
+
 
 
 
             }
             else
             {
-                MessageBox.Show("Cant get Jobs from databse");
+                MessageBox.Show("Cant get Jobs from database");
             }
 
         }
@@ -308,6 +312,110 @@ namespace ITSD_Start
 
         }
 
+        private void SetRgvBatchDetails()
+        {
+            // standard widths
+            int numberWidth = 80;
+            int nameWidth = 120;
+
+            //Enable filtering of columns
+            rgvBatch.MasterTemplate.EnableFiltering = true;
+            rgvBatch.EnableFiltering = true;
+
+
+
+
+            GridViewColumn batchid = rgvBatch.Columns["batchid"];
+            batchid.HeaderText = "Job No";
+            batchid.IsPinned = true;
+            batchid.Width = numberWidth;
+
+            GridViewColumn batchreference = rgvBatch.Columns["batchreference"];
+            batchreference.HeaderText = "Job Reference";
+            batchreference.IsPinned = true;
+            batchreference.Width = Convert.ToInt32(numberWidth * 1.5);
+
+            GridViewColumn stateid = rgvBatch.Columns["stateid"];
+            stateid.IsVisible = false;
+
+            GridViewColumn recyclerid = rgvBatch.Columns["recyclerid"];
+            recyclerid.IsVisible = false;
+
+            GridViewColumn customerid = rgvBatch.Columns["customerid"];
+            customerid.IsVisible = false;
+
+            GridViewColumn abbreviation = rgvBatch.Columns["abbreviation"];
+            abbreviation.HeaderText = "State";
+            abbreviation.Width = numberWidth;
+
+            GridViewColumn recyclername = rgvBatch.Columns["recyclername"];
+            recyclername.HeaderText = "Recycler";
+            recyclername.Width = nameWidth;
+
+            GridViewColumn customername = rgvBatch.Columns["customername"];
+            customername.HeaderText = "Customer";
+            customername.Width = nameWidth;
+
+            GridViewColumn sitesuburb = rgvBatch.Columns["sitesuburb"];
+            sitesuburb.HeaderText = "Suburb";
+            sitesuburb.Width = nameWidth;
+
+            GridViewColumn datecompleted = rgvBatch.Columns["datecompleted"];
+            datecompleted.HeaderText = "Date";
+            datecompleted.Width = numberWidth;
+
+            GridViewColumn pckilograms = rgvBatch.Columns["pckilograms"];
+            pckilograms.HeaderText = "PC Kg";
+            pckilograms.Width = numberWidth;
+            GridViewSummaryItem summaryItempckilograms = new GridViewSummaryItem();
+            summaryItempckilograms.Name = "pckilograms";
+            summaryItempckilograms.Aggregate = GridAggregateFunction.Sum;
+            GridViewSummaryRowItem summaryRowItem = new GridViewSummaryRowItem();
+            summaryRowItem.Add(summaryItempckilograms);
+            rgvBatch.SummaryRowsTop.Add(summaryRowItem);
+
+            GridViewColumn printerkilograms = rgvBatch.Columns["printerkilograms"];
+            printerkilograms.HeaderText = "Printer Kg";
+            printerkilograms.Width = numberWidth;
+            GridViewSummaryItem summaryItemprinterkilograms = new GridViewSummaryItem();
+            summaryItempckilograms.Name = "printerkilograms";
+            summaryItempckilograms.Aggregate = GridAggregateFunction.Sum;
+            GridViewSummaryRowItem summaryRowItemprinterkilograms = new GridViewSummaryRowItem();
+            summaryRowItemprinterkilograms.Add(summaryItempckilograms);
+
+            GridViewColumn crttvkilograms = rgvBatch.Columns["crttvkilograms"];
+            crttvkilograms.HeaderText = "CRT TV Kg";
+            crttvkilograms.Width = numberWidth;
+
+            GridViewColumn crtmonitorkilograms = rgvBatch.Columns["crtmonitorkilograms"];
+            crtmonitorkilograms.HeaderText = "CRT Monitor Kg";
+            crtmonitorkilograms.Width = numberWidth;
+
+            GridViewColumn flatpaneltvkilograms = rgvBatch.Columns["flatpaneltvkilograms"];
+            flatpaneltvkilograms.HeaderText = "Flat Panel TV Kg";
+            flatpaneltvkilograms.Width = numberWidth;
+
+            GridViewColumn flatpanelmonitorkilograms = rgvBatch.Columns["flatpanelmonitorkilograms"];
+            flatpanelmonitorkilograms.HeaderText = "Flat Panel Monitor Kg";
+            flatpanelmonitorkilograms.Width = numberWidth;
+
+            GridViewColumn printingpresseskilograms = rgvBatch.Columns["printingpresseskilograms"];
+            printingpresseskilograms.HeaderText = "Printing Presses Kg";
+            printingpresseskilograms.Width = numberWidth;
+
+            GridViewColumn misckilograms = rgvBatch.Columns["misckilograms"];
+            misckilograms.HeaderText = "Misc Kg";
+            misckilograms.Width = numberWidth;
+
+            GridViewColumn recycledkilograms = rgvBatch.Columns["recycledkilograms"];
+            recycledkilograms.HeaderText = "Recycled Kg";
+            recycledkilograms.Width = numberWidth;
+
+            GridViewColumn rowversion = rgvBatch.Columns["rowversion"];
+            rowversion.IsVisible = false;
+
+        }
+
         private void setDGVbatchColumnDetails()
         {
             DataGridViewCellStyle headerStyle = new DataGridViewCellStyle();
@@ -423,7 +531,7 @@ namespace ITSD_Start
 
 
             DataGridViewColumn misckilograms = dgvBatchManager.Dgv.Columns["misckilograms"];
-            misckilograms.HeaderText = "Printing Presses Kg";
+            misckilograms.HeaderText = "Misc Kg";
             misckilograms.HeaderCell.Style = headerStyle;
             misckilograms.Width = 80;
             misckilograms.DisplayIndex = 14;
@@ -1244,6 +1352,11 @@ namespace ITSD_Start
         private void rgvBatch_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void rgvBatch_FilterChanged(object sender, Telerik.WinControls.UI.GridViewCollectionChangedEventArgs e)
+        {
+           // MessageBox.Show("Filter changed");
         }
     }
 }

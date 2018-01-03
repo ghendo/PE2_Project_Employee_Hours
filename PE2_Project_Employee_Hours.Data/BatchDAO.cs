@@ -33,9 +33,9 @@ namespace PE2_Project_Employee_Hours.Data
             //Assign stringpayload to http content
             var httpContent = new StringContent(stringPayload, Encoding.ASCII, "application/json");
             var response = await BatchInsertDataASYNC(httpContent);
-                if (response != null)
+                if (response.IsSuccessStatusCode)
                 {
-                    var code = response.StatusCode.ToString();
+                    var code = response.StatusCode;
                 }
         }
 

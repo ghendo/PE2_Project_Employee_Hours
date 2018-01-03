@@ -95,10 +95,11 @@
             this.txtRecyclerTabRecyclerIdf = new System.Windows.Forms.TextBox();
             this.lblRecyclerTabRecyclerName = new System.Windows.Forms.Label();
             this.lblRecyclerTabRecyclerID = new System.Windows.Forms.Label();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
             this.rgvBatch = new Telerik.WinControls.UI.RadGridView();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
+            this.batchServiceBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.batchServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -111,6 +112,7 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -797,10 +799,14 @@
             // 
             // rgvBatch
             // 
-            this.rgvBatch.Location = new System.Drawing.Point(8, 76);
+            this.rgvBatch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rgvBatch.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
+            this.rgvBatch.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.rgvBatch.MasterTemplate.EnableAlternatingRowColor = true;
+            this.rgvBatch.MasterTemplate.EnableFiltering = true;
             gridViewSummaryItem1.AggregateExpression = null;
             gridViewSummaryItem1.FormatString = "{0}";
             gridViewSummaryItem1.Name = null;
@@ -808,11 +814,15 @@
                 gridViewSummaryItem1}));
             this.rgvBatch.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rgvBatch.Name = "rgvBatch";
-            this.rgvBatch.Size = new System.Drawing.Size(1132, 308);
+            this.rgvBatch.Size = new System.Drawing.Size(1178, 810);
             this.rgvBatch.TabIndex = 0;
             this.rgvBatch.Text = "radGridView1";
             this.rgvBatch.UseScrollbarsInHierarchy = true;
             this.rgvBatch.Click += new System.EventHandler(this.rgvBatch_Click);
+            // 
+            // batchServiceBindingSource1
+            // 
+            this.batchServiceBindingSource1.DataSource = typeof(PE2_Project_Employee_Hours.Logic.BatchService);
             // 
             // batchServiceBindingSource
             // 
@@ -844,6 +854,7 @@
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -917,6 +928,7 @@
         private Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
         private Telerik.WinControls.UI.RadGridView rgvBatch;
         private System.Windows.Forms.BindingSource batchServiceBindingSource;
+        private System.Windows.Forms.BindingSource batchServiceBindingSource1;
     }
 }
 
