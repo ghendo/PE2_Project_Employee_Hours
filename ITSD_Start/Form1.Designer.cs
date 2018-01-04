@@ -114,18 +114,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(0, 2);
+            this.tabControl1.Location = new System.Drawing.Point(3, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1186, 836);
+            this.tabControl1.Size = new System.Drawing.Size(1160, 836);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -175,7 +178,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1178, 810);
+            this.tabPage1.Size = new System.Drawing.Size(1152, 810);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Jobs";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -607,7 +610,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1178, 810);
+            this.tabPage2.Size = new System.Drawing.Size(1152, 810);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Customers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -722,7 +725,7 @@
             this.tabPage3.Controls.Add(this.lblRecyclerTabRecyclerID);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1178, 810);
+            this.tabPage3.Size = new System.Drawing.Size(1152, 810);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Recyclers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -792,14 +795,15 @@
             this.tabPage4.Controls.Add(this.rgvBatch);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1178, 810);
+            this.tabPage4.Size = new System.Drawing.Size(1152, 810);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "New Style Test";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // rgvBatch
             // 
-            this.rgvBatch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rgvBatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rgvBatch.Location = new System.Drawing.Point(0, 0);
             // 
             // 
@@ -814,10 +818,11 @@
                 gridViewSummaryItem1}));
             this.rgvBatch.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rgvBatch.Name = "rgvBatch";
-            this.rgvBatch.Size = new System.Drawing.Size(1178, 810);
+            this.rgvBatch.Size = new System.Drawing.Size(1149, 807);
             this.rgvBatch.TabIndex = 0;
             this.rgvBatch.Text = "radGridView1";
             this.rgvBatch.UseScrollbarsInHierarchy = true;
+            this.rgvBatch.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.rgvBatch_ViewCellFormatting);
             this.rgvBatch.Click += new System.EventHandler(this.rgvBatch_Click);
             // 
             // batchServiceBindingSource1
@@ -835,9 +840,13 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(5, 5);
             this.AutoScrollMinSize = new System.Drawing.Size(5, 5);
-            this.ClientSize = new System.Drawing.Size(1178, 836);
+            this.ClientSize = new System.Drawing.Size(1195, 836);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
+            // 
+            // 
+            // 
+            this.RootElement.ApplyShapeToControl = true;
             this.Text = "ITSD";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
@@ -856,6 +865,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
         }

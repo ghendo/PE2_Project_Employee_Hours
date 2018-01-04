@@ -15,7 +15,7 @@ using Telerik.WinControls.UI;
 
 namespace ITSD_Start
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Telerik.WinControls.UI.RadForm
     {
         
         DGVManager<DataTable> dgvBatchManager = new DGVManager<DataTable>();
@@ -322,6 +322,9 @@ namespace ITSD_Start
             rgvBatch.MasterTemplate.EnableFiltering = true;
             rgvBatch.EnableFiltering = true;
 
+            //Disable auto sizing of columns
+            rgvBatch.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.None;
+
 
 
 
@@ -364,55 +367,100 @@ namespace ITSD_Start
             datecompleted.HeaderText = "Date";
             datecompleted.Width = numberWidth;
 
-            GridViewColumn pckilograms = rgvBatch.Columns["pckilograms"];
+            GridViewDecimalColumn pckilograms = rgvBatch.Columns["pckilograms"] as GridViewDecimalColumn;
             pckilograms.HeaderText = "PC Kg";
             pckilograms.Width = numberWidth;
-            GridViewSummaryItem summaryItempckilograms = new GridViewSummaryItem();
-            summaryItempckilograms.Name = "pckilograms";
-            summaryItempckilograms.Aggregate = GridAggregateFunction.Sum;
-            GridViewSummaryRowItem summaryRowItem = new GridViewSummaryRowItem();
-            summaryRowItem.Add(summaryItempckilograms);
-            rgvBatch.SummaryRowsTop.Add(summaryRowItem);
+            pckilograms.FormatString = "{0:F2}";
+            GridViewSummaryItem pckilogramsSI = new GridViewSummaryItem();
+            pckilogramsSI.Name = "pckilograms";
+            pckilogramsSI.Aggregate = GridAggregateFunction.Sum;
+            pckilogramsSI.FormatString = "{0:F2}";
+            
 
-            GridViewColumn printerkilograms = rgvBatch.Columns["printerkilograms"];
-            printerkilograms.HeaderText = "Printer Kg";
+
+
+            GridViewDecimalColumn printerkilograms = rgvBatch.Columns["printerkilograms"] as GridViewDecimalColumn;
+            printerkilograms.HeaderText = "Printer \nKg";
             printerkilograms.Width = numberWidth;
-            GridViewSummaryItem summaryItemprinterkilograms = new GridViewSummaryItem();
-            summaryItempckilograms.Name = "printerkilograms";
-            summaryItempckilograms.Aggregate = GridAggregateFunction.Sum;
-            GridViewSummaryRowItem summaryRowItemprinterkilograms = new GridViewSummaryRowItem();
-            summaryRowItemprinterkilograms.Add(summaryItempckilograms);
+            printerkilograms.FormatString = "{0:F2}";
+            GridViewSummaryItem printerkilogramsSI = new GridViewSummaryItem();
+            printerkilogramsSI.Name = "printerkilograms";
+            printerkilogramsSI.Aggregate = GridAggregateFunction.Sum;
+            printerkilogramsSI.FormatString = "{0:F2}";
 
-            GridViewColumn crttvkilograms = rgvBatch.Columns["crttvkilograms"];
-            crttvkilograms.HeaderText = "CRT TV Kg";
+            GridViewDecimalColumn crttvkilograms = rgvBatch.Columns["crttvkilograms"] as GridViewDecimalColumn;
+            crttvkilograms.HeaderText = "CRT TV \nKg";
             crttvkilograms.Width = numberWidth;
+            crttvkilograms.FormatString = "{0:F2}";
+            GridViewSummaryItem crttvkilogramsSI = new GridViewSummaryItem();
+            crttvkilogramsSI.Name = "crttvkilograms";
+            crttvkilogramsSI.Aggregate = GridAggregateFunction.Sum;
+            crttvkilogramsSI.FormatString = "{0:F2}";
 
-            GridViewColumn crtmonitorkilograms = rgvBatch.Columns["crtmonitorkilograms"];
-            crtmonitorkilograms.HeaderText = "CRT Monitor Kg";
+            GridViewDecimalColumn crtmonitorkilograms = rgvBatch.Columns["crtmonitorkilograms"] as GridViewDecimalColumn;
+            crtmonitorkilograms.HeaderText = "CRT Monitor \nKg";
             crtmonitorkilograms.Width = numberWidth;
+            crtmonitorkilograms.FormatString = "{0:F2}";
+            GridViewSummaryItem crtmonitorkilogramsSI = new GridViewSummaryItem();
+            crtmonitorkilogramsSI.Name = "crtmonitorkilograms";
+            crtmonitorkilogramsSI.Aggregate = GridAggregateFunction.Sum;
+            crtmonitorkilogramsSI.FormatString = "{0:F2}";
 
-            GridViewColumn flatpaneltvkilograms = rgvBatch.Columns["flatpaneltvkilograms"];
-            flatpaneltvkilograms.HeaderText = "Flat Panel TV Kg";
+            GridViewDecimalColumn flatpaneltvkilograms = rgvBatch.Columns["flatpaneltvkilograms"] as GridViewDecimalColumn;
+            flatpaneltvkilograms.HeaderText = "Flat Panel \nTV Kg";
             flatpaneltvkilograms.Width = numberWidth;
+            flatpaneltvkilograms.FormatString = "{0:F2}";
+            GridViewSummaryItem flatpaneltvkilogramsSI = new GridViewSummaryItem();
+            flatpaneltvkilogramsSI.Name = "flatpaneltvkilograms";
+            flatpaneltvkilogramsSI.Aggregate = GridAggregateFunction.Sum;
+            flatpaneltvkilogramsSI.FormatString = "{0:F2}";
 
-            GridViewColumn flatpanelmonitorkilograms = rgvBatch.Columns["flatpanelmonitorkilograms"];
-            flatpanelmonitorkilograms.HeaderText = "Flat Panel Monitor Kg";
+            GridViewDecimalColumn flatpanelmonitorkilograms = rgvBatch.Columns["flatpanelmonitorkilograms"] as GridViewDecimalColumn;
+            flatpanelmonitorkilograms.HeaderText = "Flat Panel \nMonitor Kg";
             flatpanelmonitorkilograms.Width = numberWidth;
+            flatpanelmonitorkilograms.FormatString = "{0:F2}";
+            GridViewSummaryItem flatpanelmonitorkilogramsSI = new GridViewSummaryItem();
+            flatpanelmonitorkilogramsSI.Name = "flatpanelmonitorkilograms";
+            flatpanelmonitorkilogramsSI.Aggregate = GridAggregateFunction.Sum;
+            flatpanelmonitorkilogramsSI.FormatString = "{0:F2}";
 
-            GridViewColumn printingpresseskilograms = rgvBatch.Columns["printingpresseskilograms"];
-            printingpresseskilograms.HeaderText = "Printing Presses Kg";
+            GridViewDecimalColumn printingpresseskilograms = rgvBatch.Columns["printingpresseskilograms"] as GridViewDecimalColumn;
+            printingpresseskilograms.HeaderText = "Printing \nPresses Kg";
             printingpresseskilograms.Width = numberWidth;
+            printingpresseskilograms.FormatString = "{0:F2}";
+            GridViewSummaryItem printingpresseskilogramsSI = new GridViewSummaryItem();
+            printingpresseskilogramsSI.Name = "printingpresseskilograms";
+            printingpresseskilogramsSI.Aggregate = GridAggregateFunction.Sum;
+            printingpresseskilogramsSI.FormatString = "{0:F2}";
 
-            GridViewColumn misckilograms = rgvBatch.Columns["misckilograms"];
+            GridViewDecimalColumn misckilograms = rgvBatch.Columns["misckilograms"] as GridViewDecimalColumn;
             misckilograms.HeaderText = "Misc Kg";
             misckilograms.Width = numberWidth;
+            misckilograms.FormatString = "{0:F2}";
+            GridViewSummaryItem misckilogramsSI = new GridViewSummaryItem();
+            misckilogramsSI.Name = "misckilograms";
+            misckilogramsSI.Aggregate = GridAggregateFunction.Sum;
+            misckilogramsSI.FormatString = "{0:F2}";
 
-            GridViewColumn recycledkilograms = rgvBatch.Columns["recycledkilograms"];
-            recycledkilograms.HeaderText = "Recycled Kg";
+            GridViewDecimalColumn recycledkilograms = rgvBatch.Columns["recycledkilograms"] as GridViewDecimalColumn;
+            recycledkilograms.HeaderText = "Recycled \nKg";
             recycledkilograms.Width = numberWidth;
+            recycledkilograms.FormatString = "{0:F2}";
+            GridViewSummaryItem recycledkilogramsSI = new GridViewSummaryItem();
+            recycledkilogramsSI.Name = "recycledkilograms";
+            recycledkilogramsSI.Aggregate = GridAggregateFunction.Sum;
+            recycledkilogramsSI.FormatString = "{0:F2}";
+            
 
             GridViewColumn rowversion = rgvBatch.Columns["rowversion"];
             rowversion.IsVisible = false;
+
+            //populate the summary row
+            GridViewSummaryRowItem summaryRowItem = new GridViewSummaryRowItem(
+                new GridViewSummaryItem[] { pckilogramsSI, printerkilogramsSI, crttvkilogramsSI, crtmonitorkilogramsSI, flatpaneltvkilogramsSI, flatpanelmonitorkilogramsSI,
+                printingpresseskilogramsSI,misckilogramsSI,recycledkilogramsSI});
+            //Add the summary row at the top
+            rgvBatch.SummaryRowsTop.Add(summaryRowItem);
 
         }
 
@@ -1357,6 +1405,14 @@ namespace ITSD_Start
         private void rgvBatch_FilterChanged(object sender, Telerik.WinControls.UI.GridViewCollectionChangedEventArgs e)
         {
            // MessageBox.Show("Filter changed");
+        }
+
+        private void rgvBatch_ViewCellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            if (e.CellElement is GridSummaryCellElement)
+            {
+                e.CellElement.TextAlignment = ContentAlignment.MiddleRight;
+            }
         }
     }
 }
