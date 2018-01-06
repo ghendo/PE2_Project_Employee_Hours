@@ -128,7 +128,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1160, 836);
+            this.tabControl1.Size = new System.Drawing.Size(1157, 836);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -178,7 +178,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1152, 810);
+            this.tabPage1.Size = new System.Drawing.Size(1149, 810);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Jobs";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -795,7 +795,7 @@
             this.tabPage4.Controls.Add(this.rgvBatch);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1152, 810);
+            this.tabPage4.Size = new System.Drawing.Size(1149, 810);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "New Style Test";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -818,7 +818,7 @@
                 gridViewSummaryItem1}));
             this.rgvBatch.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rgvBatch.Name = "rgvBatch";
-            this.rgvBatch.Size = new System.Drawing.Size(1149, 807);
+            this.rgvBatch.Size = new System.Drawing.Size(1146, 807);
             this.rgvBatch.TabIndex = 0;
             this.rgvBatch.Text = "radGridView1";
             this.rgvBatch.UseScrollbarsInHierarchy = true;
@@ -840,7 +840,7 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(5, 5);
             this.AutoScrollMinSize = new System.Drawing.Size(5, 5);
-            this.ClientSize = new System.Drawing.Size(1195, 836);
+            this.ClientSize = new System.Drawing.Size(1178, 813);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             // 

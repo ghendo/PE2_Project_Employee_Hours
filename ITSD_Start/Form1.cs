@@ -1407,6 +1407,7 @@ namespace ITSD_Start
            // MessageBox.Show("Filter changed");
         }
 
+        //Format the summary row cells to align right
         private void rgvBatch_ViewCellFormatting(object sender, CellFormattingEventArgs e)
         {
             if (e.CellElement is GridSummaryCellElement)
