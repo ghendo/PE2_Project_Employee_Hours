@@ -1188,7 +1188,7 @@ namespace ITSD_Start
                 try
                 {
                     DialogResult result = saveFileDialog1.ShowDialog();
-                    s1.SaveAs(saveFileDialog1.FileName + ".xlxs");
+                    s1.SaveAs(saveFileDialog1.FileName + ".xlsx");
                     MessageBox.Show("Saved " + saveFileDialog1.FileName);
 
 
@@ -1414,6 +1414,11 @@ namespace ITSD_Start
             {
                 e.CellElement.TextAlignment = ContentAlignment.MiddleRight;
             }
+        }
+
+        private void batchServiceBindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
