@@ -11,6 +11,8 @@ using DocumentFormat.OpenXml.Drawing.Diagrams;
 using PE2_Project_Employee_Hours.Domain;
 using PE2_Project_Employee_Hours.Logic;
 using SpreadsheetLight;
+using Telerik.WinControls;
+using Telerik.WinControls.RadControlSpy;
 using Telerik.WinControls.UI;
 
 namespace ITSD_Start
@@ -25,7 +27,9 @@ namespace ITSD_Start
         public Form1()
         {
             InitializeComponent();
+            new RadControlSpyForm().Show();
             
+
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -38,6 +42,7 @@ namespace ITSD_Start
             dgvCustomerManager.Dgv = dgvCustomer;
             dgvRecyclerManager.Dgv = dgvRecycler;
             await LoadBatchForm();
+            await LoadRGVBatchForm();
         }
 
         private void ClearBatchForm()
@@ -61,14 +66,46 @@ namespace ITSD_Start
 
         }
 
+        private void ClearBatchRadForm()
+        {
+            radLabelBatchIdValue.Text = "Undefined";
+            radTextBoxBatchReference.Text = "";
+            radDropDownListState.SelectedIndex = -1;
+            radDropDownListRecycler.SelectedIndex = -1;
+            radTextBox9.Text = "";
+            radDropDownListCustomer.SelectedIndex = -1;
+            radDateTimePickerDate.Text = "";
+            radTextBox4.Text = "0.00";
+            radTextBox1.Text = "0.00";
+            radTextBox2.Text = "0.00";
+            radTextBox10.Text = "0.00";
+            radTextBox3.Text = "0.00";
+            radTextBox5.Text = "0.00";
+            radTextBox6.Text = "0.00";
+            radTextBox7.Text = "0.00";
+            radTextBox8.Text = "0.00";
+
+        }
+
+
+
         private async Task LoadBatchForm()
         {
             await LoadStatesCboASYNC();
             await LoadRecylerCboASYNC();
             await LoadCustomerCboASYNC();
             await LoadBatchDGVDtASYNC(1, SortOrder.Descending);
-            await LoadBatchRGVASYNC();
+            //await LoadBatchRGVASYNC();
             ClearBatchForm();
+        }
+
+        private async Task LoadRGVBatchForm()
+        {
+            await LoadCustomerRadCboASYNC();
+            await LoadRecylerRadCboASYNC();
+            await LoadStatesRadCboASYNC();
+            await LoadBatchRGVASYNC();
+            ClearBatchRadForm();
         }
 
         private async void LoadCustomerForm()
@@ -81,7 +118,7 @@ namespace ITSD_Start
 
         private async Task LoadBatchRGVASYNC()
         {
-            dgvBatchManager.Dgv.ReadOnly = true;
+            
             //null return object
             Result<DataTable> result = new Result<DataTable>();
             //call service method
@@ -94,18 +131,15 @@ namespace ITSD_Start
                 //load the data into the rad gid
                 rgvBatch.DataSource = result.Data;
 
+
                 //setup the RGV details
                 SetRgvBatchDetails();
-
-
-
-
-
             }
             else
             {
                 MessageBox.Show("Cant get Jobs from database");
             }
+            
 
         }
 
@@ -315,12 +349,15 @@ namespace ITSD_Start
         private void SetRgvBatchDetails()
         {
             // standard widths
-            int numberWidth = 80;
-            int nameWidth = 120;
+            int numberWidth = 110;
+            int nameWidth = 160;
 
             //Enable filtering of columns
             rgvBatch.MasterTemplate.EnableFiltering = true;
             rgvBatch.EnableFiltering = true;
+            rgvBatch.MasterView.TableFilteringRow.Height = 40;
+            rgvBatch.Columns[0].MinWidth = 65;
+
 
             //Disable auto sizing of columns
             rgvBatch.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.None;
@@ -456,11 +493,15 @@ namespace ITSD_Start
             rowversion.IsVisible = false;
 
             //populate the summary row
+            GridViewSummaryRowItemCollection summaryRowItemCollection = rgvBatch.SummaryRowsTop;
             GridViewSummaryRowItem summaryRowItem = new GridViewSummaryRowItem(
                 new GridViewSummaryItem[] { pckilogramsSI, printerkilogramsSI, crttvkilogramsSI, crtmonitorkilogramsSI, flatpaneltvkilogramsSI, flatpanelmonitorkilogramsSI,
                 printingpresseskilogramsSI,misckilogramsSI,recycledkilogramsSI});
             //Add the summary row at the top
-            rgvBatch.SummaryRowsTop.Add(summaryRowItem);
+            summaryRowItemCollection.Clear();
+            summaryRowItemCollection.Add(summaryRowItem);
+
+            
 
         }
 
@@ -818,6 +859,26 @@ namespace ITSD_Start
             }
         }
 
+        private async Task LoadStatesRadCboASYNC()
+        {
+            Result<List<State>> result = new Result<List<State>>();
+            StateService service = new StateService();
+            result = await service.getAllStatesListASYNC();
+            if (result.Status == ResultEnum.Success)
+            {
+                List<State> list = result.Data;
+                radDropDownListState.DataSource = result.Data;
+                radDropDownListState.DisplayMember = "Abbreviation";
+                radDropDownListState.ValueMember = "StateId";
+                radDropDownListState.SelectedIndex = -1;
+
+            }
+            else
+            {
+                MessageBox.Show("Cant get states from database");
+            }
+        }
+
         private async Task LoadRecylerCboASYNC()
         {
             Result<List<Recycler>> result = new Result<List<Recycler>>();
@@ -839,6 +900,27 @@ namespace ITSD_Start
 
         }
 
+        private async Task LoadRecylerRadCboASYNC()
+        {
+            Result<List<Recycler>> result = new Result<List<Recycler>>();
+            RecyclerService service = new RecyclerService();
+            result = await service.GetAllRecyclersListASYNC();
+            if (result.Status == ResultEnum.Success)
+            {
+                List<Recycler> list = result.Data;
+                radDropDownListRecycler.DataSource = result.Data;
+                radDropDownListRecycler.DisplayMember = "recyclername";
+                radDropDownListRecycler.ValueMember = "recyclerid";
+                radDropDownListRecycler.SelectedIndex = -1;
+
+            }
+            else
+            {
+                MessageBox.Show("Cant get recyclers from database");
+            }
+
+        }
+
         private async Task LoadCustomerCboASYNC()
         {
             Result<List<Customer>> result = new Result<List<Customer>>();
@@ -851,6 +933,27 @@ namespace ITSD_Start
                 cboBatchCustomers.DisplayMember = "customername";
                 cboBatchCustomers.ValueMember = "customerid";
                 cboBatchCustomers.SelectedIndex = -1;
+
+            }
+            else
+            {
+                MessageBox.Show("Cant get customers from database");
+            }
+
+        }
+
+        private async Task LoadCustomerRadCboASYNC()
+        {
+            Result<List<Customer>> result = new Result<List<Customer>>();
+            CustomerService service = new CustomerService();
+            result = await service.GetAllCustomersListASYNC();
+            if (result.Status == ResultEnum.Success)
+            {
+                List<Customer> list = result.Data;
+                radDropDownListCustomer.DataSource = result.Data;
+                radDropDownListCustomer.DisplayMember = "customername";
+                radDropDownListCustomer.ValueMember = "customerid";
+                radDropDownListCustomer.SelectedIndex = -1;
 
             }
             else
@@ -1410,15 +1513,384 @@ namespace ITSD_Start
         //Format the summary row cells to align right
         private void rgvBatch_ViewCellFormatting(object sender, CellFormattingEventArgs e)
         {
-            if (e.CellElement is GridSummaryCellElement)
+            if (e.CellElement is  GridSummaryCellElement)
             {
                 e.CellElement.TextAlignment = ContentAlignment.MiddleRight;
             }
+            GridFilterCellElement filterCell = e.CellElement as GridFilterCellElement;
+            if (e.CellElement is GridFilterCellElement)
+            {
+                //filterCell.FilterOperatorText.Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            }
         }
 
-        private void batchServiceBindingSource1_CurrentChanged(object sender, EventArgs e)
+        private void radDropDownList1_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
 
+        }
+
+        private void rgvBatch_CellClick(object sender, GridViewCellEventArgs e)
+        {
+            try
+            {
+                int index = e.RowIndex;// get the Row Index
+                //Do nothing if header
+                if (index < 0)
+                {
+
+                    return;
+                }
+                
+
+                GridViewDataRowInfo selectedRow = rgvBatch.Rows[index] as GridViewDataRowInfo;
+
+
+                radLabelBatchIdValue.Text = selectedRow.Cells["batchid"].Value.ToString();
+                radTextBoxBatchReference.Text = selectedRow.Cells["batchreference"].Value.ToString();
+                List<State> states =  radDropDownListState.ListElement.DataSource as List<State>;
+                List<Recycler> recyclers = radDropDownListRecycler.ListElement.DataSource as List<Recycler>;
+                List<Customer> customers = radDropDownListCustomer.ListElement.DataSource as List<Customer>;
+
+                for (int i = 0; i < states.Count; i++)
+                {
+                    if (states[i].StateId == Convert.ToInt32(selectedRow.Cells["stateid"].Value))
+                    {
+                        radDropDownListState.SelectedIndex = i;
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < recyclers.Count; i++)
+                {
+                    if (recyclers[i].recyclerid == Convert.ToInt32(selectedRow.Cells["recyclerid"].Value))
+                    {
+                        radDropDownListRecycler.SelectedIndex = i;
+                        break;
+                    }
+                }
+
+                radTextBox9.Text = selectedRow.Cells["sitesuburb"].Value.ToString();
+
+                for (int i = 0; i < customers.Count; i++)
+                {
+                    if (customers[i].customerid == Convert.ToInt32(selectedRow.Cells["customerid"].Value))
+                    {
+                        radDropDownListCustomer.SelectedIndex = i;
+                        break;
+                    }
+
+                }
+
+                radDateTimePickerDate.Text = Convert.ToDateTime(selectedRow.Cells["datecompleted"].Value.ToString()).ToShortDateString();
+                radTextBox4.Text = selectedRow.Cells["crttvkilograms"].Value.ToString();
+                radTextBox1.Text = selectedRow.Cells["crtmonitorkilograms"].Value.ToString();
+                radTextBox2.Text = selectedRow.Cells["flatpanelmonitorkilograms"].Value.ToString();
+                radTextBox10.Text = selectedRow.Cells["flatpaneltvkilograms"].Value.ToString();
+                radTextBox3.Text = selectedRow.Cells["printingpresseskilograms"].Value.ToString();
+                radTextBox5.Text = selectedRow.Cells["misckilograms"].Value.ToString();
+                radTextBox6.Text = selectedRow.Cells["recycledkilograms"].Value.ToString();
+                radTextBox7.Text = selectedRow.Cells["pckilograms"].Value.ToString();
+                radTextBox8.Text = selectedRow.Cells["printerkilograms"].Value.ToString();
+
+
+            }
+            catch (Exception m)
+            {
+                MessageBox.Show(m.ToString());
+
+            }
+        }
+
+        private async void radButtonSave_Click(object sender, EventArgs e)
+        {
+            //null object for saving
+            Batch batch = new Batch();
+
+            //assign text boxes to object
+            try
+            {
+                //get vaulues from combo boxes
+                State state = radDropDownListState.SelectedItem.DataBoundItem as State;
+                Recycler recycler = radDropDownListRecycler.SelectedItem.DataBoundItem as Recycler;
+                Customer customer = radDropDownListCustomer.SelectedItem.DataBoundItem as Customer;
+                //assign values to batch
+                if (radLabelBatchIdValue.Text != "Undefined")
+                {
+                    batch.batchid = Convert.ToInt32(radLabelBatchIdValue.Text);
+                }
+
+                batch.batchreference = radTextBoxBatchReference.Text;
+                batch.stateid = Convert.ToInt32(state.StateId);
+                batch.recyclerid = Convert.ToInt32(recycler.recyclerid);
+                batch.sitesuburb = radTextBox9.Text;
+                batch.customerid = Convert.ToInt32(customer.customerid);
+                batch.datecompleted = radDateTimePickerDate.Value;
+                batch.crttvkilograms = Convert.ToDecimal(radTextBox4.Text);
+                batch.crtmonitorkilograms = Convert.ToDecimal(radTextBox1.Text);
+                batch.flatpanelmonitorkilograms = Convert.ToDecimal(radTextBox2.Text);
+                batch.flatpaneltvkilograms = Convert.ToDecimal(radTextBox10.Text);
+                batch.printingpresseskilograms = Convert.ToDecimal(radTextBox3.Text);
+                batch.misckilograms = Convert.ToDecimal(radTextBox5.Text);
+                batch.recycledkilograms = Convert.ToDecimal(radTextBox6.Text);
+                batch.pckilograms = Convert.ToDecimal(radTextBox7.Text);
+                batch.printerkilograms = Decimal.Parse(radTextBox8.Text);
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Oops something went wrong");
+                return;
+            }
+
+            //call service to send to database
+
+            BatchService service = new BatchService();
+            //test if insert or update
+            if (radLabelBatchIdValue.Text == "Undefined")
+            {
+                ResultEnum result = await service.InsertBatch(batch);
+                if (result == ResultEnum.Success)
+                {
+                    //MessageBox.Show("Job Saved");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong");
+                }
+            }
+            else
+            {
+                ResultEnum result = service.UpdateBatch(batch);
+                if (result == ResultEnum.Success)
+                {
+                    MessageBox.Show("Job Saved");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong");
+                }
+            }
+
+            //reload dgv
+            await LoadBatchRGVASYNC();
+        }
+
+        private void rgvBatch_CellEditorInitialized(object sender, GridViewCellEventArgs e)
+        {
+            GridSpinEditor spinEditor = e.ActiveEditor as GridSpinEditor;
+            if (spinEditor != null)
+            {
+                RadSpinEditorElement element = spinEditor.EditorElement as RadSpinEditorElement;
+                element.ShowUpDownButtons = false;
+            }
+
+        }
+
+        //custom filter cell
+        public class CustomGridFilterCellElement : GridFilterCellElement
+        {
+            public CustomGridFilterCellElement(GridViewDataColumn column, GridRowElement row) : base(column, row)
+            {
+            }
+
+            protected override Type ThemeEffectiveType
+            {
+                get
+                {
+                    return typeof(GridFilterCellElement);
+                }
+            }
+
+            public override void SetContent()
+            {
+                base.SetContent();
+                this.FilterOperatorText.TextAlignment = ContentAlignment.TopLeft;
+                this.FilterOperatorText.ClipDrawing = false;
+                this.FilterButton.ImageAlignment = ContentAlignment.TopRight;
+                this.TextAlignment = ContentAlignment.BottomLeft;
+            }
+
+            private float GetValueWidth(float cellWidth, RectangleF clientRect)
+            {
+                float valueWidth = this.Layout.DesiredSize.Width;
+                if (this.Editor != null)
+                {
+                    valueWidth = Math.Max(valueWidth, EditorMinWidth);
+                }
+                return Math.Min(cellWidth, valueWidth);
+            }
+
+            private const float OperatorMinWidth = 10;
+            private const float EditorMinWidth = 40;
+
+            protected override SizeF ArrangeOverride(SizeF finalSize)
+            {
+                float operatorTextWidth = this.FilterOperatorText.DesiredSize.Width;
+                float buttonWidth = this.FilterButton.Margin.Horizontal + this.FilterButton.DesiredSize.Width;
+                RectangleF clientRect = GetClientRectangle(finalSize);
+                float cellWidth = clientRect.Width - buttonWidth - ElementSpacing;
+                RadElement editorElement = GetEditorElement(this.Editor);
+
+                RectangleF valueRect = new RectangleF(0, 0, 0, 0);
+                RectangleF operatorRect = new RectangleF(clientRect.X, clientRect.Y, cellWidth, clientRect.Height);
+                if (editorElement != null || (this.Value != null && !String.IsNullOrEmpty(this.Value.ToString())))
+                {
+                    if (this.FilterOperatorText.Visibility != ElementVisibility.Collapsed)
+                    {
+                        float valueWidth = GetValueWidth(cellWidth, clientRect);
+                        float valueX = cellWidth + ElementSpacing;
+                        valueRect = new RectangleF(valueX, clientRect.Y, valueWidth, clientRect.Height);
+                        operatorRect = new RectangleF(clientRect.X, clientRect.Y, valueRect.X - clientRect.X, clientRect.Height);
+
+                        if (operatorRect.Width < OperatorMinWidth)
+                        {
+                            operatorRect = new RectangleF(0, 0, 0, 0);
+                        }
+                        else if (operatorRect.Width > operatorTextWidth)
+                        {
+                            float difference = operatorRect.Width - operatorTextWidth;
+                            valueRect.X = 2;
+                            valueRect.Y = clientRect.Height / 3;
+                            valueRect.Width += difference;
+                            operatorRect.Width = operatorTextWidth;
+                        }
+                    }
+                    else
+                    {
+                        valueRect = new RectangleF(clientRect.X, clientRect.Y, cellWidth, clientRect.Height);
+                        operatorRect = new RectangleF(0, 0, 0, 0);
+                    }
+                }
+
+                if (this.RightToLeft)
+                {
+                    valueRect.X = clientRect.Width - cellWidth;
+                    operatorRect.Width = Math.Min(operatorRect.Width, this.FilterOperatorText.DesiredSize.Width);
+                    operatorRect.X = clientRect.Width - operatorRect.Width;
+                }
+
+                this.Layout.Arrange(valueRect);
+                foreach (RadElement element in this.Children)
+                {
+                    if (this.FilterButton == element)
+                    {
+                        element.Arrange(clientRect);
+                    }
+                    else if (this.FilterOperatorText == element)
+                    {
+                        element.Arrange(operatorRect);
+                    }
+                    else if (editorElement == element)
+                    {
+                        this.ArrangeEditorElement(element, valueRect, clientRect);
+                    }
+                    else
+                    {
+                        this.ArrangeElement(element, finalSize);
+                    }
+                }
+
+                return finalSize;
+            }
+
+            protected override SizeF MeasureOverride(SizeF availableSize)
+            {
+                SizeF desiredSize = SizeF.Empty;
+                SizeF elementAvailableSize = availableSize;
+
+                FilterButton.Measure(elementAvailableSize);
+                float width = FilterButton.DesiredSize.Width + FilterButton.Margin.Horizontal + ElementSpacing;
+                elementAvailableSize.Width -= width;
+                desiredSize.Width += width;
+                desiredSize.Height = Math.Max(desiredSize.Height, FilterButton.DesiredSize.Height);
+
+                SizeF contentDesiredSize = SizeF.Empty;
+                if (Editor != null)
+                {
+                    this.Text = "";
+                }
+                else
+                {
+                    Layout.Measure(elementAvailableSize);
+                    contentDesiredSize = new SizeF(Layout.DesiredSize.Width, Layout.DesiredSize.Height);
+                }
+
+                contentDesiredSize.Width += ElementSpacing;
+                desiredSize.Width += contentDesiredSize.Width;
+                desiredSize.Height = Math.Max(desiredSize.Height, contentDesiredSize.Height);
+
+                FilterOperatorText.Measure(elementAvailableSize);
+                desiredSize.Width += FilterOperatorText.DesiredSize.Width;
+                desiredSize.Height = Math.Max(desiredSize.Height, FilterOperatorText.DesiredSize.Height);
+
+                Padding borderThickness = GetBorderThickness(true);
+                desiredSize.Height += borderThickness.Vertical;
+
+                SizeF arrangedSize = TableElement.ViewElement.RowLayout.ArrangeCell(new RectangleF(System.Drawing.Point.Empty, availableSize), this).Size;
+                if (!float.IsInfinity(availableSize.Width))
+                {
+                    desiredSize.Width = arrangedSize.Width;
+                }
+                if (!float.IsInfinity(availableSize.Height))
+                {
+                    desiredSize.Height = arrangedSize.Height;
+                }
+
+                return desiredSize;
+            }
+        }
+
+
+        private void rgvBatch_CreateCell(object sender, GridViewCreateCellEventArgs e)
+        {
+            if (e.CellType == typeof(GridFilterCellElement))
+            {
+                e.CellElement = new CustomGridFilterCellElement(e.Column as GridViewDataColumn, e.Row);
+            }
+        }
+
+        private async void radButtonBatchDelete_Click(object sender, EventArgs e)
+        {
+            Batch batch = new Batch();
+            try
+            {
+                //load batch object with data
+                if (radLabelBatchIdValue.Text != "Undefined")
+                {
+                    batch.batchid = Convert.ToInt32(radLabelBatchIdValue.Text);
+                }
+                else
+                {
+                    return;
+
+                }
+
+
+                //delete data from database
+                //new service object
+                BatchService service = new BatchService();
+
+                ResultEnum result = await service.DeleteBatch(batch);
+                if (result == ResultEnum.Success)
+                {
+                    MessageBox.Show("Job Deleted");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Something went wrong");
+            }
+            await LoadBatchRGVASYNC();
+        }
+
+        private void radButton1_Click(object sender, EventArgs e)
+        {
+            ClearBatchRadForm();
         }
     }
 }

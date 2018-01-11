@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace PE2_Project_Employee_Hours.Domain
 {
     public class Batch
     {
+        [DisplayName("Job Number")]
         public int batchid { get; set; }
         public string batchreference { get; set; }
         public int stateid { get; set; }

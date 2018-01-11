@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using PE2_Project_Employee_Hours.Domain;
 using PE2_Project_Employee_Hours.Data;
 using System.Data;
+using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
 
 namespace PE2_Project_Employee_Hours.Logic
 {
@@ -77,7 +79,8 @@ namespace PE2_Project_Employee_Hours.Logic
             {
                 BatchDAO dao = new BatchDAO();
                 result.Data = await dao.GetAllBatchesASYNC();
-
+                DataColumn column0 = result.Data.Columns[0];
+                column0.Caption = "Job No";
             }
             catch
             {
