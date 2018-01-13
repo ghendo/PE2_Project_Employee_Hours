@@ -95,7 +95,7 @@ namespace ITSD_Start
             await LoadRecylerCboASYNC();
             await LoadCustomerCboASYNC();
             await LoadBatchDGVDtASYNC(1, SortOrder.Descending);
-            //await LoadBatchRGVASYNC();
+
             ClearBatchForm();
         }
 
@@ -1324,10 +1324,10 @@ namespace ITSD_Start
 
         }
 
-        private void tabPage1_Enter(object sender, EventArgs e)
+        private async void tabPage1_Enter(object sender, EventArgs e)
         {
-            //LoadBatchForm();
-            //ClearBatchForm();
+            await LoadBatchForm();
+            ClearBatchForm();
         }
 
         private async void btnRecyclerTabSave_Click(object sender, EventArgs e)
@@ -1891,6 +1891,21 @@ namespace ITSD_Start
         private void radButton1_Click(object sender, EventArgs e)
         {
             ClearBatchRadForm();
+        }
+
+        private void tabControl1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void tabPage4_Enter(object sender, EventArgs e)
+        {
+            await LoadRGVBatchForm();
         }
     }
 }

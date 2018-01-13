@@ -96,6 +96,7 @@
             this.lblRecyclerTabRecyclerName = new System.Windows.Forms.Label();
             this.lblRecyclerTabRecyclerID = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radButtonBatchDelete = new Telerik.WinControls.UI.RadButton();
             this.radButtonSave = new Telerik.WinControls.UI.RadButton();
             this.radLabelDate = new Telerik.WinControls.UI.RadLabel();
@@ -136,7 +137,6 @@
             this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
             this.batchServiceBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.batchServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             tabPage1 = new System.Windows.Forms.TabPage();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBatchTotals)).BeginInit();
@@ -147,6 +147,7 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecycler)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonBatchDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelDate)).BeginInit();
@@ -185,7 +186,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -669,6 +669,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1515, 745);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
             // 
             // tabPage2
             // 
@@ -686,7 +687,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1457, 577);
+            this.tabPage2.Size = new System.Drawing.Size(1507, 719);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Customers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -801,7 +802,7 @@
             this.tabPage3.Controls.Add(this.lblRecyclerTabRecyclerID);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1457, 577);
+            this.tabPage3.Size = new System.Drawing.Size(1507, 719);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Recyclers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -911,6 +912,18 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "New Style Test";
             this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            this.tabPage4.Enter += new System.EventHandler(this.tabPage4_Enter);
+            // 
+            // radButton1
+            // 
+            this.radButton1.Location = new System.Drawing.Point(1176, 94);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(110, 32);
+            this.radButton1.TabIndex = 8;
+            this.radButton1.Text = "Clear Form";
+            this.radButton1.ThemeName = "TelerikMetroTouch";
+            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
             // 
             // radButtonBatchDelete
             // 
@@ -1270,16 +1283,6 @@
             // 
             this.batchServiceBindingSource.DataSource = typeof(PE2_Project_Employee_Hours.Logic.BatchService);
             // 
-            // radButton1
-            // 
-            this.radButton1.Location = new System.Drawing.Point(1176, 94);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(110, 32);
-            this.radButton1.TabIndex = 8;
-            this.radButton1.Text = "Clear Form";
-            this.radButton1.ThemeName = "TelerikMetroTouch";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1310,6 +1313,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecycler)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonBatchDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelDate)).EndInit();
@@ -1348,7 +1352,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
