@@ -117,6 +117,7 @@
             this.radLabelCrtTv = new Telerik.WinControls.UI.RadLabel();
             this.radLabelSuburb = new Telerik.WinControls.UI.RadLabel();
             this.radDateTimePickerDate = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.radDateTimePickerDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.radDropDownListCustomer = new Telerik.WinControls.UI.RadDropDownList();
             this.radDropDownListRecycler = new Telerik.WinControls.UI.RadDropDownList();
             this.radDropDownListState = new Telerik.WinControls.UI.RadDropDownList();
@@ -236,7 +237,7 @@
             tabPage1.Location = new System.Drawing.Point(4, 22);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            tabPage1.Size = new System.Drawing.Size(1507, 719);
+            tabPage1.Size = new System.Drawing.Size(1165, 719);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Jobs";
             tabPage1.UseVisualStyleBackColor = true;
@@ -277,7 +278,7 @@
             this.dgvBatchTotals.Name = "dgvBatchTotals";
             this.dgvBatchTotals.ReadOnly = true;
             this.dgvBatchTotals.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgvBatchTotals.Size = new System.Drawing.Size(1418, 27);
+            this.dgvBatchTotals.Size = new System.Drawing.Size(1076, 27);
             this.dgvBatchTotals.TabIndex = 10005;
             // 
             // btnBatchSavetoExcel
@@ -347,7 +348,7 @@
             this.dgvBatch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBatch.Location = new System.Drawing.Point(18, 424);
             this.dgvBatch.Name = "dgvBatch";
-            this.dgvBatch.Size = new System.Drawing.Size(1418, 287);
+            this.dgvBatch.Size = new System.Drawing.Size(1076, 287);
             this.dgvBatch.TabIndex = 18;
             this.dgvBatch.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBatch_CellClick);
             this.dgvBatch.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvBatch_ColumnWidthChanged);
@@ -687,7 +688,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1507, 719);
+            this.tabPage2.Size = new System.Drawing.Size(1165, 719);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Customers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -802,7 +803,7 @@
             this.tabPage3.Controls.Add(this.lblRecyclerTabRecyclerID);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1507, 719);
+            this.tabPage3.Size = new System.Drawing.Size(1165, 719);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Recyclers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -811,7 +812,7 @@
             // btnRecyclerTabSave
             // 
             this.btnRecyclerTabSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecyclerTabSave.Location = new System.Drawing.Point(984, 52);
+            this.btnRecyclerTabSave.Location = new System.Drawing.Point(973, 55);
             this.btnRecyclerTabSave.Name = "btnRecyclerTabSave";
             this.btnRecyclerTabSave.Size = new System.Drawing.Size(145, 29);
             this.btnRecyclerTabSave.TabIndex = 3;
@@ -1273,7 +1274,8 @@
             this.rgvBatch.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.rgvBatch_ViewCellFormatting);
             this.rgvBatch.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.rgvBatch_CellEditorInitialized);
             this.rgvBatch.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.rgvBatch_CellClick);
-            this.rgvBatch.Click += new System.EventHandler(this.rgvBatch_Click);
+            this.rgvBatch.DataBindingComplete += new Telerik.WinControls.UI.GridViewBindingCompleteEventHandler(this.rgvBatch_DataBindingComplete);
+
             // 
             // batchServiceBindingSource1
             // 
@@ -1282,6 +1284,7 @@
             // batchServiceBindingSource
             // 
             this.batchServiceBindingSource.DataSource = typeof(PE2_Project_Employee_Hours.Logic.BatchService);
+            this.batchServiceBindingSource.CurrentChanged += new System.EventHandler(this.batchServiceBindingSource_CurrentChanged);
             // 
             // Form1
             // 

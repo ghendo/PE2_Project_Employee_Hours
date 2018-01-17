@@ -9,7 +9,7 @@ namespace PE2_Project_Employee_Hours.Domain
 {
     public class Batch
     {
-        [DisplayName("Job Number")]
+        //[DisplayName("Job Number")]
         public int batchid { get; set; }
         public string batchreference { get; set; }
         public int stateid { get; set; }

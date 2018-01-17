@@ -24,16 +24,18 @@ namespace ITSD_Start
         DGVManager<DataTable> dgvCustomerManager = new DGVManager<DataTable>();
         DGVManager<DataTable> dgvRecyclerManager = new DGVManager<DataTable>();
         DGVManager<DataTable> dgvBatchTotalsManager = new DGVManager<DataTable>();
+        Boolean isDataGridFormatted;
         public Form1()
         {
             InitializeComponent();
-            new RadControlSpyForm().Show();
+            //new RadControlSpyForm().Show();
             
 
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            isDataGridFormatted = false;
             txtBatchBatchID.ReadOnly = true;
             txtCustomerID.ReadOnly = true;
             txtRecyclerTabRecyclerIdf.ReadOnly = true;
@@ -43,6 +45,7 @@ namespace ITSD_Start
             dgvRecyclerManager.Dgv = dgvRecycler;
             await LoadBatchForm();
             await LoadRGVBatchForm();
+           
         }
 
         private void ClearBatchForm()
@@ -132,8 +135,7 @@ namespace ITSD_Start
                 rgvBatch.DataSource = result.Data;
 
 
-                //setup the RGV details
-                SetRgvBatchDetails();
+                
             }
             else
             {
@@ -370,10 +372,12 @@ namespace ITSD_Start
             batchid.IsPinned = true;
             batchid.Width = numberWidth;
 
+
             GridViewColumn batchreference = rgvBatch.Columns["batchreference"];
             batchreference.HeaderText = "Job Reference";
             batchreference.IsPinned = true;
             batchreference.Width = Convert.ToInt32(numberWidth * 1.5);
+
 
             GridViewColumn stateid = rgvBatch.Columns["stateid"];
             stateid.IsVisible = false;
@@ -387,22 +391,29 @@ namespace ITSD_Start
             GridViewColumn abbreviation = rgvBatch.Columns["abbreviation"];
             abbreviation.HeaderText = "State";
             abbreviation.Width = numberWidth;
+            rgvBatch.Columns.Move(17, 2);
 
             GridViewColumn recyclername = rgvBatch.Columns["recyclername"];
             recyclername.HeaderText = "Recycler";
             recyclername.Width = nameWidth;
+            rgvBatch.Columns.Move(18, 3);
 
             GridViewColumn customername = rgvBatch.Columns["customername"];
             customername.HeaderText = "Customer";
             customername.Width = nameWidth;
+            rgvBatch.Columns.Move(19, 4);
 
             GridViewColumn sitesuburb = rgvBatch.Columns["sitesuburb"];
             sitesuburb.HeaderText = "Suburb";
             sitesuburb.Width = nameWidth;
+            rgvBatch.Columns.Move(18, 5);
 
-            GridViewColumn datecompleted = rgvBatch.Columns["datecompleted"];
+            GridViewDateTimeColumn datecompleted = rgvBatch.Columns["datecompleted"] as GridViewDateTimeColumn;
             datecompleted.HeaderText = "Date";
             datecompleted.Width = numberWidth;
+            datecompleted.FormatString = "{0:d}";
+            
+            rgvBatch.Columns.Move(9, 6);
 
             GridViewDecimalColumn pckilograms = rgvBatch.Columns["pckilograms"] as GridViewDecimalColumn;
             pckilograms.HeaderText = "PC Kg";
@@ -412,8 +423,7 @@ namespace ITSD_Start
             pckilogramsSI.Name = "pckilograms";
             pckilogramsSI.Aggregate = GridAggregateFunction.Sum;
             pckilogramsSI.FormatString = "{0:F2}";
-            
-
+            rgvBatch.Columns.Move(10, 7);
 
 
             GridViewDecimalColumn printerkilograms = rgvBatch.Columns["printerkilograms"] as GridViewDecimalColumn;
@@ -424,6 +434,7 @@ namespace ITSD_Start
             printerkilogramsSI.Name = "printerkilograms";
             printerkilogramsSI.Aggregate = GridAggregateFunction.Sum;
             printerkilogramsSI.FormatString = "{0:F2}";
+            rgvBatch.Columns.Move(11, 8);
 
             GridViewDecimalColumn crttvkilograms = rgvBatch.Columns["crttvkilograms"] as GridViewDecimalColumn;
             crttvkilograms.HeaderText = "CRT TV \nKg";
@@ -433,6 +444,7 @@ namespace ITSD_Start
             crttvkilogramsSI.Name = "crttvkilograms";
             crttvkilogramsSI.Aggregate = GridAggregateFunction.Sum;
             crttvkilogramsSI.FormatString = "{0:F2}";
+            rgvBatch.Columns.Move(12, 9);
 
             GridViewDecimalColumn crtmonitorkilograms = rgvBatch.Columns["crtmonitorkilograms"] as GridViewDecimalColumn;
             crtmonitorkilograms.HeaderText = "CRT Monitor \nKg";
@@ -442,6 +454,7 @@ namespace ITSD_Start
             crtmonitorkilogramsSI.Name = "crtmonitorkilograms";
             crtmonitorkilogramsSI.Aggregate = GridAggregateFunction.Sum;
             crtmonitorkilogramsSI.FormatString = "{0:F2}";
+            rgvBatch.Columns.Move(13, 10);
 
             GridViewDecimalColumn flatpaneltvkilograms = rgvBatch.Columns["flatpaneltvkilograms"] as GridViewDecimalColumn;
             flatpaneltvkilograms.HeaderText = "Flat Panel \nTV Kg";
@@ -451,6 +464,7 @@ namespace ITSD_Start
             flatpaneltvkilogramsSI.Name = "flatpaneltvkilograms";
             flatpaneltvkilogramsSI.Aggregate = GridAggregateFunction.Sum;
             flatpaneltvkilogramsSI.FormatString = "{0:F2}";
+            rgvBatch.Columns.Move(14, 11);
 
             GridViewDecimalColumn flatpanelmonitorkilograms = rgvBatch.Columns["flatpanelmonitorkilograms"] as GridViewDecimalColumn;
             flatpanelmonitorkilograms.HeaderText = "Flat Panel \nMonitor Kg";
@@ -460,6 +474,7 @@ namespace ITSD_Start
             flatpanelmonitorkilogramsSI.Name = "flatpanelmonitorkilograms";
             flatpanelmonitorkilogramsSI.Aggregate = GridAggregateFunction.Sum;
             flatpanelmonitorkilogramsSI.FormatString = "{0:F2}";
+            rgvBatch.Columns.Move(15, 12);
 
             GridViewDecimalColumn printingpresseskilograms = rgvBatch.Columns["printingpresseskilograms"] as GridViewDecimalColumn;
             printingpresseskilograms.HeaderText = "Printing \nPresses Kg";
@@ -469,6 +484,7 @@ namespace ITSD_Start
             printingpresseskilogramsSI.Name = "printingpresseskilograms";
             printingpresseskilogramsSI.Aggregate = GridAggregateFunction.Sum;
             printingpresseskilogramsSI.FormatString = "{0:F2}";
+            rgvBatch.Columns.Move(16, 13);
 
             GridViewDecimalColumn misckilograms = rgvBatch.Columns["misckilograms"] as GridViewDecimalColumn;
             misckilograms.HeaderText = "Misc Kg";
@@ -478,6 +494,7 @@ namespace ITSD_Start
             misckilogramsSI.Name = "misckilograms";
             misckilogramsSI.Aggregate = GridAggregateFunction.Sum;
             misckilogramsSI.FormatString = "{0:F2}";
+            rgvBatch.Columns.Move(17, 14);
 
             GridViewDecimalColumn recycledkilograms = rgvBatch.Columns["recycledkilograms"] as GridViewDecimalColumn;
             recycledkilograms.HeaderText = "Recycled \nKg";
@@ -487,7 +504,8 @@ namespace ITSD_Start
             recycledkilogramsSI.Name = "recycledkilograms";
             recycledkilogramsSI.Aggregate = GridAggregateFunction.Sum;
             recycledkilogramsSI.FormatString = "{0:F2}";
-            
+            rgvBatch.Columns.Move(18, 15);
+
 
             GridViewColumn rowversion = rgvBatch.Columns["rowversion"];
             rowversion.IsVisible = false;
@@ -501,7 +519,8 @@ namespace ITSD_Start
             summaryRowItemCollection.Clear();
             summaryRowItemCollection.Add(summaryRowItem);
 
-            
+            //set RGV setup flag to true
+            isDataGridFormatted = true;
 
         }
 
@@ -1500,11 +1519,6 @@ namespace ITSD_Start
             await LoadBatchForm();
         }
 
-        private void rgvBatch_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void rgvBatch_FilterChanged(object sender, Telerik.WinControls.UI.GridViewCollectionChangedEventArgs e)
         {
            // MessageBox.Show("Filter changed");
@@ -1582,15 +1596,15 @@ namespace ITSD_Start
                 }
 
                 radDateTimePickerDate.Text = Convert.ToDateTime(selectedRow.Cells["datecompleted"].Value.ToString()).ToShortDateString();
-                radTextBox4.Text = selectedRow.Cells["crttvkilograms"].Value.ToString();
-                radTextBox1.Text = selectedRow.Cells["crtmonitorkilograms"].Value.ToString();
-                radTextBox2.Text = selectedRow.Cells["flatpanelmonitorkilograms"].Value.ToString();
-                radTextBox10.Text = selectedRow.Cells["flatpaneltvkilograms"].Value.ToString();
-                radTextBox3.Text = selectedRow.Cells["printingpresseskilograms"].Value.ToString();
-                radTextBox5.Text = selectedRow.Cells["misckilograms"].Value.ToString();
-                radTextBox6.Text = selectedRow.Cells["recycledkilograms"].Value.ToString();
-                radTextBox7.Text = selectedRow.Cells["pckilograms"].Value.ToString();
-                radTextBox8.Text = selectedRow.Cells["printerkilograms"].Value.ToString();
+                radTextBox4.Text = Convert.ToDecimal(selectedRow.Cells["crttvkilograms"].Value).ToString("F2");
+                radTextBox1.Text = Convert.ToDecimal(selectedRow.Cells["crtmonitorkilograms"].Value).ToString("F2");
+                radTextBox2.Text = Convert.ToDecimal(selectedRow.Cells["flatpanelmonitorkilograms"].Value).ToString("F2");
+                radTextBox10.Text = Convert.ToDecimal(selectedRow.Cells["flatpaneltvkilograms"].Value).ToString("F2");
+                radTextBox3.Text = Convert.ToDecimal(selectedRow.Cells["printingpresseskilograms"].Value).ToString("F2");
+                radTextBox5.Text = Convert.ToDecimal(selectedRow.Cells["misckilograms"].Value).ToString("F2");
+                radTextBox6.Text = Convert.ToDecimal(selectedRow.Cells["recycledkilograms"].Value).ToString("F2");
+                radTextBox7.Text = Convert.ToDecimal(selectedRow.Cells["pckilograms"].Value).ToString("F2");
+                radTextBox8.Text = Convert.ToDecimal(selectedRow.Cells["printerkilograms"].Value).ToString("F2");
 
 
             }
@@ -1664,7 +1678,8 @@ namespace ITSD_Start
                 ResultEnum result = service.UpdateBatch(batch);
                 if (result == ResultEnum.Success)
                 {
-                    MessageBox.Show("Job Saved");
+                    //MessageBox.Show("Job Saved");
+                    ClearBatchRadForm();
                 }
                 else
                 {
@@ -1906,6 +1921,28 @@ namespace ITSD_Start
         private async void tabPage4_Enter(object sender, EventArgs e)
         {
             await LoadRGVBatchForm();
+        }
+
+        private void batchServiceBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rgvBatch_DataBindingComplete(object sender, GridViewBindingCompleteEventArgs e)
+        {
+            //check if RGD already setup
+            if (isDataGridFormatted)
+            {
+                return;
+            }
+            else
+            {
+                //setup the RGV details
+                SetRgvBatchDetails();
+            }
+            isDataGridFormatted = true;
+
+
         }
     }
 }
