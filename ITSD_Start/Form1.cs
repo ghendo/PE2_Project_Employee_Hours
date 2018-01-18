@@ -31,10 +31,12 @@ namespace ITSD_Start
             //new RadControlSpyForm().Show();
             
 
+
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+        
             isDataGridFormatted = false;
             txtBatchBatchID.ReadOnly = true;
             txtCustomerID.ReadOnly = true;

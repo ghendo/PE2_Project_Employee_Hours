@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TabPage tabPage1;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -117,7 +116,6 @@
             this.radLabelCrtTv = new Telerik.WinControls.UI.RadLabel();
             this.radLabelSuburb = new Telerik.WinControls.UI.RadLabel();
             this.radDateTimePickerDate = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.radDateTimePickerDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.radDropDownListCustomer = new Telerik.WinControls.UI.RadDropDownList();
             this.radDropDownListRecycler = new Telerik.WinControls.UI.RadDropDownList();
             this.radDropDownListState = new Telerik.WinControls.UI.RadDropDownList();
@@ -136,8 +134,7 @@
             this.rgvBatch = new Telerik.WinControls.UI.RadGridView();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
-            this.batchServiceBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.batchServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fluentTheme1 = new Telerik.WinControls.Themes.FluentTheme();
             tabPage1 = new System.Windows.Forms.TabPage();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBatchTotals)).BeginInit();
@@ -185,8 +182,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -237,7 +232,7 @@
             tabPage1.Location = new System.Drawing.Point(4, 22);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            tabPage1.Size = new System.Drawing.Size(1165, 719);
+            tabPage1.Size = new System.Drawing.Size(1507, 719);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Jobs";
             tabPage1.UseVisualStyleBackColor = true;
@@ -688,7 +683,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1165, 719);
+            this.tabPage2.Size = new System.Drawing.Size(1507, 719);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Customers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -803,7 +798,7 @@
             this.tabPage3.Controls.Add(this.lblRecyclerTabRecyclerID);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1165, 719);
+            this.tabPage3.Size = new System.Drawing.Size(1507, 719);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Recyclers";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -968,10 +963,10 @@
             // 
             this.radLabelRecycler.Location = new System.Drawing.Point(12, 130);
             this.radLabelRecycler.Name = "radLabelRecycler";
-            this.radLabelRecycler.Size = new System.Drawing.Size(62, 23);
+            this.radLabelRecycler.Size = new System.Drawing.Size(47, 18);
             this.radLabelRecycler.TabIndex = 5;
             this.radLabelRecycler.Text = "Recycler";
-            this.radLabelRecycler.ThemeName = "TelerikMetroTouch";
+            this.radLabelRecycler.ThemeName = "Fluent";
             // 
             // radLabelBatchIdValue
             // 
@@ -988,28 +983,28 @@
             // 
             this.radLabelBatchId.Location = new System.Drawing.Point(12, 17);
             this.radLabelBatchId.Name = "radLabelBatchId";
-            this.radLabelBatchId.Size = new System.Drawing.Size(90, 23);
+            this.radLabelBatchId.Size = new System.Drawing.Size(68, 18);
             this.radLabelBatchId.TabIndex = 5;
             this.radLabelBatchId.Text = "Job Number";
-            this.radLabelBatchId.ThemeName = "TelerikMetroTouch";
+            this.radLabelBatchId.ThemeName = "Fluent";
             // 
             // radLabelState
             // 
             this.radLabelState.Location = new System.Drawing.Point(12, 92);
             this.radLabelState.Name = "radLabelState";
-            this.radLabelState.Size = new System.Drawing.Size(41, 23);
+            this.radLabelState.Size = new System.Drawing.Size(32, 18);
             this.radLabelState.TabIndex = 5;
             this.radLabelState.Text = "State";
-            this.radLabelState.ThemeName = "TelerikMetroTouch";
+            this.radLabelState.ThemeName = "Fluent";
             // 
             // radLabelBatchReference
             // 
             this.radLabelBatchReference.Location = new System.Drawing.Point(12, 55);
             this.radLabelBatchReference.Name = "radLabelBatchReference";
-            this.radLabelBatchReference.Size = new System.Drawing.Size(101, 23);
+            this.radLabelBatchReference.Size = new System.Drawing.Size(76, 18);
             this.radLabelBatchReference.TabIndex = 5;
             this.radLabelBatchReference.Text = "Job Reference";
-            this.radLabelBatchReference.ThemeName = "TelerikMetroTouch";
+            this.radLabelBatchReference.ThemeName = "Fluent";
             // 
             // radLabelPrinter
             // 
@@ -1104,12 +1099,13 @@
             // radDateTimePickerDate
             // 
             this.radDateTimePickerDate.CalendarSize = new System.Drawing.Size(300, 300);
+            this.radDateTimePickerDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.radDateTimePickerDate.Location = new System.Drawing.Point(386, 87);
             this.radDateTimePickerDate.Name = "radDateTimePickerDate";
             this.radDateTimePickerDate.Size = new System.Drawing.Size(214, 32);
             this.radDateTimePickerDate.TabIndex = 4;
             this.radDateTimePickerDate.TabStop = false;
-            this.radDateTimePickerDate.Text = "Wednesday, 10 January 2018";
+            this.radDateTimePickerDate.Text = "10/01/2018";
             this.radDateTimePickerDate.ThemeName = "TelerikMetroTouch";
             this.radDateTimePickerDate.Value = new System.DateTime(2018, 1, 10, 14, 43, 41, 531);
             // 
@@ -1267,7 +1263,6 @@
             this.rgvBatch.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rgvBatch.Size = new System.Drawing.Size(1504, 491);
             this.rgvBatch.TabIndex = 0;
-            this.rgvBatch.Text = "radGridView1";
             this.rgvBatch.ThemeName = "TelerikMetroTouch";
             this.rgvBatch.UseScrollbarsInHierarchy = true;
             this.rgvBatch.CreateCell += new Telerik.WinControls.UI.GridViewCreateCellEventHandler(this.rgvBatch_CreateCell);
@@ -1275,16 +1270,6 @@
             this.rgvBatch.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.rgvBatch_CellEditorInitialized);
             this.rgvBatch.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.rgvBatch_CellClick);
             this.rgvBatch.DataBindingComplete += new Telerik.WinControls.UI.GridViewBindingCompleteEventHandler(this.rgvBatch_DataBindingComplete);
-
-            // 
-            // batchServiceBindingSource1
-            // 
-            this.batchServiceBindingSource1.DataSource = typeof(PE2_Project_Employee_Hours.Logic.BatchService);
-            // 
-            // batchServiceBindingSource
-            // 
-            this.batchServiceBindingSource.DataSource = typeof(PE2_Project_Employee_Hours.Logic.BatchService);
-            this.batchServiceBindingSource.CurrentChanged += new System.EventHandler(this.batchServiceBindingSource_CurrentChanged);
             // 
             // Form1
             // 
@@ -1353,8 +1338,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvBatch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.batchServiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1426,8 +1409,6 @@
         private System.Windows.Forms.TabPage tabPage4;
         private Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
         private Telerik.WinControls.UI.RadGridView rgvBatch;
-        private System.Windows.Forms.BindingSource batchServiceBindingSource;
-        private System.Windows.Forms.BindingSource batchServiceBindingSource1;
         private Telerik.WinControls.UI.RadDropDownList radDropDownListState;
         private System.Windows.Forms.Label lblDateN;
         private Telerik.WinControls.UI.RadTextBox radTextBoxBatchReference;
@@ -1464,6 +1445,7 @@
         private Telerik.WinControls.UI.RadLabel radLabelBatchIdValue;
         private Telerik.WinControls.UI.RadButton radButtonBatchDelete;
         private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.Themes.FluentTheme fluentTheme1;
     }
 }
 
