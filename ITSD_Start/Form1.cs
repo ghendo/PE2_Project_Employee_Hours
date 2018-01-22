@@ -38,38 +38,38 @@ namespace ITSD_Start
         {
         
             isDataGridFormatted = false;
-            txtBatchBatchID.ReadOnly = true;
-            txtCustomerID.ReadOnly = true;
-            txtRecyclerTabRecyclerIdf.ReadOnly = true;
-            dgvBatchManager.Dgv = dgvBatch;
-            dgvBatchTotalsManager.Dgv = dgvBatchTotals;
-            dgvCustomerManager.Dgv = dgvCustomer;
-            dgvRecyclerManager.Dgv = dgvRecycler;
-            await LoadBatchForm();
+            //txtBatchBatchID.ReadOnly = true;
+            //txtCustomerID.ReadOnly = true;
+            //txtRecyclerTabRecyclerIdf.ReadOnly = true;
+            //dgvBatchManager.Dgv = dgvBatch;
+            //dgvBatchTotalsManager.Dgv = dgvBatchTotals;
+            //dgvCustomerManager.Dgv = dgvCustomer;
+            //dgvRecyclerManager.Dgv = dgvRecycler;
+            //await LoadBatchForm();
             await LoadRGVBatchForm();
            
         }
 
-        private void ClearBatchForm()
-        {
-            txtBatchBatchID.Text = "";
-            txtBatchBatchReference.Text = "";
-            cboBatchStates.SelectedIndex = -1;
-            cboBatchRecycler.SelectedIndex = -1;
-            txtBatchSuburb.Text = "";
-            cboBatchCustomers.SelectedIndex = -1;
-            txtBatchDate.Text = "";
-            txtBatchCrtTvKilos.Text = "0";
-            txtBatchMonitorKilos.Text = "0";
-            txtBatchFlatPanelMonitorKilos.Text = "0";
-            txtBatchFlatPanelTvKilos.Text = "0";
-            txtBatchPrintingPressKilos.Text = "0";
-            txtBatchMiscKilos.Text = "0";
-            txtBatchRecycledKilos.Text = "0";
-            txtBatchPCKilos.Text = "0";
-            txtBatchPrinterKilos.Text = "0";
+        //private void ClearBatchForm()
+        //{
+        //    txtBatchBatchID.Text = "";
+        //    txtBatchBatchReference.Text = "";
+        //    cboBatchStates.SelectedIndex = -1;
+        //    cboBatchRecycler.SelectedIndex = -1;
+        //    txtBatchSuburb.Text = "";
+        //    cboBatchCustomers.SelectedIndex = -1;
+        //    txtBatchDate.Text = "";
+        //    txtBatchCrtTvKilos.Text = "0";
+        //    txtBatchMonitorKilos.Text = "0";
+        //    txtBatchFlatPanelMonitorKilos.Text = "0";
+        //    txtBatchFlatPanelTvKilos.Text = "0";
+        //    txtBatchPrintingPressKilos.Text = "0";
+        //    txtBatchMiscKilos.Text = "0";
+        //    txtBatchRecycledKilos.Text = "0";
+        //    txtBatchPCKilos.Text = "0";
+        //    txtBatchPrinterKilos.Text = "0";
 
-        }
+        //}
 
         private void ClearBatchRadForm()
         {
@@ -92,17 +92,15 @@ namespace ITSD_Start
 
         }
 
+        //private async Task LoadBatchForm()
+        //{
+        //    await LoadStatesCboASYNC();
+        //    await LoadRecylerCboASYNC();
+        //    await LoadCustomerCboASYNC();
+        //    await LoadBatchDGVDtASYNC(1, SortOrder.Descending);
 
-
-        private async Task LoadBatchForm()
-        {
-            await LoadStatesCboASYNC();
-            await LoadRecylerCboASYNC();
-            await LoadCustomerCboASYNC();
-            await LoadBatchDGVDtASYNC(1, SortOrder.Descending);
-
-            ClearBatchForm();
-        }
+        //    ClearBatchForm();
+        //}
 
         private async Task LoadRGVBatchForm()
         {
@@ -113,13 +111,13 @@ namespace ITSD_Start
             ClearBatchRadForm();
         }
 
-        private async void LoadCustomerForm()
-        {
-            await LoadCustomerDGV(0, SortOrder.Ascending);
-            CustomerFormClear();
+        //private async void LoadCustomerForm()
+        //{
+        //    await LoadCustomerDGV(0, SortOrder.Ascending);
+        //    CustomerFormClear();
             
 
-        }
+        //}
 
         private async Task LoadBatchRGVASYNC()
         {
@@ -147,50 +145,50 @@ namespace ITSD_Start
 
         }
 
-        private  async Task LoadBatchDGVDtASYNC(int sortCol, SortOrder sortOrder)
-        {
-            dgvBatchManager.Dgv.ReadOnly = true;
-            //null return object
-            Result<DataTable> result = new Result<DataTable>();
-            //call service method
-            BatchService service = new BatchService();
-            result =  await service.GetAllBatchedDtASYNC();
+        //private  async Task LoadBatchDGVDtASYNC(int sortCol, SortOrder sortOrder)
+        //{
+        //    dgvBatchManager.Dgv.ReadOnly = true;
+        //    //null return object
+        //    Result<DataTable> result = new Result<DataTable>();
+        //    //call service method
+        //    BatchService service = new BatchService();
+        //    result =  await service.GetAllBatchedDtASYNC();
 
 
-            if (result.Status == ResultEnum.Success)
-            {
-                //set the sort properties of dgv manager
-                dgvBatchManager.SortColumn = sortCol;
-                dgvBatchManager.SortDirection = sortOrder;
+        //    if (result.Status == ResultEnum.Success)
+        //    {
+        //        //set the sort properties of dgv manager
+        //        dgvBatchManager.SortColumn = sortCol;
+        //        dgvBatchManager.SortDirection = sortOrder;
 
-                //send result.data to dgv manager
-                dgvBatchManager.ResultData = result.Data;
-                //set the data in dgv manager
-                dgvBatchManager.SetResult();
-
-
-                //calculate totals
-
-                //set dvg manager last updated row
-                //String searchValue = EmpLastUpdate().Data.EmployeeId.ToString();
-                //dgvBatchManager.SetLastUpdatedRow(searchValue);
+        //        //send result.data to dgv manager
+        //        dgvBatchManager.ResultData = result.Data;
+        //        //set the data in dgv manager
+        //        dgvBatchManager.SetResult();
 
 
-                //load dgv
-                dgvBatchManager.LoadDgv();
+        //        //calculate totals
 
-                CalculateColumnnTotalsBatch();
-                CalculateRowTotalsBatch();
-                setDGVbatchColumnDetails();
+        //        //set dvg manager last updated row
+        //        //String searchValue = EmpLastUpdate().Data.EmployeeId.ToString();
+        //        //dgvBatchManager.SetLastUpdatedRow(searchValue);
 
 
-            }
-            else
-            {
-                MessageBox.Show("Cant get Jobs from databse");
-            }
+        //        //load dgv
+        //        dgvBatchManager.LoadDgv();
 
-        }
+        //        CalculateColumnnTotalsBatch();
+        //        CalculateRowTotalsBatch();
+        //        SetDGVbatchColumnDetails();
+
+
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Cant get Jobs from databse");
+        //    }
+
+        //}
 
         private void CalculateRowTotalsBatch()
         {
@@ -526,7 +524,7 @@ namespace ITSD_Start
 
         }
 
-        private void setDGVbatchColumnDetails()
+        private void SetDGVbatchColumnDetails()
         {
             DataGridViewCellStyle headerStyle = new DataGridViewCellStyle();
             headerStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -751,134 +749,134 @@ namespace ITSD_Start
             }
         }
 
-        private async void btnBatchInsert_Click(object sender, EventArgs e)
-        {
-            //null object for saving
-            Batch batch = new Batch();
+        //private async void btnBatchInsert_Click(object sender, EventArgs e)
+        //{
+        //    //null object for saving
+        //    Batch batch = new Batch();
 
-            //assign text boxes to object
-            try
-            {
-                //get vaulues from combo boxes
-                State state = cboBatchStates.SelectedItem as State;
-                Recycler recycler = cboBatchRecycler.SelectedItem as Recycler;
-                Customer customer = cboBatchCustomers.SelectedItem as Customer;
-                //assign values to batch
-                if (txtBatchBatchID.Text != "")
-                {
-                    batch.batchid = Convert.ToInt32(txtBatchBatchID.Text);
-                }
+        //    //assign text boxes to object
+        //    try
+        //    {
+        //        //get vaulues from combo boxes
+        //        State state = cboBatchStates.SelectedItem as State;
+        //        Recycler recycler = cboBatchRecycler.SelectedItem as Recycler;
+        //        Customer customer = cboBatchCustomers.SelectedItem as Customer;
+        //        //assign values to batch
+        //        if (txtBatchBatchID.Text != "")
+        //        {
+        //            batch.batchid = Convert.ToInt32(txtBatchBatchID.Text);
+        //        }
                 
-                batch.batchreference = txtBatchBatchReference.Text;
-                batch.stateid = Convert.ToInt32(state.StateId);
-                batch.recyclerid = Convert.ToInt32(recycler.recyclerid);
-                batch.sitesuburb = txtBatchSuburb.Text;
-                batch.customerid = Convert.ToInt32(customer.customerid);
-                batch.datecompleted = Convert.ToDateTime(txtBatchDate.Text);
-                batch.crttvkilograms = Convert.ToDecimal(txtBatchCrtTvKilos.Text);
-                batch.crtmonitorkilograms = Convert.ToDecimal(txtBatchMonitorKilos.Text);
-                batch.flatpanelmonitorkilograms = Convert.ToDecimal(txtBatchFlatPanelMonitorKilos.Text);
-                batch.flatpaneltvkilograms = Convert.ToDecimal(txtBatchFlatPanelTvKilos.Text);
-                batch.printingpresseskilograms = Convert.ToDecimal(txtBatchPrintingPressKilos.Text);
-                batch.misckilograms = Convert.ToDecimal(txtBatchMiscKilos.Text);
-                batch.recycledkilograms = Convert.ToDecimal(txtBatchRecycledKilos.Text);
-                batch.pckilograms = Convert.ToDecimal(txtBatchPCKilos.Text);
-                batch.printerkilograms = Decimal.Parse(txtBatchPrinterKilos.Text);
+        //        batch.batchreference = txtBatchBatchReference.Text;
+        //        batch.stateid = Convert.ToInt32(state.StateId);
+        //        batch.recyclerid = Convert.ToInt32(recycler.recyclerid);
+        //        batch.sitesuburb = txtBatchSuburb.Text;
+        //        batch.customerid = Convert.ToInt32(customer.customerid);
+        //        batch.datecompleted = Convert.ToDateTime(txtBatchDate.Text);
+        //        batch.crttvkilograms = Convert.ToDecimal(txtBatchCrtTvKilos.Text);
+        //        batch.crtmonitorkilograms = Convert.ToDecimal(txtBatchMonitorKilos.Text);
+        //        batch.flatpanelmonitorkilograms = Convert.ToDecimal(txtBatchFlatPanelMonitorKilos.Text);
+        //        batch.flatpaneltvkilograms = Convert.ToDecimal(txtBatchFlatPanelTvKilos.Text);
+        //        batch.printingpresseskilograms = Convert.ToDecimal(txtBatchPrintingPressKilos.Text);
+        //        batch.misckilograms = Convert.ToDecimal(txtBatchMiscKilos.Text);
+        //        batch.recycledkilograms = Convert.ToDecimal(txtBatchRecycledKilos.Text);
+        //        batch.pckilograms = Convert.ToDecimal(txtBatchPCKilos.Text);
+        //        batch.printerkilograms = Decimal.Parse(txtBatchPrinterKilos.Text);
                 
-            }
-            catch (Exception)
-            {
+        //    }
+        //    catch (Exception)
+        //    {
 
-                MessageBox.Show("Oops something went wrong");
-                return;
-            }
+        //        MessageBox.Show("Oops something went wrong");
+        //        return;
+        //    }
 
             //call service to send to database
 
             BatchService service = new BatchService();
             //test if insert or update
-            if (txtBatchBatchID.Text == "")
-            {
-                ResultEnum result = await service.InsertBatch(batch);
-                if (result == ResultEnum.Success)
-                {
-                    MessageBox.Show("Job Saved");
-                }
-                else
-                {
-                    MessageBox.Show("Something went wrong");
-                }
-            }
-            else
-            {
-                ResultEnum result = service.UpdateBatch(batch);
-                if (result == ResultEnum.Success)
-                {
-                    MessageBox.Show("Job Saved");
-                }
-                else
-                {
-                    MessageBox.Show("Something went wrong");
-                }
-            }
+        //    if (txtBatchBatchID.Text == "")
+        //    {
+        //        ResultEnum result = await service.InsertBatch(batch);
+        //        if (result == ResultEnum.Success)
+        //        {
+        //            MessageBox.Show("Job Saved");
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Something went wrong");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ResultEnum result = service.UpdateBatch(batch);
+        //        if (result == ResultEnum.Success)
+        //        {
+        //            MessageBox.Show("Job Saved");
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Something went wrong");
+        //        }
+        //    }
 
-            //reload dgv
-            await LoadBatchForm();
+        //    //reload dgv
+        //    await LoadBatchForm();
 
-        }
+        //}
 
-        private async void btnDelete_Click(object sender, EventArgs e)
-        {
-            Batch batch = new Batch();
-            try
-            {
-                //load batch object with data
-                if (txtBatchBatchID.Text != "")
-                {
-                    batch.batchid = Convert.ToInt32(txtBatchBatchID.Text);
-                }
+        //private async void btnDelete_Click(object sender, EventArgs e)
+        //{
+        //    Batch batch = new Batch();
+        //    try
+        //    {
+        //        //load batch object with data
+        //        if (txtBatchBatchID.Text != "")
+        //        {
+        //            batch.batchid = Convert.ToInt32(txtBatchBatchID.Text);
+        //        }
 
 
-                //delete data from database
-                //new service object
-                BatchService service = new BatchService();
+        //        //delete data from database
+        //        //new service object
+        //        BatchService service = new BatchService();
 
-                ResultEnum result = await service.DeleteBatch(batch);
-                if (result == ResultEnum.Success)
-                {
-                    MessageBox.Show("Job Deleted");
-                }
-                else
-                {
-                    MessageBox.Show("Something went wrong");
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Something went wrong");
-            }
-            await LoadBatchForm();
-        }
+        //        ResultEnum result = await service.DeleteBatch(batch);
+        //        if (result == ResultEnum.Success)
+        //        {
+        //            MessageBox.Show("Job Deleted");
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Something went wrong");
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        MessageBox.Show("Something went wrong");
+        //    }
+        //    await LoadBatchForm();
+        //}
 
-        private async Task LoadStatesCboASYNC()
-        {
-            Result<List<State>> result = new Result<List<State>>();
-            StateService service = new StateService();
-            result = await service.getAllStatesListASYNC();
-            if (result.Status == ResultEnum.Success)
-            {
-                List<State> list = result.Data;
-                cboBatchStates.DataSource = result.Data;
-                cboBatchStates.DisplayMember = "Abbreviation";
-                cboBatchStates.ValueMember = "StateId";
-                cboBatchStates.SelectedIndex = -1;
+        //private async Task LoadStatesCboASYNC()
+        //{
+        //    Result<List<State>> result = new Result<List<State>>();
+        //    StateService service = new StateService();
+        //    result = await service.getAllStatesListASYNC();
+        //    if (result.Status == ResultEnum.Success)
+        //    {
+        //        List<State> list = result.Data;
+        //        cboBatchStates.DataSource = result.Data;
+        //        cboBatchStates.DisplayMember = "Abbreviation";
+        //        cboBatchStates.ValueMember = "StateId";
+        //        cboBatchStates.SelectedIndex = -1;
 
-            }
-            else
-            {
-                MessageBox.Show("Cant get states from database");
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Cant get states from database");
+        //    }
+        //}
 
         private async Task LoadStatesRadCboASYNC()
         {
@@ -900,26 +898,26 @@ namespace ITSD_Start
             }
         }
 
-        private async Task LoadRecylerCboASYNC()
-        {
-            Result<List<Recycler>> result = new Result<List<Recycler>>();
-            RecyclerService service = new RecyclerService();
-            result = await service.GetAllRecyclersListASYNC();
-            if (result.Status == ResultEnum.Success)
-            {
-                List<Recycler> list = result.Data;
-                cboBatchRecycler.DataSource = result.Data;
-                cboBatchRecycler.DisplayMember = "recyclername";
-                cboBatchRecycler.ValueMember = "recyclerid";
-                cboBatchRecycler.SelectedIndex = -1;
+        //private async Task LoadRecylerCboASYNC()
+        //{
+        //    Result<List<Recycler>> result = new Result<List<Recycler>>();
+        //    RecyclerService service = new RecyclerService();
+        //    result = await service.GetAllRecyclersListASYNC();
+        //    if (result.Status == ResultEnum.Success)
+        //    {
+        //        List<Recycler> list = result.Data;
+        //        cboBatchRecycler.DataSource = result.Data;
+        //        cboBatchRecycler.DisplayMember = "recyclername";
+        //        cboBatchRecycler.ValueMember = "recyclerid";
+        //        cboBatchRecycler.SelectedIndex = -1;
 
-            }
-            else
-            {
-                MessageBox.Show("Cant get recyclers from database");
-            }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Cant get recyclers from database");
+        //    }
 
-        }
+        //}
 
         private async Task LoadRecylerRadCboASYNC()
         {
@@ -942,26 +940,26 @@ namespace ITSD_Start
 
         }
 
-        private async Task LoadCustomerCboASYNC()
-        {
-            Result<List<Customer>> result = new Result<List<Customer>>();
-            CustomerService service = new CustomerService();
-            result = await service.GetAllCustomersListASYNC();
-            if (result.Status == ResultEnum.Success)
-            {
-                List<Customer> list = result.Data;
-                cboBatchCustomers.DataSource = result.Data;
-                cboBatchCustomers.DisplayMember = "customername";
-                cboBatchCustomers.ValueMember = "customerid";
-                cboBatchCustomers.SelectedIndex = -1;
+        //private async Task LoadCustomerCboASYNC()
+        //{
+        //    Result<List<Customer>> result = new Result<List<Customer>>();
+        //    CustomerService service = new CustomerService();
+        //    result = await service.GetAllCustomersListASYNC();
+        //    if (result.Status == ResultEnum.Success)
+        //    {
+        //        List<Customer> list = result.Data;
+        //        cboBatchCustomers.DataSource = result.Data;
+        //        cboBatchCustomers.DisplayMember = "customername";
+        //        cboBatchCustomers.ValueMember = "customerid";
+        //        cboBatchCustomers.SelectedIndex = -1;
 
-            }
-            else
-            {
-                MessageBox.Show("Cant get customers from database");
-            }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Cant get customers from database");
+        //    }
 
-        }
+        //}
 
         private async Task LoadCustomerRadCboASYNC()
         {
@@ -984,222 +982,222 @@ namespace ITSD_Start
 
         }
 
-        private void dgvBatch_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                int index = e.RowIndex;// get the Row Index
-                //Do nothing if header
-                if (index < 0)
-                {
+        //private void dgvBatch_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    try
+        //    {
+        //        int index = e.RowIndex;// get the Row Index
+        //        //Do nothing if header
+        //        if (index < 0)
+        //        {
 
-                    return;
-                }
-                //Do nothing if data entry row at the end
-                DataGridViewRow selectedRow = dgvBatchManager.Dgv.Rows[index];
-                //Do nothing if data entry row at the end
-                if (selectedRow.IsNewRow)
-                {
-                    return;
-                }
+        //            return;
+        //        }
+        //        //Do nothing if data entry row at the end
+        //        DataGridViewRow selectedRow = dgvBatchManager.Dgv.Rows[index];
+        //        //Do nothing if data entry row at the end
+        //        if (selectedRow.IsNewRow)
+        //        {
+        //            return;
+        //        }
 
                 
-                txtBatchBatchID.Text = selectedRow.Cells["batchid"].Value.ToString();
-                txtBatchBatchReference.Text = selectedRow.Cells["batchreference"].Value.ToString();
-                foreach (State item in cboBatchStates.Items)
-                {
-                    if (item.StateId == Convert.ToInt32(selectedRow.Cells["stateid"].Value))
-                    {
-                        cboBatchStates.SelectedItem = item;
-                    }
-                }
+        //        txtBatchBatchID.Text = selectedRow.Cells["batchid"].Value.ToString();
+        //        txtBatchBatchReference.Text = selectedRow.Cells["batchreference"].Value.ToString();
+        //        foreach (State item in cboBatchStates.Items)
+        //        {
+        //            if (item.StateId == Convert.ToInt32(selectedRow.Cells["stateid"].Value))
+        //            {
+        //                cboBatchStates.SelectedItem = item;
+        //            }
+        //        }
 
-                foreach (Recycler item in cboBatchRecycler.Items)
-                {
-                    if (item.recyclerid == Convert.ToInt32(selectedRow.Cells["recyclerid"].Value))
-                    {
-                        cboBatchRecycler.SelectedItem = item;
-                    }
-                }
-                txtBatchSuburb.Text = selectedRow.Cells["sitesuburb"].Value.ToString();
-                foreach (Customer item in cboBatchCustomers.Items)
-                {
-                    if (item.customerid == Convert.ToInt32(selectedRow.Cells["customerid"].Value))
-                    {
-                        cboBatchCustomers.SelectedItem = item;
-                    }
-                }
-                txtBatchDate.Text = Convert.ToDateTime(selectedRow.Cells["datecompleted"].Value.ToString()).ToShortDateString();
-                txtBatchCrtTvKilos.Text = selectedRow.Cells["crttvkilograms"].Value.ToString();
-                txtBatchMonitorKilos.Text = selectedRow.Cells["crtmonitorkilograms"].Value.ToString();
-                txtBatchFlatPanelMonitorKilos.Text = selectedRow.Cells["flatpanelmonitorkilograms"].Value.ToString();
-                txtBatchFlatPanelTvKilos.Text = selectedRow.Cells["flatpaneltvkilograms"].Value.ToString();
-                txtBatchPrintingPressKilos.Text = selectedRow.Cells["printingpresseskilograms"].Value.ToString();
-                txtBatchMiscKilos.Text = selectedRow.Cells["misckilograms"].Value.ToString();
-                txtBatchRecycledKilos.Text = selectedRow.Cells["recycledkilograms"].Value.ToString();
-                txtBatchPCKilos.Text = selectedRow.Cells["pckilograms"].Value.ToString();
-                txtBatchPrinterKilos.Text = selectedRow.Cells["printerkilograms"].Value.ToString();
-
-
-            }
-            catch (Exception m)
-            {
-                MessageBox.Show(m.ToString());
-
-            }
-        }
-
-        private void btnBatchClear_Click(object sender, EventArgs e)
-        {
-            ClearBatchForm();
-        }
-
-        private void btnCustomerInsert_Click(object sender, EventArgs e)
-        {
-            Customer customer = new Customer();
-            try
-            {
-                //load customer object with data
-                if (txtCustomerID.Text != "")
-                {
-                    customer.customerid = Convert.ToInt32(txtCustomerID.Text);
-                }
-                customer.customername = txtCustomerName.Text;
-                customer.customersuburb = txtCustomerSuburb.Text;
-
-                //insert data into database
-                //new service object
-                CustomerService service = new CustomerService();
-                //test if update or insert
-                if (txtCustomerID.Text == "")
-                {
-                    ResultEnum result = service.InsertCustomer(customer);
-                    if (result == ResultEnum.Success)
-                    {
-                        MessageBox.Show("Customer Saved");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Something went wrong");
-                    }
-                }
-                else
-                {
-                    ResultEnum result = service.UpdateCustomer(customer);
-                    if (result == ResultEnum.Success)
-                    {
-                        MessageBox.Show("Customer Updated");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Something went wrong");
-                    }
-                }
-
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("Oops something went wrong");
-            }
-            LoadCustomerForm();
-        }
-
-        private void tabPage2_Enter(object sender, EventArgs e)
-        {
-
-            LoadCustomerForm();
-        }
-
-        private void dgvCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                // get the Row Index
-                int index = e.RowIndex;
-                DataGridViewRow selectedRow = dgvCustomerManager.Dgv.Rows[index];
-                //Do nothing if data entry row at the end
-                if (selectedRow.IsNewRow)
-                {
-                    return;
-                }
+        //        foreach (Recycler item in cboBatchRecycler.Items)
+        //        {
+        //            if (item.recyclerid == Convert.ToInt32(selectedRow.Cells["recyclerid"].Value))
+        //            {
+        //                cboBatchRecycler.SelectedItem = item;
+        //            }
+        //        }
+        //        txtBatchSuburb.Text = selectedRow.Cells["sitesuburb"].Value.ToString();
+        //        foreach (Customer item in cboBatchCustomers.Items)
+        //        {
+        //            if (item.customerid == Convert.ToInt32(selectedRow.Cells["customerid"].Value))
+        //            {
+        //                cboBatchCustomers.SelectedItem = item;
+        //            }
+        //        }
+        //        txtBatchDate.Text = Convert.ToDateTime(selectedRow.Cells["datecompleted"].Value.ToString()).ToShortDateString();
+        //        txtBatchCrtTvKilos.Text = selectedRow.Cells["crttvkilograms"].Value.ToString();
+        //        txtBatchMonitorKilos.Text = selectedRow.Cells["crtmonitorkilograms"].Value.ToString();
+        //        txtBatchFlatPanelMonitorKilos.Text = selectedRow.Cells["flatpanelmonitorkilograms"].Value.ToString();
+        //        txtBatchFlatPanelTvKilos.Text = selectedRow.Cells["flatpaneltvkilograms"].Value.ToString();
+        //        txtBatchPrintingPressKilos.Text = selectedRow.Cells["printingpresseskilograms"].Value.ToString();
+        //        txtBatchMiscKilos.Text = selectedRow.Cells["misckilograms"].Value.ToString();
+        //        txtBatchRecycledKilos.Text = selectedRow.Cells["recycledkilograms"].Value.ToString();
+        //        txtBatchPCKilos.Text = selectedRow.Cells["pckilograms"].Value.ToString();
+        //        txtBatchPrinterKilos.Text = selectedRow.Cells["printerkilograms"].Value.ToString();
 
 
-                //Do nothing if header
-                if (index < 0)
-                {
-                    return;
-                }
+        //    }
+        //    catch (Exception m)
+        //    {
+        //        MessageBox.Show(m.ToString());
 
-                txtCustomerName.Text = selectedRow.Cells["customername"].Value.ToString();
-                txtCustomerID.Text = selectedRow.Cells["customerid"].Value.ToString();
-                txtCustomerSuburb.Text = selectedRow.Cells["customersuburb"].Value.ToString();
-            }
-            catch (Exception)
-            {
+        //    }
+        //}
 
-                return;
-            }
+        //private void btnBatchClear_Click(object sender, EventArgs e)
+        //{
+        //    ClearBatchForm();
+        //}
+
+        //private void btnCustomerInsert_Click(object sender, EventArgs e)
+        //{
+        //    Customer customer = new Customer();
+        //    try
+        //    {
+        //        //load customer object with data
+        //        if (txtCustomerID.Text != "")
+        //        {
+        //            customer.customerid = Convert.ToInt32(txtCustomerID.Text);
+        //        }
+        //        customer.customername = txtCustomerName.Text;
+        //        customer.customersuburb = txtCustomerSuburb.Text;
+
+        //        //insert data into database
+        //        //new service object
+        //        CustomerService service = new CustomerService();
+        //        //test if update or insert
+        //        if (txtCustomerID.Text == "")
+        //        {
+        //            ResultEnum result = service.InsertCustomer(customer);
+        //            if (result == ResultEnum.Success)
+        //            {
+        //                MessageBox.Show("Customer Saved");
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Something went wrong");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            ResultEnum result = service.UpdateCustomer(customer);
+        //            if (result == ResultEnum.Success)
+        //            {
+        //                MessageBox.Show("Customer Updated");
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Something went wrong");
+        //            }
+        //        }
+
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        MessageBox.Show("Oops something went wrong");
+        //    }
+        //    LoadCustomerForm();
+        //}
+
+        //private void tabPage2_Enter(object sender, EventArgs e)
+        //{
+
+        //    LoadCustomerForm();
+        //}
+
+        //private void dgvCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    try
+        //    {
+        //        // get the Row Index
+        //        int index = e.RowIndex;
+        //        DataGridViewRow selectedRow = dgvCustomerManager.Dgv.Rows[index];
+        //        //Do nothing if data entry row at the end
+        //        if (selectedRow.IsNewRow)
+        //        {
+        //            return;
+        //        }
+
+
+        //        //Do nothing if header
+        //        if (index < 0)
+        //        {
+        //            return;
+        //        }
+
+        //        txtCustomerName.Text = selectedRow.Cells["customername"].Value.ToString();
+        //        txtCustomerID.Text = selectedRow.Cells["customerid"].Value.ToString();
+        //        txtCustomerSuburb.Text = selectedRow.Cells["customersuburb"].Value.ToString();
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        return;
+        //    }
            
-        }
+        //}
 
-        private void CustomerFormClear()
-        {
-            txtCustomerID.Text = "";
-            txtCustomerName.Text = "";
-            txtCustomerSuburb.Text = "";
-        }
+        //private void CustomerFormClear()
+        //{
+        //    txtCustomerID.Text = "";
+        //    txtCustomerName.Text = "";
+        //    txtCustomerSuburb.Text = "";
+        //}
 
-        private void RecyclerFormClear()
-        {
-            txtRecyclerTabRecyclerIdf.Text = "";
-            txtRecyclerTabRecyclerName.Text = "";
+        //private void RecyclerFormClear()
+        //{
+        //    txtRecyclerTabRecyclerIdf.Text = "";
+        //    txtRecyclerTabRecyclerName.Text = "";
 
-        }
+        //}
 
-        private void btnCustomerClear_Click(object sender, EventArgs e)
-        {
-            CustomerFormClear();
-        }
+        //private void btnCustomerClear_Click(object sender, EventArgs e)
+        //{
+        //    CustomerFormClear();
+        //}
 
-        private void btnCustomerDelete_Click(object sender, EventArgs e)
-        {
-            Customer customer = new Customer();
-            try
-            {
-                //load customer object with data
-                if (txtCustomerID.Text != "")
-                {
-                    customer.customerid = Convert.ToInt32(txtCustomerID.Text);
-                }
-                customer.customername = txtCustomerName.Text;
-                customer.customersuburb = txtCustomerSuburb.Text;
+        //private void btnCustomerDelete_Click(object sender, EventArgs e)
+        //{
+        //    Customer customer = new Customer();
+        //    try
+        //    {
+        //        //load customer object with data
+        //        if (txtCustomerID.Text != "")
+        //        {
+        //            customer.customerid = Convert.ToInt32(txtCustomerID.Text);
+        //        }
+        //        customer.customername = txtCustomerName.Text;
+        //        customer.customersuburb = txtCustomerSuburb.Text;
 
-                //delete data from database
-                //new service object
-                CustomerService service = new CustomerService();
-                //test if update or insert
+        //        //delete data from database
+        //        //new service object
+        //        CustomerService service = new CustomerService();
+        //        //test if update or insert
 
-                    ResultEnum result = service.DeleteCustomer(customer);
-                    if (result == ResultEnum.Success)
-                    {
-                        MessageBox.Show("Customer Deleted");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Something went wrong");
-                    }
+        //            ResultEnum result = service.DeleteCustomer(customer);
+        //            if (result == ResultEnum.Success)
+        //            {
+        //                MessageBox.Show("Customer Deleted");
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Something went wrong");
+        //            }
                 
 
 
-            }
-            catch (Exception)
-            {
+        //    }
+        //    catch (Exception)
+        //    {
 
-                MessageBox.Show("Oops something went wrong");
-            }
-            LoadCustomerForm();
-        }
+        //        MessageBox.Show("Oops something went wrong");
+        //    }
+        //    LoadCustomerForm();
+        //}
 
         private void dgvBatch_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -1328,198 +1326,198 @@ namespace ITSD_Start
             }
         }
 
-        private async void tabPage3_Enter(object sender, EventArgs e)
-        {
-            await LoadRecyclerDGV(0, SortOrder.Ascending);
-            RecyclerFormClear();
-        }
+        //private async void tabPage3_Enter(object sender, EventArgs e)
+        //{
+        //    await LoadRecyclerDGV(0, SortOrder.Ascending);
+        //    RecyclerFormClear();
+        //}
 
-        private async Task LoadRecycler()
-        {
-            await LoadRecyclerDGV(0, SortOrder.Ascending);
-            RecyclerFormClear();
-        }
+        //private async Task LoadRecycler()
+        //{
+        //    await LoadRecyclerDGV(0, SortOrder.Ascending);
+        //    RecyclerFormClear();
+        //}
 
-        private void dgvRecycler_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+        //private void dgvRecycler_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
 
-        }
+        //}
 
-        private async void tabPage1_Enter(object sender, EventArgs e)
-        {
-            await LoadBatchForm();
-            ClearBatchForm();
-        }
+        //private async void tabPage1_Enter(object sender, EventArgs e)
+        //{
+        //    await LoadBatchForm();
+        //    ClearBatchForm();
+        //}
 
-        private async void btnRecyclerTabSave_Click(object sender, EventArgs e)
-        {
-            Recycler recycler = new Recycler();
-            try
-            {
-                //load recycler object with data
-                if (txtRecyclerTabRecyclerIdf.Text != "")
-                {
-                    recycler.recyclerid = Convert.ToInt32(txtRecyclerTabRecyclerIdf.Text);
-                }
-                recycler.recyclername = txtRecyclerTabRecyclerName.Text;
-
-
-                //insert data into database
-                //new service object
-                RecyclerService service = new RecyclerService();
-                //test if update or insert
-                if (txtCustomerID.Text == "")
-                {
-                    ResultEnum result = await service.InsetRecyclerDtASYNC(recycler);
-                    if (result == ResultEnum.Success)
-                    {
-                        MessageBox.Show("Recycler Saved");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Something went wrong");
-                    }
-                }
-                else
-                {
-                    ResultEnum result = await service.InsetRecyclerDtASYNC(recycler);
-                    if (result == ResultEnum.Success)
-                    {
-                        MessageBox.Show("Recycler Updated");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Something went wrong");
-                    }
-                }
-
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("Oops something went wrong");
-            }
-            await LoadRecycler();
-        }
-
-        private void dgvBatch_Scroll(object sender, ScrollEventArgs e)
-        {
-            if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
-            {
-                int offSetValue = dgvBatchManager.Dgv.HorizontalScrollingOffset;
-
-                try
-                {
-                    dgvBatchTotalsManager.Dgv.HorizontalScrollingOffset = offSetValue;
-                }
-                catch { }
-
-                dgvBatchTotalsManager.Dgv.Invalidate();
-            }
-
-        }
-
-        private void dgvBatch_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
-        {
-            //DataGridViewColumn col = new DataGridViewColumn();
-            string colName = e.Column.Name;
-            try
-            {
-                if (colName != "")
-                {
-                    dgvBatchTotalsManager.Dgv.Columns[colName].Width = dgvBatchManager.Dgv.Columns[colName].Width;
-                    dgvBatchTotalsManager.Dgv.Invalidate();
-                }
+        //private async void btnRecyclerTabSave_Click(object sender, EventArgs e)
+        //{
+        //    Recycler recycler = new Recycler();
+        //    try
+        //    {
+        //        //load recycler object with data
+        //        if (txtRecyclerTabRecyclerIdf.Text != "")
+        //        {
+        //            recycler.recyclerid = Convert.ToInt32(txtRecyclerTabRecyclerIdf.Text);
+        //        }
+        //        recycler.recyclername = txtRecyclerTabRecyclerName.Text;
 
 
-            }
-            catch (Exception msg)
-            {
-                MessageBox.Show(msg.ToString());
-            }
-        }
+        //        //insert data into database
+        //        //new service object
+        //        RecyclerService service = new RecyclerService();
+        //        //test if update or insert
+        //        if (txtCustomerID.Text == "")
+        //        {
+        //            ResultEnum result = await service.InsetRecyclerDtASYNC(recycler);
+        //            if (result == ResultEnum.Success)
+        //            {
+        //                MessageBox.Show("Recycler Saved");
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Something went wrong");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            ResultEnum result = await service.InsetRecyclerDtASYNC(recycler);
+        //            if (result == ResultEnum.Success)
+        //            {
+        //                MessageBox.Show("Recycler Updated");
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Something went wrong");
+        //            }
+        //        }
 
-        private async void txtBatchFindByAny_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            if (e.KeyData == Keys.Tab)
-            {
-                string findString = txtBatchFindByAny.Text;
-                await LoadBatchesDGVFindAnyASYNC(findString);
+        //    }
+        //    catch (Exception)
+        //    {
 
-            }
-        }
+        //        MessageBox.Show("Oops something went wrong");
+        //    }
+        //    await LoadRecycler();
+        //}
 
-        private async Task LoadBatchesDGVFindAnyASYNC(string findString)
-        {
+        //private void dgvBatch_Scroll(object sender, ScrollEventArgs e)
+        //{
+        //    if (e.ScrollOrientation == ScrollOrientation.HorizontalScroll)
+        //    {
+        //        int offSetValue = dgvBatchManager.Dgv.HorizontalScrollingOffset;
 
-            //call find method
-            BatchService service =  new BatchService();
-            //Result<DataTable> result =  await service.FindBatchesByAny(findString);
-            Result<DataTable> result =  await service.FindBatchesByAny(findString);
+        //        try
+        //        {
+        //            dgvBatchTotalsManager.Dgv.HorizontalScrollingOffset = offSetValue;
+        //        }
+        //        catch { }
 
-            if (result.Status == ResultEnum.Success)
-            {
-                //show message if no records found
-                if (result.Data == null)
-                {
-                    MessageBox.Show("Nothing found");
-                    return;
-                }
+        //        dgvBatchTotalsManager.Dgv.Invalidate();
+        //    }
 
-                //set the sort properties of dgv manager
-                dgvBatchManager.SortColumn = 0;
-                dgvBatchManager.SortDirection = SortOrder.Ascending;
+        //}
 
-                //send result.data to dgv manager
-                dgvBatchManager.ResultData = result.Data;
-
-                //set the data in dgv manager
-                dgvBatchManager.SetResult();
+        //private void dgvBatch_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        //{
+        //    //DataGridViewColumn col = new DataGridViewColumn();
+        //    string colName = e.Column.Name;
+        //    try
+        //    {
+        //        if (colName != "")
+        //        {
+        //            dgvBatchTotalsManager.Dgv.Columns[colName].Width = dgvBatchManager.Dgv.Columns[colName].Width;
+        //            dgvBatchTotalsManager.Dgv.Invalidate();
+        //        }
 
 
-                //set dvg manager last updated row
-                //String searchValue = EmpLastUpdate().Data.EmployeeId.ToString();
-                //foreach (DataGridViewRow row in dgvEmployeeManager.Dgv.Rows)
-                //{
-                //    if (row.Cells["EmployeeId"].Value != null) // Need to check for null if data entry row exists
-                //    {
-                //        if (row.Cells["EmployeeId"].Value.ToString().Equals(searchValue))
-                //        {
-                //            //rowIndex = row.Index;
-                //            //set last updated row in manager
-                //            dgvEmployeeManager.LastUpdatedRow = row;
-                //            break;
-                //        }
-                //    }
-                //}
+        //    }
+        //    catch (Exception msg)
+        //    {
+        //        MessageBox.Show(msg.ToString());
+        //    }
+        //}
 
-                //load dgv
-                dgvBatchManager.LoadDgv();
-                CalculateColumnnTotalsBatch();
-                CalculateRowTotalsBatch();
-                setDGVbatchColumnDetails();
-            }
-        }
+        //private async void txtBatchFindByAny_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        //{
+        //    if (e.KeyData == Keys.Tab)
+        //    {
+        //        string findString = txtBatchFindByAny.Text;
+        //        await LoadBatchesDGVFindAnyASYNC(findString);
 
-        private async Task LoadBatchFindAsync(String findString)
-        {
-            ClearBatchForm();
-            await LoadStatesCboASYNC();
-            await LoadRecylerCboASYNC();
-            await LoadCustomerCboASYNC();
-            await LoadBatchesDGVFindAnyASYNC(findString);
-        }
+        //    }
+        //}
 
-        private async void btnBatchFind_Click(object sender, EventArgs e)
-        {
-            string findString = txtBatchFindByAny.Text;
-            await LoadBatchFindAsync(findString);
-        }
+        //private async Task LoadBatchesDGVFindAnyASYNC(string findString)
+        //{
 
-        private async void btnBatchReload_Click(object sender, EventArgs e)
-        {
-            await LoadBatchForm();
-        }
+        //    //call find method
+        //    BatchService service =  new BatchService();
+        //    //Result<DataTable> result =  await service.FindBatchesByAny(findString);
+        //    Result<DataTable> result =  await service.FindBatchesByAny(findString);
+
+        //    if (result.Status == ResultEnum.Success)
+        //    {
+        //        //show message if no records found
+        //        if (result.Data == null)
+        //        {
+        //            MessageBox.Show("Nothing found");
+        //            return;
+        //        }
+
+        //        //set the sort properties of dgv manager
+        //        dgvBatchManager.SortColumn = 0;
+        //        dgvBatchManager.SortDirection = SortOrder.Ascending;
+
+        //        //send result.data to dgv manager
+        //        dgvBatchManager.ResultData = result.Data;
+
+        //        //set the data in dgv manager
+        //        dgvBatchManager.SetResult();
+
+
+        //        //set dvg manager last updated row
+        //        //String searchValue = EmpLastUpdate().Data.EmployeeId.ToString();
+        //        //foreach (DataGridViewRow row in dgvEmployeeManager.Dgv.Rows)
+        //        //{
+        //        //    if (row.Cells["EmployeeId"].Value != null) // Need to check for null if data entry row exists
+        //        //    {
+        //        //        if (row.Cells["EmployeeId"].Value.ToString().Equals(searchValue))
+        //        //        {
+        //        //            //rowIndex = row.Index;
+        //        //            //set last updated row in manager
+        //        //            dgvEmployeeManager.LastUpdatedRow = row;
+        //        //            break;
+        //        //        }
+        //        //    }
+        //        //}
+
+        //        //load dgv
+        //        dgvBatchManager.LoadDgv();
+        //        CalculateColumnnTotalsBatch();
+        //        CalculateRowTotalsBatch();
+        //        SetDGVbatchColumnDetails();
+        //    }
+        //}
+
+        //private async Task LoadBatchFindAsync(String findString)
+        //{
+        //    ClearBatchForm();
+        //    await LoadStatesCboASYNC();
+        //    await LoadRecylerCboASYNC();
+        //    await LoadCustomerCboASYNC();
+        //    await LoadBatchesDGVFindAnyASYNC(findString);
+        //}
+
+        //private async void btnBatchFind_Click(object sender, EventArgs e)
+        //{
+        //    string findString = txtBatchFindByAny.Text;
+        //    await LoadBatchFindAsync(findString);
+        //}
+
+        //private async void btnBatchReload_Click(object sender, EventArgs e)
+        //{
+        //    await LoadBatchForm();
+        //}
 
         private void rgvBatch_FilterChanged(object sender, Telerik.WinControls.UI.GridViewCollectionChangedEventArgs e)
         {
