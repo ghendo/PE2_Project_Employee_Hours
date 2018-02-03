@@ -71,6 +71,7 @@
             this.fluentTheme1 = new Telerik.WinControls.Themes.FluentTheme();
             this.Jobs = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonBatchDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSave)).BeginInit();
@@ -454,7 +455,7 @@
             this.rgvBatch.Name = "rgvBatch";
             this.rgvBatch.ReadOnly = true;
             this.rgvBatch.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rgvBatch.Size = new System.Drawing.Size(1329, 496);
+            this.rgvBatch.Size = new System.Drawing.Size(1369, 496);
             this.rgvBatch.TabIndex = 0;
             this.rgvBatch.ThemeName = "TelerikMetroTouch";
             this.rgvBatch.UseScrollbarsInHierarchy = true;
@@ -467,10 +468,12 @@
             // Jobs
             // 
             this.Jobs.Controls.Add(this.radPageViewPage1);
+            this.Jobs.Controls.Add(this.radPageViewPage2);
+            this.Jobs.DefaultPage = this.radPageViewPage1;
             this.Jobs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Jobs.Location = new System.Drawing.Point(0, 0);
             this.Jobs.Name = "Jobs";
-            this.Jobs.SelectedPage = this.radPageViewPage1;
+            this.Jobs.SelectedPage = this.radPageViewPage2;
             this.Jobs.Size = new System.Drawing.Size(1378, 739);
             this.Jobs.TabIndex = 1;
             this.Jobs.ThemeName = "TelerikMetroTouch";
@@ -518,6 +521,14 @@
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(1368, 694);
             this.radPageViewPage1.Text = "Jobs";
+            // 
+            // radPageViewPage2
+            // 
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(84F, 29F);
+            this.radPageViewPage2.Location = new System.Drawing.Point(5, 40);
+            this.radPageViewPage2.Name = "radPageViewPage2";
+            this.radPageViewPage2.Size = new System.Drawing.Size(1368, 694);
+            this.radPageViewPage2.Text = "Customers";
             // 
             // Form1
             // 
@@ -624,6 +635,7 @@
         private Telerik.WinControls.Themes.FluentTheme fluentTheme1;
         private Telerik.WinControls.UI.RadPageView Jobs;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
     }
 }
 
