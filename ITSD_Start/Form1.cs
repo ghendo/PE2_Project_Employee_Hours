@@ -24,20 +24,22 @@ namespace ITSD_Start
         DGVManager<DataTable> dgvCustomerManager = new DGVManager<DataTable>();
         DGVManager<DataTable> dgvRecyclerManager = new DGVManager<DataTable>();
         DGVManager<DataTable> dgvBatchTotalsManager = new DGVManager<DataTable>();
-        Boolean isDataGridFormatted;
+        Boolean isDataGridFormattedBatch;
+        Boolean isDataGridFormattedCustomer;
+        Boolean isDataGridFormattedRecycler;
         public Form1()
         {
             InitializeComponent();
             //new RadControlSpyForm().Show();
             
-
-
         }
 
         private async void Form1_Load(object sender, EventArgs e)
         {
         
-            isDataGridFormatted = false;
+            isDataGridFormattedBatch = false;
+            isDataGridFormattedCustomer = false;
+            isDataGridFormattedRecycler = false;
             //txtBatchBatchID.ReadOnly = true;
             //txtCustomerID.ReadOnly = true;
             //txtRecyclerTabRecyclerIdf.ReadOnly = true;
@@ -47,7 +49,10 @@ namespace ITSD_Start
             //dgvRecyclerManager.Dgv = dgvRecycler;
             //await LoadBatchForm();
             await LoadRGVBatchForm();
-           
+            await LoadRGVCustomerForm();
+            await LoadRGVRecyclerForm();
+
+
         }
 
         //private void ClearBatchForm()
@@ -92,6 +97,20 @@ namespace ITSD_Start
 
         }
 
+        private void ClearCustomerRadForm()
+        {
+            radTextBoxCustCustId.Text = "Undefined";
+            radTextBoxCustCustName.Text = "";
+            radTextBoxCustCustSuburb.Text = "";
+        }
+
+        private void ClearRecyclerRadForm()
+        {
+            radTextBoxControlRecyRecyclerId.Text = "Undefined";
+            radTextBoxControlRecyRecyclerName.Text = "";
+
+        }
+
         //private async Task LoadBatchForm()
         //{
         //    await LoadStatesCboASYNC();
@@ -108,14 +127,26 @@ namespace ITSD_Start
             await LoadRecylerRadCboASYNC();
             await LoadStatesRadCboASYNC();
             await LoadBatchRGVASYNC();
+
             ClearBatchRadForm();
         }
 
+        private async Task LoadRGVCustomerForm()
+        {
+            await LoadCustomerRGVAsync();
+            ClearCustomerRadForm();
+        }
+
+        private async Task LoadRGVRecyclerForm()
+        {
+            await LoadRecyclerRGVAsync();
+            ClearRecyclerRadForm();
+        }
         //private async void LoadCustomerForm()
         //{
         //    await LoadCustomerDGV(0, SortOrder.Ascending);
         //    CustomerFormClear();
-            
+
 
         //}
 
@@ -131,7 +162,7 @@ namespace ITSD_Start
 
             if (result.Status == ResultEnum.Success)
             {
-                //load the data into the rad gid
+                //load the data into the rad grid
                 rgvBatch.DataSource = result.Data;
 
 
@@ -142,6 +173,52 @@ namespace ITSD_Start
                 MessageBox.Show("Cant get Jobs from database");
             }
             
+
+        }
+
+        private async Task LoadCustomerRGVAsync()
+        {
+
+            //null return object
+            Result<DataTable> result = new Result<DataTable>();
+            //call service method
+            CustomerService service = new CustomerService();
+            result = await service.GetAllCustomersDtASYNC();
+
+
+            if (result.Status == ResultEnum.Success)
+            {
+                //load the data into the rad gid
+                radGridViewCustomers.DataSource = result.Data;
+            }
+            else
+            {
+                MessageBox.Show("Cant get Customers from database");
+            }
+
+
+        }
+
+        private async Task LoadRecyclerRGVAsync()
+        {
+
+            //null return object
+            Result<DataTable> result = new Result<DataTable>();
+            //call service method
+            RecyclerService service = new RecyclerService();
+            result = await service.GetAllRecyclersDtASYNC();
+
+
+            if (result.Status == ResultEnum.Success)
+            {
+                //load the data into the rad grid
+                radGridViewRecyclers.DataSource = result.Data;
+            }
+            else
+            {
+                MessageBox.Show("Cant get Recyclers from database");
+            }
+
 
         }
 
@@ -520,8 +597,76 @@ namespace ITSD_Start
             summaryRowItemCollection.Add(summaryRowItem);
 
             //set RGV setup flag to true
-            isDataGridFormatted = true;
+            isDataGridFormattedBatch = true;
 
+        }
+
+        private void SetRgvCustomerDetails()
+        {
+            // standard widths
+            int numberWidth = 110;
+            int nameWidth = 160;
+
+            //Enable filtering of columns
+            radGridViewCustomers.MasterTemplate.EnableFiltering = true;
+            radGridViewCustomers.EnableFiltering = true;
+            radGridViewCustomers.MasterView.TableFilteringRow.Height = 40;
+            radGridViewCustomers.Columns[0].MinWidth = 65;
+
+            //Disable auto sizing of columns
+            radGridViewCustomers.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.None;
+
+            //set column details
+            GridViewColumn customerid = radGridViewCustomers.Columns["customerid"];
+            customerid.HeaderText = "Number";
+            customerid.IsPinned = true;
+            customerid.Width = numberWidth;
+
+            GridViewColumn customername = radGridViewCustomers.Columns["customername"];
+            customername.HeaderText = "Name";
+            customername.Width = nameWidth;
+
+            GridViewColumn customersuburb = radGridViewCustomers.Columns["customersuburb"];
+            customersuburb.HeaderText = "Suburb";
+            customersuburb.Width = nameWidth;
+
+            GridViewColumn rowversion = radGridViewCustomers.Columns["rowversion"];
+            rowversion.IsVisible = false;
+
+            //set RGV setup flag to true
+            isDataGridFormattedCustomer = true;
+        }
+
+        private void SetRgvRecyclerDetails()
+        {
+            // standard widths
+            int numberWidth = 110;
+            int nameWidth = 160;
+
+            //Enable filtering of columns
+            radGridViewRecyclers.MasterTemplate.EnableFiltering = true;
+            radGridViewRecyclers.EnableFiltering = true;
+            radGridViewRecyclers.MasterView.TableFilteringRow.Height = 40;
+            radGridViewRecyclers.Columns[0].MinWidth = 65;
+
+            //Disable auto sizing of columns
+            radGridViewRecyclers.AutoSizeColumnsMode = GridViewAutoSizeColumnsMode.None;
+
+            //set column details
+            GridViewColumn recyclerid = radGridViewRecyclers.Columns["recyclerid"];
+            recyclerid.HeaderText = "Number";
+            recyclerid.IsPinned = true;
+            recyclerid.Width = numberWidth;
+
+            GridViewColumn recyclername = radGridViewRecyclers.Columns["recyclername"];
+            recyclername.HeaderText = "Name";
+            recyclername.Width = nameWidth;
+
+            GridViewColumn rowversion = radGridViewRecyclers.Columns["rowversion"];
+            rowversion.IsVisible = false;
+
+            //set RGV setup flag to true
+            isDataGridFormattedRecycler = true;
         }
 
         private void SetDGVbatchColumnDetails()
@@ -793,7 +938,7 @@ namespace ITSD_Start
 
             //call service to send to database
 
-            BatchService service = new BatchService();
+        //     BatchService service = new BatchService();
             //test if insert or update
         //    if (txtBatchBatchID.Text == "")
         //    {
@@ -1199,10 +1344,7 @@ namespace ITSD_Start
         //    LoadCustomerForm();
         //}
 
-        private void dgvBatch_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            
-        }
+
 
         private void btnBatchSavetoExcel_Click(object sender, EventArgs e)
         {
@@ -1519,11 +1661,6 @@ namespace ITSD_Start
         //    await LoadBatchForm();
         //}
 
-        private void rgvBatch_FilterChanged(object sender, Telerik.WinControls.UI.GridViewCollectionChangedEventArgs e)
-        {
-           // MessageBox.Show("Filter changed");
-        }
-
         //Format the summary row cells to align right
         private void rgvBatch_ViewCellFormatting(object sender, CellFormattingEventArgs e)
         {
@@ -1614,6 +1751,8 @@ namespace ITSD_Start
 
             }
         }
+
+        
 
         private async void radButtonSave_Click(object sender, EventArgs e)
         {
@@ -1930,8 +2069,8 @@ namespace ITSD_Start
 
         private void rgvBatch_DataBindingComplete(object sender, GridViewBindingCompleteEventArgs e)
         {
-            //check if RGD already setup
-            if (isDataGridFormatted)
+            //check if RGV already setup
+            if (isDataGridFormattedBatch)
             {
                 return;
             }
@@ -1940,9 +2079,205 @@ namespace ITSD_Start
                 //setup the RGV details
                 SetRgvBatchDetails();
             }
-            isDataGridFormatted = true;
+            isDataGridFormattedBatch = true;
 
 
+        }
+
+        private void radTextBoxCustCustId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radTextBoxCustCustId_CreateTextBlock(object sender, CreateTextBlockEventArgs e)
+        {
+            radTextBoxCustCustId.IsReadOnly = true;
+        }
+
+        private void radGridViewCustomers_DataBindingComplete(object sender, GridViewBindingCompleteEventArgs e)
+        {
+            //check if RGV already setup
+            if (isDataGridFormattedCustomer)
+            {
+                return;
+            }
+            else
+            {
+                //setup the RGV details
+                SetRgvCustomerDetails();
+            }
+            isDataGridFormattedCustomer = true;
+        }
+
+        private void radGridViewCustomers_CellClick(object sender, GridViewCellEventArgs e)
+        {
+            try
+            {
+                int index = e.RowIndex;// get the Row Index
+                //Do nothing if header
+                if (index < 0)
+                {
+
+                    return;
+                }
+
+                //get the selected row
+                GridViewDataRowInfo selectedRow = radGridViewCustomers.Rows[index] as GridViewDataRowInfo;
+
+                //set the text box values to the selected row values
+                radTextBoxCustCustId.Text = selectedRow.Cells["customerid"].Value.ToString();
+                radTextBoxCustCustName.Text = selectedRow.Cells["customername"].Value.ToString();
+                radTextBoxCustCustSuburb.Text = selectedRow.Cells["customersuburb"].Value.ToString();
+            }
+            catch (Exception m)
+            {
+
+                MessageBox.Show(m.ToString());
+            }
+        }
+
+        private async void radButtonCustInsert_Click(object sender, EventArgs e)
+        {
+            //null object for saving
+            Customer customer = new Customer();
+
+            try
+            {
+                //assign text boxes to object
+                customer.customername = radTextBoxCustCustName.Text;
+                customer.customersuburb = radTextBoxCustCustSuburb.Text;
+                if (radTextBoxCustCustId.Text != "Undefined")
+                {
+                    customer.customerid = Convert.ToInt32(radTextBoxCustCustId.Text);
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Oops something went wrong");
+                return;
+            }
+
+            //call service to send to database
+            CustomerService service = new CustomerService();
+            if (radTextBoxCustCustId.Text == "Undefined")
+            {
+                ResultEnum result = await service.InsertCustomerAsync(customer);
+                if (result == ResultEnum.Success)
+                {
+                    //MessageBox.Show("Job Saved");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong");
+                }
+            }
+            else
+            {
+                ResultEnum result = await service.UpdateCustomerAsync(customer);
+                if (result == ResultEnum.Success)
+                {
+                    //MessageBox.Show("Job Saved");
+                    ClearBatchRadForm();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong");
+                }
+            }
+            //reload rgv
+            await LoadCustomerRGVAsync();
+            ClearCustomerRadForm();
+        }
+
+        private void radButtonCustClearForm_Click(object sender, EventArgs e)
+        {
+            ClearCustomerRadForm();
+        }
+
+        private void radGridViewRecyclers_DataBindingComplete(object sender, GridViewBindingCompleteEventArgs e)
+        {
+            //check if RGV already setup
+            if (isDataGridFormattedRecycler)
+            {
+                return;
+            }
+            else
+            {
+                //setup the RGV details
+                SetRgvRecyclerDetails();
+            }
+            isDataGridFormattedRecycler = true;
+        }
+
+        private void radTextBoxControlRecyRecyclerId_CreateTextBlock(object sender, CreateTextBlockEventArgs e)
+        {
+            radTextBoxControlRecyRecyclerId.IsReadOnly = true;
+        }
+
+        private void radGridViewRecyclers_CellClick(object sender, GridViewCellEventArgs e)
+        {
+            int index = e.RowIndex;// get the Row Index
+                                   //Do nothing if header
+            if (index < 0)
+            {
+
+                return;
+            }
+
+            //get the selected row
+            GridViewDataRowInfo selectedRow = radGridViewRecyclers.Rows[index] as GridViewDataRowInfo;
+
+            //set the text box values to the selected row values
+            radTextBoxControlRecyRecyclerId.Text = selectedRow.Cells["recyclerid"].Value.ToString();
+            radTextBoxControlRecyRecyclerName.Text = selectedRow.Cells["recyclername"].Value.ToString();
+        }
+
+        private async void radButtonRecyInsert_Click(object sender, EventArgs e)
+        {
+            //null object for saving
+            Recycler recycler = new Recycler();
+
+            try
+            {
+                //assign text boxes to object
+                recycler.recyclername = radTextBoxControlRecyRecyclerName.Text;
+                if (radTextBoxControlRecyRecyclerId.Text != "Undefined")
+                {
+                    recycler.recyclerid = Convert.ToInt32(radTextBoxControlRecyRecyclerId.Text);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Oops something went wrong");
+                return;
+            }
+
+            //call service to send to database
+            RecyclerService service = new RecyclerService();
+            if (radTextBoxControlRecyRecyclerId.Text == "Undefined")
+            {
+                ResultEnum result = await service.InsetRecyclerDtASYNC(recycler);
+                if (result == ResultEnum.Success)
+                {
+                    //MessageBox.Show("Recycler Saved");
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong");
+                }
+            }
+            else
+            {
+                //TODO  update recycler
+            }
+            await LoadRecyclerRGVAsync();
+            ClearRecyclerRadForm();
+        }
+
+        private void radButtonRecyClearForm_Click(object sender, EventArgs e)
+        {
+            ClearRecyclerRadForm();
         }
     }
 }

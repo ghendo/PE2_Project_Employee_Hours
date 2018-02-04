@@ -27,6 +27,25 @@ namespace PE2_Project_Employee_Hours.Logic
             return result;
         }
 
+        public async Task<ResultEnum> InsertCustomerAsync(Customer customer)
+        {
+            ResultEnum result = ResultEnum.Success;
+
+            try
+            {
+                CustomerDAO dao = new CustomerDAO();
+                await dao.InsertCustomerAsync(customer);
+
+
+            }
+            catch
+            {
+
+                result = ResultEnum.Fail;
+            }
+            return result;
+        }
+
         public ResultEnum UpdateCustomer(Customer customer)
         {
             ResultEnum result = ResultEnum.Success;
@@ -35,6 +54,22 @@ namespace PE2_Project_Employee_Hours.Logic
                 CustomerDAO dao = new CustomerDAO();
                 dao.UpdateCustomer(customer);
               
+            }
+            catch
+            {
+                result = ResultEnum.Fail;
+            }
+            return result;
+        }
+
+        public async Task<ResultEnum> UpdateCustomerAsync(Customer customer)
+        {
+            ResultEnum result = ResultEnum.Success;
+            try
+            {
+                CustomerDAO dao = new CustomerDAO();
+                await dao.UpdateCustomerAsync(customer);
+
             }
             catch
             {
@@ -75,7 +110,6 @@ namespace PE2_Project_Employee_Hours.Logic
             }
             return result;
         }
-
 
         public async Task<Result<DataTable>> GetAllCustomersDtASYNC()
         {

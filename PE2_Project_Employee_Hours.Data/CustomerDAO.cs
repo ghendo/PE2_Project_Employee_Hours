@@ -42,6 +42,45 @@ namespace PE2_Project_Employee_Hours.Data
 
         }
 
+        public async Task InsertCustomerAsync(Customer customer)
+        {
+
+            //null list of customer
+            List<Customer> customerList = new List<Customer>();
+
+            //Add customer to list
+            customerList.Add(customer);
+            //Assign list to variable
+            var payload = customerList;
+            //Serialise payload to JSON string and assign to stringpayload
+            var stringPayload = JsonConvert.SerializeObject(payload);
+            //Assign stringpayload to http content
+            var httpContent = new StringContent(stringPayload, Encoding.ASCII, "application/json");
+            await InsertCustomerData(httpContent);
+
+        }
+
+        private async Task<String> InsertCustomerData(StringContent httpContent)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                //post data
+                var response = await httpClient.PostAsync(new Uri("https://prod-20.australiaeast.logic.azure.com:443/workflows/b935a6b28ab74ccba89bfaaa5074a7e8/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=JVn6zCljG2G69hgBuZHgRXZYLSsZJSOZByOZAkY-Xyk"), httpContent);
+                if (response != null)
+                {
+                    var code = response.StatusCode.ToString();
+                    return code;
+                    //JsonConvert.DeserializeObject<string>(response);
+                    // TODO return code
+                }
+                else
+                {
+                    return "999";
+                }
+
+            }
+        }
+
         public void UpdateCustomer(Customer customer)
         {
             //null list of customer
@@ -69,6 +108,42 @@ namespace PE2_Project_Employee_Hours.Data
             }
         }
 
+        public async Task UpdateCustomerAsync(Customer customer)
+        {
+            //null list of customer
+            List<Customer> customerList = new List<Customer>();
+            //Add customer to list
+            customerList.Add(customer);
+            //Assign list to variable
+            var payload = customerList;
+            //Serialise payload to JSON string and assign to stringpayload
+            var stringPayload = JsonConvert.SerializeObject(payload);
+            //Assign stringpayload to http content
+            var httpContent = new StringContent(stringPayload, Encoding.ASCII, "application/json");
+            await UpdateCustomerData(httpContent);
+        }
+
+        private async Task<String> UpdateCustomerData(StringContent httpContent)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                //post data
+                var response = await httpClient.PostAsync(new Uri("https://prod-28.australiaeast.logic.azure.com:443/workflows/5265e49f7196491e8d336d73284e72d9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fy5R67NgJ3qkW4BVEnLPVcNkxUBhOoU1MWkNofbQzeM"), httpContent);
+                if (response != null)
+                {
+                    var code = response.StatusCode.ToString();
+                    return code;
+
+                }
+                else
+                {
+                    return "999";
+                }
+
+            }
+
+        }
+        
         public void DeleteCustomer(Customer customer)
         {
             //null list of customer
