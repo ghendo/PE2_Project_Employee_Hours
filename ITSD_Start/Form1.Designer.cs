@@ -74,6 +74,8 @@
             this.Jobs = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radButtonCustClearForm = new Telerik.WinControls.UI.RadButton();
+            this.radButtonCustInsert = new Telerik.WinControls.UI.RadButton();
             this.radTextBoxCustCustId = new Telerik.WinControls.UI.RadTextBoxControl();
             this.radTextBoxCustCustSuburb = new Telerik.WinControls.UI.RadTextBox();
             this.radTextBoxCustCustName = new Telerik.WinControls.UI.RadTextBox();
@@ -81,16 +83,14 @@
             this.radLabelCustCustomerName = new Telerik.WinControls.UI.RadLabel();
             this.radLabeCustCustomerID = new Telerik.WinControls.UI.RadLabel();
             this.radGridViewCustomers = new Telerik.WinControls.UI.RadGridView();
-            this.radButtonCustInsert = new Telerik.WinControls.UI.RadButton();
-            this.radButtonCustClearForm = new Telerik.WinControls.UI.RadButton();
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radGridViewRecyclers = new Telerik.WinControls.UI.RadGridView();
-            this.radLabelRecyRecyclerId = new Telerik.WinControls.UI.RadLabel();
-            this.radLabelRecyRecyclerName = new Telerik.WinControls.UI.RadLabel();
-            this.radTextBoxControlRecyRecyclerId = new Telerik.WinControls.UI.RadTextBoxControl();
-            this.radTextBoxControlRecyRecyclerName = new Telerik.WinControls.UI.RadTextBoxControl();
-            this.radButtonRecyInsert = new Telerik.WinControls.UI.RadButton();
             this.radButtonRecyClearForm = new Telerik.WinControls.UI.RadButton();
+            this.radButtonRecyInsert = new Telerik.WinControls.UI.RadButton();
+            this.radTextBoxControlRecyRecyclerName = new Telerik.WinControls.UI.RadTextBoxControl();
+            this.radTextBoxControlRecyRecyclerId = new Telerik.WinControls.UI.RadTextBoxControl();
+            this.radLabelRecyRecyclerName = new Telerik.WinControls.UI.RadLabel();
+            this.radLabelRecyRecyclerId = new Telerik.WinControls.UI.RadLabel();
+            this.radGridViewRecyclers = new Telerik.WinControls.UI.RadGridView();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonBatchDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButtonSave)).BeginInit();
@@ -132,6 +132,8 @@
             this.Jobs.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
             this.radPageViewPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonCustClearForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonCustInsert)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxCustCustId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxCustCustSuburb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxCustCustName)).BeginInit();
@@ -140,17 +142,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabeCustCustomerID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewCustomers.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonCustInsert)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonCustClearForm)).BeginInit();
             this.radPageViewPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonRecyClearForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonRecyInsert)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxControlRecyRecyclerName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxControlRecyRecyclerId)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelRecyRecyclerName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelRecyRecyclerId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewRecyclers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewRecyclers.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelRecyRecyclerId)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelRecyRecyclerName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxControlRecyRecyclerId)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxControlRecyRecyclerName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonRecyInsert)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonRecyClearForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -166,6 +166,7 @@
             // 
             // radButtonBatchDelete
             // 
+            this.radButtonBatchDelete.Enabled = false;
             this.radButtonBatchDelete.Location = new System.Drawing.Point(1189, 50);
             this.radButtonBatchDelete.Name = "radButtonBatchDelete";
             this.radButtonBatchDelete.Size = new System.Drawing.Size(110, 32);
@@ -513,7 +514,7 @@
             this.Jobs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Jobs.Location = new System.Drawing.Point(0, 0);
             this.Jobs.Name = "Jobs";
-            this.Jobs.SelectedPage = this.radPageViewPage3;
+            this.Jobs.SelectedPage = this.radPageViewPage1;
             this.Jobs.Size = new System.Drawing.Size(1378, 739);
             this.Jobs.TabIndex = 1;
             this.Jobs.ThemeName = "TelerikMetroTouch";
@@ -578,6 +579,26 @@
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(1368, 694);
             this.radPageViewPage2.Text = "Customers";
+            // 
+            // radButtonCustClearForm
+            // 
+            this.radButtonCustClearForm.Location = new System.Drawing.Point(1226, 60);
+            this.radButtonCustClearForm.Name = "radButtonCustClearForm";
+            this.radButtonCustClearForm.Size = new System.Drawing.Size(110, 32);
+            this.radButtonCustClearForm.TabIndex = 4;
+            this.radButtonCustClearForm.Text = "Clear Form";
+            this.radButtonCustClearForm.ThemeName = "TelerikMetroTouch";
+            this.radButtonCustClearForm.Click += new System.EventHandler(this.radButtonCustClearForm_Click);
+            // 
+            // radButtonCustInsert
+            // 
+            this.radButtonCustInsert.Location = new System.Drawing.Point(1226, 13);
+            this.radButtonCustInsert.Name = "radButtonCustInsert";
+            this.radButtonCustInsert.Size = new System.Drawing.Size(110, 32);
+            this.radButtonCustInsert.TabIndex = 4;
+            this.radButtonCustInsert.Text = "Save";
+            this.radButtonCustInsert.ThemeName = "TelerikMetroTouch";
+            this.radButtonCustInsert.Click += new System.EventHandler(this.radButtonCustInsert_Click);
             // 
             // radTextBoxCustCustId
             // 
@@ -652,26 +673,6 @@
             this.radGridViewCustomers.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridViewCustomers_CellClick);
             this.radGridViewCustomers.DataBindingComplete += new Telerik.WinControls.UI.GridViewBindingCompleteEventHandler(this.radGridViewCustomers_DataBindingComplete);
             // 
-            // radButtonCustInsert
-            // 
-            this.radButtonCustInsert.Location = new System.Drawing.Point(1226, 13);
-            this.radButtonCustInsert.Name = "radButtonCustInsert";
-            this.radButtonCustInsert.Size = new System.Drawing.Size(110, 32);
-            this.radButtonCustInsert.TabIndex = 4;
-            this.radButtonCustInsert.Text = "Save";
-            this.radButtonCustInsert.ThemeName = "TelerikMetroTouch";
-            this.radButtonCustInsert.Click += new System.EventHandler(this.radButtonCustInsert_Click);
-            // 
-            // radButtonCustClearForm
-            // 
-            this.radButtonCustClearForm.Location = new System.Drawing.Point(1226, 60);
-            this.radButtonCustClearForm.Name = "radButtonCustClearForm";
-            this.radButtonCustClearForm.Size = new System.Drawing.Size(110, 32);
-            this.radButtonCustClearForm.TabIndex = 4;
-            this.radButtonCustClearForm.Text = "Clear Form";
-            this.radButtonCustClearForm.ThemeName = "TelerikMetroTouch";
-            this.radButtonCustClearForm.Click += new System.EventHandler(this.radButtonCustClearForm_Click);
-            // 
             // radPageViewPage3
             // 
             this.radPageViewPage3.Controls.Add(this.radButtonRecyClearForm);
@@ -686,6 +687,62 @@
             this.radPageViewPage3.Name = "radPageViewPage3";
             this.radPageViewPage3.Size = new System.Drawing.Size(1368, 694);
             this.radPageViewPage3.Text = "Recyclers";
+            // 
+            // radButtonRecyClearForm
+            // 
+            this.radButtonRecyClearForm.Location = new System.Drawing.Point(1193, 46);
+            this.radButtonRecyClearForm.Name = "radButtonRecyClearForm";
+            this.radButtonRecyClearForm.Size = new System.Drawing.Size(110, 32);
+            this.radButtonRecyClearForm.TabIndex = 4;
+            this.radButtonRecyClearForm.Text = "Clear Form";
+            this.radButtonRecyClearForm.ThemeName = "TelerikMetroTouch";
+            this.radButtonRecyClearForm.Click += new System.EventHandler(this.radButtonRecyClearForm_Click);
+            // 
+            // radButtonRecyInsert
+            // 
+            this.radButtonRecyInsert.Location = new System.Drawing.Point(1193, 6);
+            this.radButtonRecyInsert.Name = "radButtonRecyInsert";
+            this.radButtonRecyInsert.Size = new System.Drawing.Size(110, 32);
+            this.radButtonRecyInsert.TabIndex = 3;
+            this.radButtonRecyInsert.Text = "Save";
+            this.radButtonRecyInsert.ThemeName = "TelerikMetroTouch";
+            this.radButtonRecyInsert.Click += new System.EventHandler(this.radButtonRecyInsert_Click);
+            // 
+            // radTextBoxControlRecyRecyclerName
+            // 
+            this.radTextBoxControlRecyRecyclerName.Location = new System.Drawing.Point(114, 46);
+            this.radTextBoxControlRecyRecyclerName.Name = "radTextBoxControlRecyRecyclerName";
+            this.radTextBoxControlRecyRecyclerName.Size = new System.Drawing.Size(302, 30);
+            this.radTextBoxControlRecyRecyclerName.TabIndex = 2;
+            this.radTextBoxControlRecyRecyclerName.ThemeName = "TelerikMetroTouch";
+            // 
+            // radTextBoxControlRecyRecyclerId
+            // 
+            this.radTextBoxControlRecyRecyclerId.Location = new System.Drawing.Point(114, 6);
+            this.radTextBoxControlRecyRecyclerId.Name = "radTextBoxControlRecyRecyclerId";
+            this.radTextBoxControlRecyRecyclerId.Size = new System.Drawing.Size(150, 30);
+            this.radTextBoxControlRecyRecyclerId.TabIndex = 2;
+            this.radTextBoxControlRecyRecyclerId.ThemeName = "TelerikMetroTouch";
+            this.radTextBoxControlRecyRecyclerId.CreateTextBlock += new Telerik.WinControls.UI.CreateTextBlockEventHandler(this.radTextBoxControlRecyRecyclerId_CreateTextBlock);
+            // 
+            // radLabelRecyRecyclerName
+            // 
+            this.radLabelRecyRecyclerName.Location = new System.Drawing.Point(7, 53);
+            this.radLabelRecyRecyclerName.Name = "radLabelRecyRecyclerName";
+            this.radLabelRecyRecyclerName.Size = new System.Drawing.Size(47, 23);
+            this.radLabelRecyRecyclerName.TabIndex = 1;
+            this.radLabelRecyRecyclerName.Text = "Name";
+            this.radLabelRecyRecyclerName.ThemeName = "TelerikMetroTouch";
+            // 
+            // radLabelRecyRecyclerId
+            // 
+            this.radLabelRecyRecyclerId.AutoScroll = true;
+            this.radLabelRecyRecyclerId.Location = new System.Drawing.Point(7, 13);
+            this.radLabelRecyRecyclerId.Name = "radLabelRecyRecyclerId";
+            this.radLabelRecyRecyclerId.Size = new System.Drawing.Size(62, 23);
+            this.radLabelRecyRecyclerId.TabIndex = 1;
+            this.radLabelRecyRecyclerId.Text = "Number";
+            this.radLabelRecyRecyclerId.ThemeName = "TelerikMetroTouch";
             // 
             // radGridViewRecyclers
             // 
@@ -705,62 +762,6 @@
             this.radGridViewRecyclers.ThemeName = "TelerikMetroTouch";
             this.radGridViewRecyclers.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.radGridViewRecyclers_CellClick);
             this.radGridViewRecyclers.DataBindingComplete += new Telerik.WinControls.UI.GridViewBindingCompleteEventHandler(this.radGridViewRecyclers_DataBindingComplete);
-            // 
-            // radLabelRecyRecyclerId
-            // 
-            this.radLabelRecyRecyclerId.AutoScroll = true;
-            this.radLabelRecyRecyclerId.Location = new System.Drawing.Point(7, 13);
-            this.radLabelRecyRecyclerId.Name = "radLabelRecyRecyclerId";
-            this.radLabelRecyRecyclerId.Size = new System.Drawing.Size(62, 23);
-            this.radLabelRecyRecyclerId.TabIndex = 1;
-            this.radLabelRecyRecyclerId.Text = "Number";
-            this.radLabelRecyRecyclerId.ThemeName = "TelerikMetroTouch";
-            // 
-            // radLabelRecyRecyclerName
-            // 
-            this.radLabelRecyRecyclerName.Location = new System.Drawing.Point(7, 53);
-            this.radLabelRecyRecyclerName.Name = "radLabelRecyRecyclerName";
-            this.radLabelRecyRecyclerName.Size = new System.Drawing.Size(47, 23);
-            this.radLabelRecyRecyclerName.TabIndex = 1;
-            this.radLabelRecyRecyclerName.Text = "Name";
-            this.radLabelRecyRecyclerName.ThemeName = "TelerikMetroTouch";
-            // 
-            // radTextBoxControlRecyRecyclerId
-            // 
-            this.radTextBoxControlRecyRecyclerId.Location = new System.Drawing.Point(114, 6);
-            this.radTextBoxControlRecyRecyclerId.Name = "radTextBoxControlRecyRecyclerId";
-            this.radTextBoxControlRecyRecyclerId.Size = new System.Drawing.Size(150, 30);
-            this.radTextBoxControlRecyRecyclerId.TabIndex = 2;
-            this.radTextBoxControlRecyRecyclerId.ThemeName = "TelerikMetroTouch";
-            this.radTextBoxControlRecyRecyclerId.CreateTextBlock += new Telerik.WinControls.UI.CreateTextBlockEventHandler(this.radTextBoxControlRecyRecyclerId_CreateTextBlock);
-            // 
-            // radTextBoxControlRecyRecyclerName
-            // 
-            this.radTextBoxControlRecyRecyclerName.Location = new System.Drawing.Point(114, 46);
-            this.radTextBoxControlRecyRecyclerName.Name = "radTextBoxControlRecyRecyclerName";
-            this.radTextBoxControlRecyRecyclerName.Size = new System.Drawing.Size(302, 30);
-            this.radTextBoxControlRecyRecyclerName.TabIndex = 2;
-            this.radTextBoxControlRecyRecyclerName.ThemeName = "TelerikMetroTouch";
-            // 
-            // radButtonRecyInsert
-            // 
-            this.radButtonRecyInsert.Location = new System.Drawing.Point(1193, 6);
-            this.radButtonRecyInsert.Name = "radButtonRecyInsert";
-            this.radButtonRecyInsert.Size = new System.Drawing.Size(110, 32);
-            this.radButtonRecyInsert.TabIndex = 3;
-            this.radButtonRecyInsert.Text = "Save";
-            this.radButtonRecyInsert.ThemeName = "TelerikMetroTouch";
-            this.radButtonRecyInsert.Click += new System.EventHandler(this.radButtonRecyInsert_Click);
-            // 
-            // radButtonRecyClearForm
-            // 
-            this.radButtonRecyClearForm.Location = new System.Drawing.Point(1193, 46);
-            this.radButtonRecyClearForm.Name = "radButtonRecyClearForm";
-            this.radButtonRecyClearForm.Size = new System.Drawing.Size(110, 32);
-            this.radButtonRecyClearForm.TabIndex = 4;
-            this.radButtonRecyClearForm.Text = "Clear Form";
-            this.radButtonRecyClearForm.ThemeName = "TelerikMetroTouch";
-            this.radButtonRecyClearForm.Click += new System.EventHandler(this.radButtonRecyClearForm_Click);
             // 
             // Form1
             // 
@@ -822,6 +823,8 @@
             this.radPageViewPage1.PerformLayout();
             this.radPageViewPage2.ResumeLayout(false);
             this.radPageViewPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonCustClearForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonCustInsert)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxCustCustId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxCustCustSuburb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBoxCustCustName)).EndInit();
@@ -830,18 +833,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabeCustCustomerID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewCustomers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewCustomers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonCustInsert)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonCustClearForm)).EndInit();
             this.radPageViewPage3.ResumeLayout(false);
             this.radPageViewPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonRecyClearForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButtonRecyInsert)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxControlRecyRecyclerName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxControlRecyRecyclerId)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelRecyRecyclerName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelRecyRecyclerId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewRecyclers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridViewRecyclers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelRecyRecyclerId)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelRecyRecyclerName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxControlRecyRecyclerId)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBoxControlRecyRecyclerName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonRecyInsert)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButtonRecyClearForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
