@@ -1769,6 +1769,8 @@ namespace ITSD_Start
                 Recycler recycler = radDropDownListRecycler.SelectedItem.DataBoundItem as Recycler;
                 Customer customer = radDropDownListCustomer.SelectedItem.DataBoundItem as Customer;
                 //assign values to batch
+
+                //dont store ID if new batch as server assigned
                 if (radLabelBatchIdValue.Text != "Undefined")
                 {
                     batch.batchid = Convert.ToInt32(radLabelBatchIdValue.Text);
