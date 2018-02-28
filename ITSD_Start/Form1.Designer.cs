@@ -514,7 +514,7 @@
             this.Jobs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Jobs.Location = new System.Drawing.Point(0, 0);
             this.Jobs.Name = "Jobs";
-            this.Jobs.SelectedPage = this.radPageViewPage1;
+            this.Jobs.SelectedPage = this.radPageViewPage2;
             this.Jobs.Size = new System.Drawing.Size(1378, 739);
             this.Jobs.TabIndex = 1;
             this.Jobs.ThemeName = "TelerikMetroTouch";
@@ -582,7 +582,7 @@
             // 
             // radButtonCustClearForm
             // 
-            this.radButtonCustClearForm.Location = new System.Drawing.Point(1226, 60);
+            this.radButtonCustClearForm.Location = new System.Drawing.Point(1172, 60);
             this.radButtonCustClearForm.Name = "radButtonCustClearForm";
             this.radButtonCustClearForm.Size = new System.Drawing.Size(110, 32);
             this.radButtonCustClearForm.TabIndex = 4;
@@ -592,7 +592,7 @@
             // 
             // radButtonCustInsert
             // 
-            this.radButtonCustInsert.Location = new System.Drawing.Point(1226, 13);
+            this.radButtonCustInsert.Location = new System.Drawing.Point(1172, 13);
             this.radButtonCustInsert.Name = "radButtonCustInsert";
             this.radButtonCustInsert.Size = new System.Drawing.Size(110, 32);
             this.radButtonCustInsert.TabIndex = 4;
@@ -690,7 +690,7 @@
             // 
             // radButtonRecyClearForm
             // 
-            this.radButtonRecyClearForm.Location = new System.Drawing.Point(1193, 46);
+            this.radButtonRecyClearForm.Location = new System.Drawing.Point(1181, 46);
             this.radButtonRecyClearForm.Name = "radButtonRecyClearForm";
             this.radButtonRecyClearForm.Size = new System.Drawing.Size(110, 32);
             this.radButtonRecyClearForm.TabIndex = 4;
@@ -700,7 +700,7 @@
             // 
             // radButtonRecyInsert
             // 
-            this.radButtonRecyInsert.Location = new System.Drawing.Point(1193, 6);
+            this.radButtonRecyInsert.Location = new System.Drawing.Point(1181, 6);
             this.radButtonRecyInsert.Name = "radButtonRecyInsert";
             this.radButtonRecyInsert.Size = new System.Drawing.Size(110, 32);
             this.radButtonRecyInsert.TabIndex = 3;

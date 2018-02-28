@@ -1756,6 +1756,8 @@ namespace ITSD_Start
 
         private async void radButtonSave_Click(object sender, EventArgs e)
         {
+            //disable save button unit grid reloads
+            radButtonSave.Enabled = false;
             //null object for saving
             Batch batch = new Batch();
 
@@ -1793,6 +1795,8 @@ namespace ITSD_Start
             {
 
                 MessageBox.Show("Oops something went wrong");
+                //re-enable save button not that grid is loaded
+                radButtonSave.Enabled = true;
                 return;
             }
 
@@ -1823,11 +1827,14 @@ namespace ITSD_Start
                 else
                 {
                     MessageBox.Show("Something went wrong");
+
                 }
             }
 
             //reload dgv
             await LoadBatchRGVASYNC();
+            //re-enable save button not that grid is loaded
+            radButtonSave.Enabled = true;
         }
 
         private void rgvBatch_CellEditorInitialized(object sender, GridViewCellEventArgs e)
